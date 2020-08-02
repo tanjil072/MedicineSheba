@@ -35,6 +35,7 @@ function TabStack() {
         indicatorStyle: {
           borderBottomColor: '#87B56A',
           borderBottomWidth: 3,
+          
         },
       }}>
       <Tab.Screen
