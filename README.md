@@ -37,6 +37,10 @@ command: npm install react-navigation-material-bottom-tabs react-native-paper
 
 command: npm install react-native-vector-icons
 
+9.Install Google Maps
+
+command: npm install -save react-native-maps  
+
 
 These commands will copy all the dependencies into your node_module directory.
 
