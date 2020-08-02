@@ -10,14 +10,14 @@ const RegisterAs = props => {
                 <View style={[styles.buttonTwo, { marginEnd: 20 }]}>
                     <Text
                         style={styles.registerTextStyle}
-                        onPress={() => props.navigation.navigate('RegisterAs')}>
+                        onPress={() => props.navigation.navigate('SellerRegistration')}>
                         <Text style={styles.text} >Seller</Text>
                     </Text>
                 </View>
                 <View style={styles.buttonTwo}>
                     <Text
                         style={styles.registerTextStyle}
-                        onPress={() => props.navigation.navigate('RegisterScreen')}>
+                        onPress={() => props.navigation.navigate('BuyerRegistration')}>
                         <Text style={styles.text}>Buyer</Text>
                     </Text>
                 </View>
