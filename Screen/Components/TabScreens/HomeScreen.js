@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import MapView from 'react-native-maps';  
 import { Marker } from 'react-native-maps';  
   
-export default class App extends Component {  
+export default class HomeScreen extends Component {  
   render() {  
     return (  
       <View style={styles.MainContainer}>  
