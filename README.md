@@ -41,6 +41,24 @@ command: npm install react-native-vector-icons
 
 command: npm install -save react-native-maps  
 
+10. Install react-navigation
+
+
+npm install @react-navigation/native --save
+
+11. Other supporting libraries react-native-gesture-handler, react-native-reanimated, react-native-screens and react-native-safe-area-context and @react-native-community/masked-view
+
+npm install react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view --save
+
+12. For the  Tab Navigator install
+
+npm install @react-navigation/material-top-tabs react-native-tab-view
+
+13. These steps are enough for the Tab navigation but in this example, we are also using Stack Navigator so for that
+
+
+npm install @react-navigation/stack --save
+
 
 These commands will copy all the dependencies into your node_module directory.
 
