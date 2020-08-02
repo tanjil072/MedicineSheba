@@ -6,6 +6,7 @@ import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import Icon from 'react-native-vector-icons/Ionicons';  
 //import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import FirstPage from './FirstPage';
@@ -17,19 +18,23 @@ const Tab = createMaterialTopTabNavigator();
 function TabStack() {
   return (
     <Tab.Navigator
-      initialRouteName="Feed"
+      initialRouteName="InProgress"
       tabBarOptions={{
-        activeTintColor: '#FFFFFF',
-        inactiveTintColor: '#F8F8F8',
+        showIcon: true,
+        activeTintColor: 'white',
+        inactiveTintColor: 'black',
+        
+        
         style: {
-          backgroundColor: '#633689',
+          backgroundColor: '#8CCEEB',
         },
         labelStyle: {
           textAlign: 'center',
+          fontSize:12
         },
         indicatorStyle: {
           borderBottomColor: '#87B56A',
-          borderBottomWidth: 2,
+          borderBottomWidth: 3,
         },
       }}>
       <Tab.Screen
@@ -37,6 +42,9 @@ function TabStack() {
         component={FirstPage}
         options={{
           tabBarLabel: 'In Progress',
+          tabBarIcon: ({ tintColor }) => (
+            <Icon name="download" size={25}/>
+          )
           // tabBarIcon: ({ color, size }) => (
           //   <MaterialCommunityIcons name="home" color={color} size={size} />
           // ),
@@ -46,6 +54,9 @@ function TabStack() {
         component={SecondPage}
         options={{
           tabBarLabel: 'Past Orders',
+          tabBarIcon: ({ tintColor }) => (
+            <Icon name="timer" size={25}/>
+          )
           // tabBarIcon: ({ color, size }) => (
           //   <MaterialCommunityIcons name="settings" color={color} size={size} />
           // ),
