@@ -19,21 +19,16 @@ const FirstPage = ({ navigation }) => {
               textAlign: 'center',
               marginBottom: 16
             }}>
-            Home{'\n'}(You are on FirstPage)
+              Orders In Progress
+            {/* Orders In Progress{'\n'}(You are on FirstPage) */}
           </Text>
-          <TouchableOpacity
+          {/* <TouchableOpacity
             style={styles.button}
             onPress={() => navigation.navigate('SecondPage')}>
             <Text>Go to settng Tab</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
-        <Text style={{ fontSize: 18, textAlign: 'center', color: 'grey' }}>
-          React Native Tab Navigation
-        </Text>
-        <Text
-          style={{ fontSize: 16, textAlign: 'center', color: 'grey' }}>
-          www.aboutreact.com
-        </Text>
+        
       </View>
     </SafeAreaView>
   );

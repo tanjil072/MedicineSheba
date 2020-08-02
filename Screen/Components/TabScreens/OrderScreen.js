@@ -36,7 +36,7 @@ function TabStack() {
         name="FirstPage"
         component={FirstPage}
         options={{
-          tabBarLabel: 'Home',
+          tabBarLabel: 'In Progress',
           // tabBarIcon: ({ color, size }) => (
           //   <MaterialCommunityIcons name="home" color={color} size={size} />
           // ),
@@ -45,7 +45,7 @@ function TabStack() {
         name="SecondPage"
         component={SecondPage}
         options={{
-          tabBarLabel: 'Setting',
+          tabBarLabel: 'Past Orders',
           // tabBarIcon: ({ color, size }) => (
           //   <MaterialCommunityIcons name="settings" color={color} size={size} />
           // ),
@@ -62,9 +62,11 @@ function App() {
         screenOptions={{
           headerStyle: { backgroundColor: '#633689' },
           headerTintColor: '#fff',
-          headerTitleStyle: { fontWeight: 'bold' }
+          headerTitleAlign:'center',
+          headerTitleStyle: { fontWeight: 'bold' },
+          
         }}>
-        <Stack.Screen name="TabStack" component={TabStack} options={{ title: 'Tab Stack' }}/>
+        <Stack.Screen name="TabStack" component={TabStack} options={{ title: 'My Orders' }}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
