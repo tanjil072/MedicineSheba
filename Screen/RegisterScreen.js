@@ -15,7 +15,7 @@ import {
 import Loader from './Components/loader';
 
 const RegisterScreen = props => {
-  
+
   let [userName, setUserName] = useState('');
   let [userEmail, setUserEmail] = useState('');
   let [Phone, setUserPhone] = useState('');
@@ -109,7 +109,7 @@ const RegisterScreen = props => {
     );
   }
   return (
-    
+
     <View style={{ flex: 1, backgroundColor: '#B2BEB5' }}>
       <Loader loading={loading} />
       <ScrollView keyboardShouldPersistTaps="handled">
@@ -121,11 +121,11 @@ const RegisterScreen = props => {
               height: 80,
               resizeMode: 'contain',
               marginTop: 80,
-              marginBottom:40,
+              marginBottom: 40,
             }}
           />
         </View>
-       
+
 
         <KeyboardAvoidingView enabled>
           <View style={styles.SectionStyle}>
@@ -209,8 +209,8 @@ const RegisterScreen = props => {
               blurOnSubmit={false}
             />
           </View>
-        
-         
+
+
           {errortext != '' ? (
             <Text style={styles.errorTextStyle}> {errortext} </Text>
           ) : null}
@@ -220,6 +220,12 @@ const RegisterScreen = props => {
             onPress={handleSubmitButton}>
             <Text style={styles.buttonTextStyle}>REGISTER</Text>
           </TouchableOpacity>
+
+          <Text
+            style={styles.registerTextStyle}
+            onPress={() => props.navigation.navigate('LoginScreen')}>
+            <Text style={{ fontStyle: 'italic', fontWeight: 'normal' }}>Already have an account?</Text>  Sign In
+            </Text>
         </KeyboardAvoidingView>
       </ScrollView>
     </View>
@@ -241,11 +247,11 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     color: '#FFFFFF',
     height: 40,
-    width:'25%',
+    width: '25%',
     alignItems: 'center',
-    justifyContent:'center',
+    justifyContent: 'center',
     borderRadius: 10,
-    marginLeft:'40%',
+    marginLeft: '40%',
     marginTop: 20,
     marginBottom: 20,
   },
@@ -254,15 +260,22 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     fontSize: 16,
   },
+  registerTextStyle: {
+    color: '#08070D',
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 14,
+    marginLeft: 20
+  },
   inputStyle: {
     flex: 1,
     paddingLeft: 15,
     paddingRight: 15,
     borderWidth: 1,
-    maxWidth:'90%',
-    marginLeft:'5%',
+    maxWidth: '90%',
+    marginLeft: '5%',
     borderRadius: 10,
-    backgroundColor:'white',
+    backgroundColor: 'white',
     borderColor: 'grey',
   },
   errorTextStyle: {

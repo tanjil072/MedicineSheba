@@ -12,6 +12,7 @@ import LoginScreen from './Screen/LoginScreen';
 import RegisterScreen from './Screen/RegisterScreen';
 import DrawerNavigationRoutes from './Screen/DrawerNavigationRoutes';
 import BottomNav from './Screen/Components/BottomNav';
+import RegisterAs from './Screen/RegisterAs'
 
 const Auth = createStackNavigator({
   //Stack Navigator for Login and Sign up Screen
@@ -36,6 +37,13 @@ const Auth = createStackNavigator({
         backgroundColor: '#307ecc',
       },
       headerTintColor: '#fff',
+    },
+  },
+
+  RegisterAs: {
+    screen: RegisterAs,
+    navigationOptions: {
+      headerShown: false,
     },
   },
 });

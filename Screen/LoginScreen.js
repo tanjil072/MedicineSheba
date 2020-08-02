@@ -144,9 +144,9 @@ const LoginScreen = props => {
               <Text style={styles.buttonTextStyle}>Sign In</Text>
             </TouchableOpacity>
             <Text
-              style={styles.registerTextStyle}
-              onPress={() => props.navigation.navigate('RegisterScreen')}>
-              Don't have any account ? Register
+            style={styles.registerTextStyle}
+            onPress={() => props.navigation.navigate('RegisterAs')}>
+            <Text style={{ fontStyle: 'italic', fontWeight: 'normal' }}>Don't have any account?</Text>  Register
             </Text>
           </KeyboardAvoidingView>
         </View>
