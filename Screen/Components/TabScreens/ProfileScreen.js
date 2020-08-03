@@ -12,7 +12,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import Dialog from "react-native-dialog";
 
 
-
+var edittext;
 
 export default class ProfileScreen extends Component {
 
@@ -38,13 +38,6 @@ export default class ProfileScreen extends Component {
   };
 
 
-  handleSubmitPress=()=> {
-    
-    alert("Hell")
-
-
-  }
-
   render(){
 
   return (
@@ -68,10 +61,7 @@ export default class ProfileScreen extends Component {
             <Text style={{ fontSize: 20, color: 'white' }}>Username</Text>
             <Text style={{ fontSize: 20, color: '#BEBEBE' }}>Tanjil</Text>
           </View>
-          <View style={styles.box2}>
-            {/* <Text style={{ marginTop: 35 }}>Hi</Text> */}
-            <Icon name="create" size={25}  style={{ marginTop: 25 }} onPress={this.showDialog} />
-          </View>
+          
         </View>
 
 
@@ -127,12 +117,13 @@ export default class ProfileScreen extends Component {
           <Text>Show Dialog</Text>
         </TouchableOpacity> */}
         <Dialog.Container visible={this.state.dialogVisible}>
-          <Dialog.Title>Account delete</Dialog.Title>
-          <Dialog.Description>
-            Do you want to delete this account? You cannot undo this action.
-          </Dialog.Description>
+          <Dialog.Title>Edit Email</Dialog.Title>
+          
+          <Dialog.Input style={{borderWidth:1,borderRadius:15,paddingLeft:10}} placeholder="Email">
+            
+          </Dialog.Input>
           <Dialog.Button label="Cancel" onPress={this.handleCancel} />
-          <Dialog.Button label="Delete" onPress={this.handleDelete} />
+          <Dialog.Button label="Submit" onPress={this.handleDelete} />
         </Dialog.Container>
       </View>
 
