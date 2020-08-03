@@ -9,23 +9,47 @@ import {
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/Ionicons';
+import Dialog from "react-native-dialog";
 
 
 
 
-function ProfileScreen(props) {
+export default class ProfileScreen extends Component {
 
-
-
-  const handleSubmitPress = () => {
-
-    //props.navigation.navigate('LoginScreen');
-    alert("Icon pressed")
-
-
+  state = {
+    dialogVisible: false
   };
 
+  signout =() =>{
+    this.props.navigation.navigate('LoginScreen');
+  }
+  showDialog = () => {
+    this.setState({ dialogVisible: true });
+  };
+
+  handleCancel = () => {
+    this.setState({ dialogVisible: false });
+  };
+
+  handleDelete = () => {
+    // The user has pressed the "Delete" button, so here you can do your own logic.
+    // ...Your logic
+    this.setState({ dialogVisible: false });
+  };
+
+
+  handleSubmitPress=()=> {
+    
+    alert("Hell")
+
+
+  }
+
+  render(){
+
   return (
+
+
     <View style={styles.container}>
       <View style={styles.header}>
         <View style={styles.headerContent}>
@@ -46,9 +70,13 @@ function ProfileScreen(props) {
           </View>
           <View style={styles.box2}>
             {/* <Text style={{ marginTop: 35 }}>Hi</Text> */}
-            <Icon name="create" size={25} onPress={handleSubmitPress} style={{ marginTop: 25 }} />
+            <Icon name="create" size={25}  style={{ marginTop: 25 }} onPress={this.showDialog} />
           </View>
         </View>
+
+
+
+
 
         <View style={styles.detailBox}>
           <View style={styles.box1}>
@@ -56,7 +84,7 @@ function ProfileScreen(props) {
             <Text style={{ fontSize: 20, color: '#BEBEBE' }}>Tanjilh84@gmail.com</Text>
           </View>
           <View style={styles.box2}>
-            <Icon name="create" size={25} style={{ marginTop: 25 }} onPress={handleSubmitPress} />
+            <Icon name="create" size={25} style={{ marginTop: 25 }} onPress={this.showDialog} />
           </View>
         </View>
 
@@ -66,7 +94,7 @@ function ProfileScreen(props) {
             <Text style={{ fontSize: 20, color: '#BEBEBE' }}>+88017********</Text>
           </View>
           <View style={styles.box2}>
-            <Icon name="create" size={25} style={{ marginTop: 25 }} onPress={handleSubmitPress} />
+            <Icon name="create" size={25} style={{ marginTop: 25 }} onPress={this.showDialog}  />
           </View>
         </View>
 
@@ -76,7 +104,7 @@ function ProfileScreen(props) {
             <Text style={{ fontSize: 20, color: '#BEBEBE' }}>********</Text>
           </View>
           <View style={styles.box2}>
-            <Icon name="create" size={25} style={{ marginTop: 25 }} onPress={handleSubmitPress}  />
+            <Icon name="create" size={25} style={{ marginTop: 25 }} onPress={this.showDialog}  />
           </View>
         </View>
 
@@ -85,7 +113,8 @@ function ProfileScreen(props) {
           <TouchableOpacity
             style={styles.buttonStyle}
             activeOpacity={0.5}
-            onPress={handleSubmitPress}>
+            onPress={this.signout}
+            >
 
             <Text style={styles.buttonTextStyle}>Sign Out</Text>
           </TouchableOpacity>
@@ -93,13 +122,27 @@ function ProfileScreen(props) {
 
         </View>
 
+        <View>
+        {/* <TouchableOpacity onPress={this.showDialog}>
+          <Text>Show Dialog</Text>
+        </TouchableOpacity> */}
+        <Dialog.Container visible={this.state.dialogVisible}>
+          <Dialog.Title>Account delete</Dialog.Title>
+          <Dialog.Description>
+            Do you want to delete this account? You cannot undo this action.
+          </Dialog.Description>
+          <Dialog.Button label="Cancel" onPress={this.handleCancel} />
+          <Dialog.Button label="Delete" onPress={this.handleDelete} />
+        </Dialog.Container>
+      </View>
+
       </View>
     </View>
   );
+  }
 
 }
 
-export default ProfileScreen;
 
 const styles = StyleSheet.create({
   box1: {
