@@ -19,6 +19,7 @@
     "react-native": "0.63.2",
     "react-native-gesture-handler": "^1.7.0",
     "react-native-maps": "0.27.1",
+    "react-native-material-textfield": "^0.16.1",
     "react-native-paper": "^4.0.1",
     "react-native-reanimated": "^1.10.1",
     "react-native-safe-area-context": "^3.1.1",
@@ -30,7 +31,8 @@
     "react-navigation-drawer": "^2.5.0",
     "react-navigation-material-bottom-tabs": "^2.3.0",
     "react-navigation-stack": "^2.8.2",
-    "react-navigation-tabs": "^2.9.0"
+    "react-navigation-tabs": "^2.9.0",
+    "reinput": "^3.7.2"
   },
   "devDependencies": {
     "@babel/core": "7.11.0",
