@@ -1,5 +1,5 @@
-# MedicineSheba
-This is a Medicine delivery application build with React Native 
+# MedicineSheba (3.2 Project)
+This is a Medicine delivery application build with React Native
 
 To run this application on VSCode follow the instruction below:
 
