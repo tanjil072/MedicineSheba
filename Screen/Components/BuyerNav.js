@@ -3,10 +3,10 @@ import {StyleSheet, Text, View,Button} from 'react-native';
 import { createBottomTabNavigator, createAppContainer} from 'react-navigation';  
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';  
 import Icon from 'react-native-vector-icons/Ionicons';  
-import Home from './TabScreens/HomeScreen'
-import Profile from './TabScreens/ProfileScreen'
-import Orders from './TabScreens/OrderScreen'
-import Notifications from './TabScreens/NotificationScreen'
+import Home from './BuyerScreens/HomeScreen'
+import Profile from './BuyerScreens/ProfileScreen'
+import Orders from './BuyerScreens/OrderScreen'
+import Notifications from './BuyerScreens/NotificationScreen'
 
 
  

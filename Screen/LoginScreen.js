@@ -16,7 +16,7 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import Loader from './Components/loader';
-import BottomNav from './Components/BottomNav'
+import BottomNav from './Components/BuyerNav'
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import { RadioButton} from 'react-native-paper';
 
