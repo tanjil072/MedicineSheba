@@ -157,6 +157,10 @@ const styles = StyleSheet.create({
     flex: 1,
 
   },
+  container:{
+    height:'100%'
+  },
+
   box2: {
     flex: 1,
     alignItems: 'flex-end'

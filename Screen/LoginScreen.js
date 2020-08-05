@@ -15,10 +15,11 @@ import {
 
 } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
-import Loader from './Components/loader';
-import BottomNav from './Components/BuyerNav'
+import Loader from './loader';
+import BottomNav from './Components/BuyerScreens/BuyerNav'
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import { RadioButton} from 'react-native-paper';
+import Icon from 'react-native-vector-icons/Ionicons'; 
 
 
 const LoginScreen = props => {
@@ -123,7 +124,10 @@ const LoginScreen = props => {
                   this._passwordinput && this._passwordinput.focus()
                 }
                 blurOnSubmit={false}
+                
               />
+               <Icon name="person" color='#2B2D2F' size={25} style={{marginLeft:-30,marginTop:7}}/>
+
             </View>
             <View style={styles.SectionStyle}>
               <TextInput
@@ -140,6 +144,7 @@ const LoginScreen = props => {
                 blurOnSubmit={false}
                 secureTextEntry={true}
               />
+              <Icon name="key" color='#2B2D2F' size={25} style={{marginLeft:-30,marginTop:8}}/>
             </View>
             {errortext != '' ? (
               <Text style={styles.errorTextStyle}> {errortext} </Text>

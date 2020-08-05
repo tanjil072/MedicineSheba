@@ -11,6 +11,7 @@ const MyComponent = () => {
         <View>
           <Text>First</Text>
           <RadioButton value="first" />
+
         </View>
         <View>
           <Text>Second</Text>

@@ -12,7 +12,7 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
-import Loader from './Components/loader';
+import Loader from './loader';
 
 const RegisterScreen = props => {
 

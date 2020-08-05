@@ -10,7 +10,7 @@ import SplashScreen from './Screen/SplashScreen';
 import LoginScreen from './Screen/LoginScreen';
 
 import RegisterScreen from './Screen/BuyerRegistration';
-import BottomNav from './Screen/Components/BuyerNav';
+import BottomNav from './Screen/Components/BuyerScreens/BuyerNav';
 import SellerNav from './Screen/Components/Seller/SellerNav';
 import RegisterAs from './Screen/RegisterAs'
 import SellerRegistration from './Screen/SellerRegistration'
