@@ -1,5 +1,5 @@
 import React, { Component } from 'react';  
-import { StyleSheet, View } from 'react-native';  
+import { StyleSheet, View,Text } from 'react-native';  
 import MapView from 'react-native-maps';  
 import { Marker } from 'react-native-maps';  
   
@@ -7,6 +7,8 @@ export default class HomeScreen extends Component {
   render() {  
     return (  
       <View style={styles.MainContainer}>  
+
+      
   
         <MapView  
           style={styles.mapStyle}  
@@ -25,9 +27,13 @@ export default class HomeScreen extends Component {
             title={"Dhaka"}  
             description={"The capital of Bangladesh"}  
           />  
+          
         </MapView>  
+        
           
       </View>  
+    
+      
     );  
   }  
 }  

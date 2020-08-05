@@ -17,7 +17,8 @@ import {
 import AsyncStorage from '@react-native-community/async-storage';
 import Loader from './Components/loader';
 import BottomNav from './Components/BottomNav'
-import { createStackNavigator, createAppContainer } from 'react-navigation';  
+import { createStackNavigator, createAppContainer } from 'react-navigation';
+import { RadioButton} from 'react-native-paper';
 
 
 const LoginScreen = props => {
@@ -25,9 +26,10 @@ const LoginScreen = props => {
   let [userPassword, setUserPassword] = useState('');
   let [loading, setLoading] = useState(false);
   let [errortext, setErrortext] = useState('');
+  const [value, setValue] = React.useState('first');
 
 
-  const handleSubmitPress = () => {
+  const handleSignIn = () => {
     // setErrortext('');
     // if (!userEmail) {
     //   alert('Please fill Email');
@@ -48,7 +50,15 @@ const LoginScreen = props => {
 
     // formBody = formBody.join('&');
 
-    props.navigation.navigate('DrawerNavigationRoutes');
+    //props.navigation.navigate('DrawerNavigationRoutes');
+    if(value=='buyer')
+    {
+      props.navigation.navigate('DrawerNavigationRoutes');
+    }
+    if(value=='seller')
+    {
+      alert("Seller is not completed yet")
+    }
 
     // fetch('https://aboutreact.herokuapp.com/login.php', {
     //   method: 'POST',
@@ -136,17 +146,30 @@ const LoginScreen = props => {
             ) : null}
 
 
+            <RadioButton.Group onValueChange={value => setValue(value)} value={value} >
+              <View style={styles.radioButtonStyle}>
+                <View style={{marginLeft:20}}>
+                  <Text>Buyer</Text>
+                  <RadioButton value="buyer" color='black' />
+                </View>
+                <View style={{marginLeft:'20%'}}>
+                  <Text>Seller</Text>
+                  <RadioButton value="seller" color='black' />
+                </View>
+              </View>
+            </RadioButton.Group>
+
 
             <TouchableOpacity
               style={styles.buttonStyle}
               activeOpacity={0.5}
-              onPress={handleSubmitPress}>
+              onPress={handleSignIn}>
               <Text style={styles.buttonTextStyle}>Sign In</Text>
             </TouchableOpacity>
             <Text
-            style={styles.registerTextStyle}
-            onPress={() => props.navigation.navigate('RegisterAs')}>
-            <Text style={{ fontStyle: 'italic', fontWeight: 'normal' }}>Don't have any account?</Text>  Register
+              style={styles.registerTextStyle}
+              onPress={() => props.navigation.navigate('RegisterAs')}>
+              <Text style={{ fontStyle: 'italic', fontWeight: 'normal' }}>Don't have any account?</Text>  Register
             </Text>
           </KeyboardAvoidingView>
         </View>
@@ -183,6 +206,12 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 20,
   },
+  radioButtonStyle:{
+    flex: 1, 
+    flexDirection: 'row',
+    alignItems: "center", 
+    justifyContent: "center"
+  },
   buttonTextStyle: {
     color: '#FFFFFF',
     paddingVertical: 10,
@@ -204,7 +233,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'bold',
     fontSize: 14,
-    marginLeft: 20
+    marginLeft: 20,
+    marginTop:50
   },
   errorTextStyle: {
     color: 'red',

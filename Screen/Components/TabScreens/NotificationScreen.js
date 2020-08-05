@@ -1,15 +1,24 @@
+import * as React from 'react';
+import { View } from 'react-native';
+import { RadioButton, Text } from 'react-native-paper';
 
-import React from 'react';
+const MyComponent = () => {
+  const [value, setValue] = React.useState('first');
 
-//Import all required component
-import { View, Text } from 'react-native';
-
-const NotificationScreen = () => {
   return (
-    <View style={{ flex: 1, alignItems: 'center', marginTop: 100 }}>
-      <Text style={{ fontSize: 23, marginTop: 10 }}>Notifications Screen</Text>
-      
-    </View>
+    <RadioButton.Group onValueChange={value => setValue(value)} value={value} >
+      <View style={{ flex: 1, flexDirection: 'row',alignItems:"center",justifyContent:"center" }}>
+        <View>
+          <Text>First</Text>
+          <RadioButton value="first" />
+        </View>
+        <View>
+          <Text>Second</Text>
+          <RadioButton value="second" />
+        </View>
+      </View>
+    </RadioButton.Group>
   );
 };
-export default NotificationScreen;
+
+export default MyComponent;

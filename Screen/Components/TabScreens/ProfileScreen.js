@@ -12,7 +12,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import Dialog from "react-native-dialog";
 
 
-const text = ""; //Dialogue Title setter
+var text = ""; //Dialogue Title setter
 
 
 export default class ProfileScreen extends Component {
