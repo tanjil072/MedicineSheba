@@ -10,7 +10,6 @@ import SplashScreen from './Screen/SplashScreen';
 import LoginScreen from './Screen/LoginScreen';
 
 import RegisterScreen from './Screen/BuyerRegistration';
-import DrawerNavigationRoutes from './Screen/DrawerNavigationRoutes';
 import BottomNav from './Screen/Components/BottomNav';
 import RegisterAs from './Screen/RegisterAs'
 import SellerRegistration from './Screen/SellerRegistration'
@@ -72,7 +71,7 @@ const App = createSwitchNavigator({
     /* Auth Navigator which includer Login Signup will come once */
     screen: Auth,
   },
-  DrawerNavigationRoutes: {
+  NavToBottom: {
     /* Navigation Drawer as a landing page */
     screen: BottomNav,
     navigationOptions: {

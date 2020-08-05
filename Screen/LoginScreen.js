@@ -53,7 +53,7 @@ const LoginScreen = props => {
     //props.navigation.navigate('DrawerNavigationRoutes');
     if(value=='buyer')
     {
-      props.navigation.navigate('DrawerNavigationRoutes');
+      props.navigation.navigate('NavToBottom');
     }
     if(value=='seller')
     {

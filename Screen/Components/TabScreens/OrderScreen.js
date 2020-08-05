@@ -9,8 +9,8 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import Icon from 'react-native-vector-icons/Ionicons';  
 //import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import FirstPage from './FirstPage';
-import SecondPage from './SecondPage';
+import InProgress from './InProgress';
+import PastOrders from './PastOrders';
 
 const Stack = createStackNavigator();
 const Tab = createMaterialTopTabNavigator();
@@ -39,8 +39,8 @@ function TabStack() {
         },
       }}>
       <Tab.Screen
-        name="FirstPage"
-        component={FirstPage}
+        name="InProgress"
+        component={InProgress}
         options={{
           tabBarLabel: 'In Progress',
           tabBarIcon: ({ tintColor }) => (
@@ -51,8 +51,8 @@ function TabStack() {
           // ),
         }}  />
       <Tab.Screen
-        name="SecondPage"
-        component={SecondPage}
+        name="PastOrders"
+        component={PastOrders}
         options={{
           tabBarLabel: 'Past Orders',
           tabBarIcon: ({ tintColor }) => (
