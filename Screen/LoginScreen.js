@@ -57,7 +57,7 @@ const LoginScreen = props => {
     }
     if(value=='seller')
     {
-      alert("Seller is not completed yet")
+      props.navigation.navigate('NavToSeller');
     }
 
     // fetch('https://aboutreact.herokuapp.com/login.php', {
