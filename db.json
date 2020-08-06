@@ -1,0 +1,58 @@
+{
+  "users":[
+    {
+      "id":"1",
+      "firstname":"Tanjil",
+      "lastname":"pranto",
+      "email":"tanjilh84@gmail.com"
+    },
+    {
+      "id":"2",
+      "firstname":"Ahmed",
+      "lastname":"Miskat",
+      "email":"Miskat@gmail.com"
+    },
+    {
+      "id":"3",
+      "firstname":"Ador",
+      "lastname":"kutta",
+      "email":"ador@gmail.com"
+    },
+    {
+      "id":"4",
+      "firstname":"Joshim",
+      "lastname":"Ahmed",
+      "email":"joshim@gmail.com"
+    },
+    {
+      "id":"5",
+      "firstname":"Jishan",
+      "lastname":"Ahmed",
+      "email":"jishan@gmail.com"
+    },
+    {
+      "id":"6",
+      "firstname":"Abu",
+      "lastname":"Ubaida",
+      "email":"ubaida@gmail.com"
+    }
+
+  ],
+  "companies":[
+    {
+      "id":"1",
+      "name":"apple",
+      "decription":"This is Apple company"
+    },
+    {
+      "id":"2",
+      "name":"Google",
+      "decription":"This is Google company"
+    },
+    {
+      "id":"3",
+      "name":"Facebook",
+      "decription":"This is Facebook company"
+    }
+  ]
+}
