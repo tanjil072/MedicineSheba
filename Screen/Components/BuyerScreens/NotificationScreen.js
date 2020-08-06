@@ -23,7 +23,7 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    return fetch('http://10.0.2.2:3000/companies')
+    return fetch('http://10.0.2.2:3000/results')
       .then(response => response.json())
       .then(responseJson => {
         this.setState(
@@ -44,7 +44,7 @@ export default class App extends Component {
     //passing the inserted text in textinput
     const newData = this.arrayholder.filter(function(item) {
       //applying filter for the inserted text in search bar
-      const itemData = item.name ? item.name.toUpperCase() : ''.toUpperCase();
+      const itemData = item.term ? item.term.toUpperCase() : ''.toUpperCase();
       const textData = text.toUpperCase();
       return itemData.indexOf(textData) > -1;
     });
@@ -99,8 +99,8 @@ export default class App extends Component {
           renderItem={({ item }) => (
             <View>
               <TouchableOpacity onPress={() => alert("clicked")}>
-              <Text style={{marginLeft:10}}>{item.name} </Text>
-            <Text onPress={() => alert("ID: "+item.id)} style={styles.textStyle}>{item.decription} </Text>
+              <Text style={{marginLeft:10,margin:10}}>{item.term} </Text>
+            <Text onPress={() => alert(item.term)} style={styles.textStyle}>Item Left: {item.count} </Text>
             </TouchableOpacity>
             </View>
             
