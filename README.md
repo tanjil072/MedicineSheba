@@ -79,6 +79,6 @@ Run these command in cmd(Admin) in  project folder
 These commands will copy all the dependencies into your node_module directory.
 
 
-Now run the project with this command in cmd/terminal in project folder: react-native run-android
+Now run the project with this command in cmd/terminal in project folder: **react-native run-android**
 
 & Boom you have successfully run the app.Thanks
