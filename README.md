@@ -7,6 +7,9 @@ This is a Medicine delivery application build with React Native
 <img src="https://user-images.githubusercontent.com/53004677/89702328-22144e80-d962-11ea-8eff-2146797f8952.png" width="200" height="400" />
 <img src="https://user-images.githubusercontent.com/53004677/89702330-280a2f80-d962-11ea-9856-b5d634f6047b.png" width="200" height="400" />
 <img src="https://user-images.githubusercontent.com/53004677/89702517-f8f4bd80-d963-11ea-89c7-79a9983e0536.png" width="200" height="400" />
+  
+  <img src="https://user-images.githubusercontent.com/53004677/89702597-9f40c300-d964-11ea-8125-65271889ca94.png" width="200" height="400" />
+<img src="https://user-images.githubusercontent.com/53004677/89702600-a10a8680-d964-11ea-9d22-e3d7a20c0a43.png" width="200" height="400" />
 </p>
 
 # How to run:
