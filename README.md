@@ -1,7 +1,10 @@
 # MedicineSheba 
 This is a Medicine delivery application build with React Native
-
+<p float="left">
 <img src="https://user-images.githubusercontent.com/53004677/89701944-b29c6000-d95d-11ea-9b02-e94290588273.png" width="200" height="400" />
+<img src="https://user-images.githubusercontent.com/53004677/89702247-21c78380-d961-11ea-970b-ef9fce702974.png" width="200" height="400" />
+<img src="https://user-images.githubusercontent.com/53004677/89702247-21c78380-d961-11ea-970b-ef9fce702974.png" width="200" height="400" />
+</p>
 
 # How to run:
 To run this application on VSCode follow the instruction below:
