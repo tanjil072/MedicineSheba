@@ -70,6 +70,8 @@ command: npm install react-native-dialog
 
 command: npm install react-native-modal
 
+
+
 These commands will copy all the dependencies into your node_module directory.
 
 
