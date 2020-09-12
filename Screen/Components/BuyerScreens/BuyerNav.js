@@ -23,19 +23,19 @@ const TabNavigator = createMaterialBottomTabNavigator(
                     </View>),  
             }  
         },  
-        Profile: { screen: Profile,  
+
+        Cart: {  
+            screen: Notifications,  
             navigationOptions:{  
-                tabBarLabel:'Profile',  
+                tabBarLabel:'Home',  
                 tabBarIcon: ({ tintColor }) => (  
                     <View>  
-                        <Icon style={[{color: tintColor}]} size={25} name={'ios-person'}/> 
+                        <Icon style={[{color: tintColor}]} size={25} name={'ios-home'}/>  
                     </View>),  
-                activeColor: '#f60c0d',  
-                inactiveColor: '#f65a22',  
-                barStyle: { backgroundColor: '#f69b31' },  
             }  
-        },  
-        Image: { screen: Orders,  
+        },
+        
+        Orders: { screen: Orders,  
             navigationOptions:{  
                 tabBarLabel:'Orders',  
                 tabBarIcon: ({ tintColor }) => (  
@@ -47,19 +47,21 @@ const TabNavigator = createMaterialBottomTabNavigator(
                 barStyle: { backgroundColor: '#67baf6' },  
             }  
         },  
-        Cart: {  
-            screen: Notifications,  
+        Profile: { screen: Profile,  
             navigationOptions:{  
-                tabBarLabel:'Notifications',  
+                tabBarLabel:'Profile',  
                 tabBarIcon: ({ tintColor }) => (  
                     <View>  
-                        <Icon style={[{color: tintColor}]} size={25} name={'notifications'}/>  
+                        <Icon style={[{color: tintColor}]} size={25} name={'ios-person'}/> 
                     </View>),  
+                activeColor: '#f60c0d',  
+                inactiveColor: '#f65a22',  
+                barStyle: { backgroundColor: '#f69b31' },  
             }  
-        },  
+        }, 
     },  
     {  
-      initialRouteName: "Home",  
+      initialRouteName: "Cart",  
       activeColor: '#f0edf6',  
       inactiveColor: '#226557',  
       barStyle: { backgroundColor: '#3BAD87' },  

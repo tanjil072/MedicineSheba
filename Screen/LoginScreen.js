@@ -154,11 +154,11 @@ const LoginScreen = props => {
             <RadioButton.Group onValueChange={value => setValue(value)} value={value} >
               <View style={styles.radioButtonStyle}>
                 <View style={{marginLeft:20}}>
-                  <Text>Buyer</Text>
+                  <Text>Customer</Text>
                   <RadioButton value="buyer" color='black' />
                 </View>
                 <View style={{marginLeft:'20%'}}>
-                  <Text>Seller</Text>
+                  <Text>Admin</Text>
                   <RadioButton value="seller" color='black' />
                 </View>
               </View>
@@ -173,7 +173,7 @@ const LoginScreen = props => {
             </TouchableOpacity>
             <Text
               style={styles.registerTextStyle}
-              onPress={() => props.navigation.navigate('RegisterAs')}>
+              onPress={() => props.navigation.navigate('BuyerRegistration')}>
               <Text style={{ fontStyle: 'italic', fontWeight: 'normal' }}>Don't have any account?</Text>  Register
             </Text>
           </KeyboardAvoidingView>

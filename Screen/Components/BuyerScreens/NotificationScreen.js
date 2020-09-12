@@ -12,6 +12,7 @@ import {
   Alert,
 } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import Icon from 'react-native-vector-icons/Ionicons'; 
 //import all the components we are going to use.
 
 export default class App extends Component {
@@ -31,7 +32,7 @@ export default class App extends Component {
             isLoading: false,
             dataSource: responseJson
           },
-          function() {
+          function () {
             this.arrayholder = responseJson;
           }
         );
@@ -42,7 +43,7 @@ export default class App extends Component {
   }
   SearchFilterFunction(text) {
     //passing the inserted text in textinput
-    const newData = this.arrayholder.filter(function(item) {
+    const newData = this.arrayholder.filter(function (item) {
       //applying filter for the inserted text in search bar
       const itemData = item.term ? item.term.toUpperCase() : ''.toUpperCase();
       const textData = text.toUpperCase();
@@ -69,7 +70,7 @@ export default class App extends Component {
   };
 
 
-  a(id){
+  a(id) {
     alert(id)
   }
 
@@ -85,7 +86,11 @@ export default class App extends Component {
     }
     return (
       //ListView to show with textinput used as search bar
+
       <View style={styles.viewStyle}>
+        <View style={{alignItems:'flex-end',}}>
+          <Icon style={[{ color: "black" }]} size={35} name={'cart'} />
+        </View>
         <TextInput
           style={styles.textInputStyle}
           onChangeText={text => this.SearchFilterFunction(text)}
@@ -99,18 +104,19 @@ export default class App extends Component {
           renderItem={({ item }) => (
             <View>
               <TouchableOpacity onPress={() => alert("clicked")}>
-              <Text style={{marginLeft:10,margin:10}}>{item.term} </Text>
-            <Text onPress={() => alert(item.term)} style={styles.textStyle}>Item Left: {item.count} </Text>
-            </TouchableOpacity>
+                <Text style={{ marginLeft: 10, margin: 10, fontSize: 20 }}>{item.term} </Text>
+                <Text onPress={() => alert(item.term)} style={styles.textStyle}>Description: {item.description} </Text>
+              </TouchableOpacity>
             </View>
-            
-            
+
+
           )}
           enableEmptySections={true}
           style={{ marginTop: 10 }}
           keyExtractor={(item, index) => index.toString()}
         />
       </View>
+
     );
   }
 }
@@ -118,7 +124,6 @@ const styles = StyleSheet.create({
   viewStyle: {
     justifyContent: 'center',
     flex: 1,
-    marginTop: 40,
     padding: 16,
   },
   textStyle: {

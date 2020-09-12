@@ -13,15 +13,15 @@ const TabNavigator = createMaterialBottomTabNavigator(
     {  
 
         
-        Home: { screen: Home,  
-            navigationOptions:{  
-                tabBarLabel:'Home',  
-                tabBarIcon: ({ tintColor }) => (  
-                    <View>  
-                        <Icon style={[{color: tintColor}]} size={25} name={'ios-home'}/>  
-                    </View>),  
-            }  
-        },  
+        // Home: { screen: Home,  
+        //     navigationOptions:{  
+        //         tabBarLabel:'Home',  
+        //         tabBarIcon: ({ tintColor }) => (  
+        //             <View>  
+        //                 <Icon style={[{color: tintColor}]} size={25} name={'ios-home'}/>  
+        //             </View>),  
+        //     }  
+        // },  
         Profile: { screen: Profile,  
             navigationOptions:{  
                 tabBarLabel:'Profile',  
@@ -35,19 +35,19 @@ const TabNavigator = createMaterialBottomTabNavigator(
             }  
         },  
          
-        Cart: {  
-            screen: Notifications,  
-            navigationOptions:{  
-                tabBarLabel:'Notifications',  
-                tabBarIcon: ({ tintColor }) => (  
-                    <View>  
-                        <Icon style={[{color: tintColor}]} size={25} name={'notifications'}/>  
-                    </View>),  
-            }  
-        },  
+        // Cart: {  
+        //     screen: Notifications,  
+        //     navigationOptions:{  
+        //         tabBarLabel:'Notifications',  
+        //         tabBarIcon: ({ tintColor }) => (  
+        //             <View>  
+        //                 <Icon style={[{color: tintColor}]} size={25} name={'notifications'}/>  
+        //             </View>),  
+        //     }  
+        // },  
     },  
     {  
-      initialRouteName: "Home",  
+      initialRouteName: "Profile",  
       activeColor: '#f0edf6',  
       inactiveColor: '#226557',  
       barStyle: { backgroundColor: '#3BAD87' },  

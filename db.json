@@ -8,7 +8,7 @@
   "results": [
     {
       "term": "Hand Sanitizer",
-      "count": 2540
+      "description": "Used for washing hands"
     },
     {
       "term": "Oxygen",
@@ -17,10 +17,6 @@
     {
       "term": "Ibuprofen",
       "count": 380
-    },
-    {
-      "term": "HAND SANITIZER",
-      "count": 255
     },
     {
       "term": "Gabapentin",

@@ -59,13 +59,13 @@ const RegisterScreen = props => {
     }
     formBody = formBody.join('&');
 
-    fetch('https://aboutreact.herokuapp.com/register.php', {
-      method: 'POST',
-      body: formBody,
+    fetch('https://1fe2966d223d.ngrok.io/', {
+      method: 'GET',
       headers: {
-        //Header Defination
-        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
       },
+      //body: formBody,
     })
       .then(response => response.json())
       .then(responseJson => {
@@ -86,6 +86,7 @@ const RegisterScreen = props => {
         console.error(error);
       });
   };
+
   if (isRegistraionSuccess) {
     return (
       <View
