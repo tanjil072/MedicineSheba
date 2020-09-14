@@ -1,20 +1,18 @@
-// React Native Tab - Example using React Navigation V5 //
-// https://aboutreact.com/react-native-tab //
+
 import 'react-native-gesture-handler';
 
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import Icon from 'react-native-vector-icons/Ionicons';  
-//import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import InProgress from './InProgress';
 import PastOrders from './PastOrders';
 
 const Stack = createStackNavigator();
 const Tab = createMaterialTopTabNavigator();
-
+var val;
 function TabStack() {
   return (
     <Tab.Navigator
@@ -23,62 +21,65 @@ function TabStack() {
         showIcon: true,
         activeTintColor: 'white',
         inactiveTintColor: 'black',
-        
-        
+
+
+
         style: {
           backgroundColor: '#8CCEEB',
         },
         labelStyle: {
           textAlign: 'center',
-          fontSize:12
+          fontSize: 12
         },
         indicatorStyle: {
           borderBottomColor: '#87B56A',
           borderBottomWidth: 3,
-          
+
         },
       }}>
       <Tab.Screen
         name="InProgress"
-        component={InProgress}
+        children={() => <InProgress data={val}/>}
         options={{
           tabBarLabel: 'In Progress',
           tabBarIcon: ({ tintColor }) => (
-            <Icon name="download" size={25}/>
+            <Icon name="download" size={25} />
           )
-          // tabBarIcon: ({ color, size }) => (
-          //   <MaterialCommunityIcons name="home" color={color} size={size} />
-          // ),
-        }}  />
+        }} />
+
       <Tab.Screen
         name="PastOrders"
         component={PastOrders}
         options={{
           tabBarLabel: 'Past Orders',
           tabBarIcon: ({ tintColor }) => (
-            <Icon name="timer" size={25}/>
+            <Icon name="timer" size={25} />
           )
-          // tabBarIcon: ({ color, size }) => (
-          //   <MaterialCommunityIcons name="settings" color={color} size={size} />
-          // ),
+
         }} />
     </Tab.Navigator>
   );
 }
 
-function App() {
+const App = ({ navigation }) => {
+  val = navigation.getParam('data');
+ // val=message;
+  //console.log(message)
+
+
   return (
+
     <NavigationContainer>
       <Stack.Navigator
         initialRouteName="Settings"
         screenOptions={{
           headerStyle: { backgroundColor: '#633689' },
           headerTintColor: '#fff',
-          headerTitleAlign:'center',
+          headerTitleAlign: 'center',
           headerTitleStyle: { fontWeight: 'bold' },
-          
+
         }}>
-        <Stack.Screen name="TabStack" component={TabStack} options={{ title: 'My Orders' }}/>
+        <Stack.Screen name="TabStack" component={TabStack} options={{ title: "My Orders" }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

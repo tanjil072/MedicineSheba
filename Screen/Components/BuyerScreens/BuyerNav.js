@@ -7,6 +7,7 @@ import Home from './HomeScreen'
 import Profile from './ProfileScreen'
 import Orders from './OrderScreen'
 import Notifications from './NotificationScreen'
+import InProgress from './InProgress'
 
 
  
@@ -19,7 +20,7 @@ const TabNavigator = createMaterialBottomTabNavigator(
                 tabBarLabel:'Home',  
                 tabBarIcon: ({ tintColor }) => (  
                     <View>  
-                        <Icon style={[{color: tintColor}]} size={25} name={'ios-home'}/>  
+                        <Icon style={[{color: tintColor}]} size={25} name={'ios-search'}/>  
                     </View>),  
             }  
         },  
@@ -59,6 +60,7 @@ const TabNavigator = createMaterialBottomTabNavigator(
                 barStyle: { backgroundColor: '#f69b31' },  
             }  
         }, 
+        
     },  
     {  
       initialRouteName: "Cart",  

@@ -20,13 +20,8 @@ const FirstPage = ({ navigation }) => {
               marginBottom: 16
             }}>
               Past Orders
-            {/* Orders In Progress{'\n'}(You are on FirstPage) */}
           </Text>
-          {/* <TouchableOpacity
-            style={styles.button}
-            onPress={() => navigation.navigate('SecondPage')}>
-            <Text>Go to settng Tab</Text>
-          </TouchableOpacity> */}
+        
         </View>
         
       </View>
