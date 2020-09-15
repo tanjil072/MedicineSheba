@@ -7,16 +7,27 @@
   },
   "results": [
     {
+      
       "term": "Hand Sanitizer",
+      "itemId":1,
+      "qty":1,
+      "salePrice":"10",
+      "checked":0,
       "description": "Used for washing hands"
     },
     {
       "term": "Oxygen",
-      "count": 423
+      "itemId":1,
+      "qty":1,
+      "salePrice":"10",
+      "checked":0
     },
     {
       "term": "Ibuprofen",
-      "count": 380
+      "itemId":1,
+      "qty":1,
+      "salePrice":"10",
+      "checked":0
     },
     {
       "term": "Gabapentin",

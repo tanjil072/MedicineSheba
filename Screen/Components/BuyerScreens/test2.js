@@ -142,6 +142,14 @@ export default class Cart extends React.Component {
 											<Icon name="md-trash" size={25} color="#ee4d2d" />
 										</TouchableOpacity>
 									</View>
+									<Card style={{ padding: 10, margin: 10 }}>
+									<Button
+									  onPress={() => { }}
+									  title="Learn More"
+									  color="#841584"
+									  accessibilityLabel="Learn more about this purple button"
+									/>
+								  </Card>
 								</View>
 							))}
 						</ScrollView>

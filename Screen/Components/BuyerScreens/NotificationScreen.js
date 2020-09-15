@@ -75,6 +75,12 @@ export default class App extends Component {
   }
 
 
+
+
+ 
+
+
+
   render() {
     if (this.state.isLoading) {
       //Loading View while data is loading

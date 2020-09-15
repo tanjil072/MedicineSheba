@@ -14,11 +14,12 @@ export default class Cart extends React.Component {
 			cartItemsIsLoading: false,
 			cartItems: [
 				/* Sample data from walmart */
-				{ itemId: "501436323", name: "Power Wheels Dune Racer Extreme", thumbnailImage: "https://i5.walmartimages.com/asr/a3922e8e-2128-4603-ba8c-b58d1333253b_1.44d66337098c1db8fed9abe2ff4b57ce.jpeg?odnHeight=100&odnWidth=100&odnBg=FFFFFF", color: "Red", qty: 1, salePrice: "105", checked: 1 },
-				{ itemId: "35031861", name: "Better Homes & Gardens Leighton Twin Over Twin Wood Bunk Bed, Multiple Finishes", thumbnailImage: "https://i5.walmartimages.com/asr/4aedb609-4b61-4593-ad8a-cdc8c88696b1_1.3f505ce3d55db4745cf4c51d559994dc.jpeg?odnHeight=100&odnWidth=100&odnBg=FFFFFF", qty: 1, color: "Green", salePrice: "199", checked: 0 },
-				{ itemId: "801099131", name: "LEGO Star Wars 2019 Advent Calendar 75245 Holiday Building Kit", thumbnailImage: "https://i5.walmartimages.com/asr/9a8ea1ab-311d-455c-bda8-ce15692a8185_3.208d48e0260f80891d32b351cb116a4b.jpeg?odnHeight=100&odnWidth=100&odnBg=FFFFFF", qty: 1, color: "Blue", salePrice: "27.99", checked: 0 },
-				{ itemId: "42608079", name: "Little Tikes Cape Cottage Playhouse, Tan", thumbnailImage: "https://i5.walmartimages.com/asr/2654cd64-1471-44af-8b0c-1debaf598cb3_1.c30c481d1ac8fdd6aa041c0690d7214c.jpeg?odnHeight=100&odnWidth=100&odnBg=FFFFFF", color: "Purple", qty: 1, salePrice: "129.99", checked: 0 },
-				{ itemId: "247714372", name: "HP 14\" Laptop, Intel Core i3-1005G1, 4GB SDRAM, 128GB SSD, Pale Gold, 14-DQ1038wm", thumbnailImage: "https://i5.walmartimages.com/asr/b442f6e7-c5e1-4387-9cd9-9205811d4980_1.82b94d1c11dd12a6697bc517219f331e.jpeg?odnHeight=100&odnWidth=100&odnBg=FFFFFF", qty: 1, color: "Black", salePrice: "269", checked: 0 }
+				{ itemId: "1", name: "Power Wheels Dune Racer Extreme", thumbnailImage: "https://i5.walmartimages.com/asr/a3922e8e-2128-4603-ba8c-b58d1333253b_1.44d66337098c1db8fed9abe2ff4b57ce.jpeg?odnHeight=100&odnWidth=100&odnBg=FFFFFF", color: "Red", qty: 1, salePrice: "105", checked: 0 },
+				{ itemId: "2", name: "Better Homes & Gardens Leighton Twin Over Twin Wood Bunk Bed, Multiple Finishes", thumbnailImage: "https://i5.walmartimages.com/asr/4aedb609-4b61-4593-ad8a-cdc8c88696b1_1.3f505ce3d55db4745cf4c51d559994dc.jpeg?odnHeight=100&odnWidth=100&odnBg=FFFFFF", qty: 1, color: "Green", salePrice: "199", checked: 0 },
+				{ itemId: "3", name: "LEGO Star Wars 2019 Advent Calendar 75245 Holiday Building Kit", thumbnailImage: "https://i5.walmartimages.com/asr/9a8ea1ab-311d-455c-bda8-ce15692a8185_3.208d48e0260f80891d32b351cb116a4b.jpeg?odnHeight=100&odnWidth=100&odnBg=FFFFFF", qty: 1, color: "Blue", salePrice: "27.99", checked: 0 },
+				{ itemId: "4", name: "Little Tikes Cape Cottage Playhouse, Tan", thumbnailImage: "https://i5.walmartimages.com/asr/2654cd64-1471-44af-8b0c-1debaf598cb3_1.c30c481d1ac8fdd6aa041c0690d7214c.jpeg?odnHeight=100&odnWidth=100&odnBg=FFFFFF", color: "Purple", qty: 1, salePrice: "129.99", checked: 0 },
+				{ itemId: "5", name: "HP 14\" Laptop, Intel Core i3-1005G1, 4GB SDRAM, 128GB SSD, Pale Gold, 14-DQ1038wm", thumbnailImage: "https://i5.walmartimages.com/asr/b442f6e7-c5e1-4387-9cd9-9205811d4980_1.82b94d1c11dd12a6697bc517219f331e.jpeg?odnHeight=100&odnWidth=100&odnBg=FFFFFF", qty: 1, color: "Black", salePrice: "269", checked: 0 },
+				{ itemId: "6", name:"iPhone 11",thumbnailImage:"https://static.toiimg.com/thumb/msid-67586564,width-220,resizemode-4,imgv-8/Apple-iPhone-11.jpg",color:"Midnight black",qty:1,salePrice:"899",checked:0}
 			]
 		}
 	}
@@ -26,6 +27,7 @@ export default class Cart extends React.Component {
 	selectHandler = (index, value) => {
 		const newItems = [...this.state.cartItems]; // clone the array 
 		newItems[index]['checked'] = value == 1 ? 0 : 1; // set the new value 
+		
 		
 		this.setState({ cartItems: newItems }); // set new state
 	}
@@ -97,12 +99,13 @@ export default class Cart extends React.Component {
 		return (
 			<View style={{ flex: 1, backgroundColor: '#f6f6f6' }}>
 				<View style={{ flexDirection: 'row', backgroundColor: '#fff', marginBottom: 10 }}>
-					<View style={[styles.centerElement, { width: 50, height: 50 }]}>
-						<Icon style={[{ color: "black" }]} size={25} name={'cart'} />
-					</View>
-					<View style={[styles.centerElement, { height: 50 }]}>
-						<Text style={{ fontSize: 18, color: '#000' }}>Cart</Text>
-					</View>
+				<TextInput
+				style={styles.textInputStyle}
+				onChangeText={text => this.SearchFilterFunction(text)}
+				value={this.state.text}
+				underlineColorAndroid="transparent"
+				placeholder="Search Here"
+			  />
 				</View>
 
 				{cartItemsIsLoading ? (

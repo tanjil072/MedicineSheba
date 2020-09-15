@@ -1,5 +1,6 @@
 import React from 'react';
-import { TouchableOpacity, StyleSheet, View, Text, SafeAreaView } from 'react-native';
+import {Card} from 'react-native-shadow-cards';
+import { TouchableOpacity, StyleSheet, View, Text, Button } from 'react-native';
 
 export default class InProgress extends React.Component {
   constructor() {
@@ -13,29 +14,30 @@ export default class InProgress extends React.Component {
 
     return (
 
-      <SafeAreaView style={{ flex: 1 }}>
-        <View style={{ flex: 1, padding: 16 }}>
-          <View
-            style={{
-              flex: 1,
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
-            <Text style={{fontSize: 25,textAlign: 'center',marginBottom: 16}}>
-              Order 1
-           </Text>
-            <Text style={{fontSize: 25,textAlign: 'center',marginBottom: 16}}>
-              Total Cost:{this.props.data}
-           </Text>
+      <View style={styles.container}>
+      <Card style={{padding: 10, margin: 10}}>
+      <Text style={{position:'absolute',fontWeight:'bold',fontSize:30,marginTop:15,marginLeft:10}}>Order: 1</Text>
+      
+      <Text style={{fontSize:20,textAlign:'right',textDecorationLine: 'underline'}}>Total Cost</Text>
+      <Text style={{fontSize:20,textAlign:'right'}}>{this.props.data}$</Text>
 
-          </View>
-
-        </View>
-      </SafeAreaView>
+        
+      </Card>
+      
+    </View>
     );
   }
+
 }
 const styles = StyleSheet.create({
+  container:{
+    flex:1,
+    alignItems:"center",
+    
+  },
+  text:{
+    fontSize:20
+  },
   button: {
     alignItems: 'center',
     backgroundColor: '#DDDDDD',
