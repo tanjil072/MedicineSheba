@@ -121,7 +121,7 @@ export default class Cart extends React.Component {
 	test = (itemName) => {
 
 		//this.props.navigation.navigate('EditMedi');
-		console.log(this.state.cartItems);
+		console.log(itemName);
 		 
 	}
 
@@ -223,7 +223,7 @@ export default class Cart extends React.Component {
 
 									<View >
 
-										<Icons onPress={() =>this.test(item.name)} name="pencil" size={25} style={{ marginTop: 50 }} />
+										<Icons onPress={() =>this.test(item.medicineName)} name="pencil" size={25} style={{ marginTop: 50 }} />
 
 
 									</View>
@@ -234,10 +234,6 @@ export default class Cart extends React.Component {
 											<Icon name="md-trash" size={25} color="rgb(129,122,126)" />
 										</TouchableOpacity>
 									</View>
-
-									
-
-
 
 								</View>
 
