@@ -3,55 +3,84 @@ import {StyleSheet, Text, View,Button} from 'react-native';
 import { createBottomTabNavigator, createAppContainer} from 'react-navigation';  
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';  
 import Icon from 'react-native-vector-icons/Ionicons';  
-import Home from './HomeScreen'
-import Profile from './ProfileScreen'
-import Notifications from './NotificationScreen'
+import Icons from 'react-native-vector-icons/SimpleLineIcons';  
+import PendingOrder from './PendingOrder';
+
+import Inventory from './Inventory';
+import AdminProfile from './AdminProfile';
+import OrderList from './OrderList';
+
+//import Inventory from './Inventory'
+
 
 
  
-const TabNavigator = createMaterialBottomTabNavigator(  
+const TabForAdmin = createMaterialBottomTabNavigator(  
     {  
 
-        
-        // Home: { screen: Home,  
-        //     navigationOptions:{  
-        //         tabBarLabel:'Home',  
-        //         tabBarIcon: ({ tintColor }) => (  
-        //             <View>  
-        //                 <Icon style={[{color: tintColor}]} size={25} name={'ios-home'}/>  
-        //             </View>),  
-        //     }  
-        // },  
-        Profile: { screen: Profile,  
+        Inventory: {
+            screen: Inventory,
+            navigationOptions: {
+                tabBarLabel: '      ',
+                tabBarIcon: ({ tintColor }) => (
+                    <View>
+                        <Icons style={[{ color: tintColor }]} size={25} name={"magnifier"} />
+                    </View>),
+
+                activeColor: 'rgb(108, 52, 131)',
+                inactiveColor: 'rgb(240, 243, 244)',
+              
+                barStyle: { backgroundColor: 'rgb(241, 148, 138)' },
+
+            }
+        },
+
+
+
+
+
+        OrderList: {
+            screen: OrderList,
+            navigationOptions: {
+                tabBarLabel: '   ',
+                tabBarIcon: ({ tintColor }) => (
+                    <View>
+                        <Icons style={[{ color: tintColor }]} size={25} name="list" />
+                    </View>),
+                activeColor: 'rgb(29, 131, 72)',
+                inactiveColor: 'rgb(240, 243, 244)',
+               
+                barStyle: { backgroundColor: 'rgb(133, 193, 233)'}, 
+               
+            }
+        },
+
+
+        AdminProfile: {
+             screen: AdminProfile,  
             navigationOptions:{  
-                tabBarLabel:'Profile',  
+                tabBarLabel:'   ',  
                 tabBarIcon: ({ tintColor }) => (  
                     <View>  
-                        <Icon style={[{color: tintColor}]} size={25} name={'ios-person'}/> 
+                        <Icons style={[{ color: tintColor }]} size={25} name={"user"}/> 
                     </View>),  
-                activeColor: '#f60c0d',  
-                inactiveColor: '#f65a22',  
-                barStyle: { backgroundColor: '#f69b31' },  
+                activeColor: 'rgb(245, 0, 0)',  
+                inactiveColor: 'rgb(240, 243, 244)',
+                barStyle: { backgroundColor: 'rgb(245, 203, 167)' },  
+                
             }  
         },  
-         
-        // Cart: {  
-        //     screen: Notifications,  
-        //     navigationOptions:{  
-        //         tabBarLabel:'Notifications',  
-        //         tabBarIcon: ({ tintColor }) => (  
-        //             <View>  
-        //                 <Icon style={[{color: tintColor}]} size={25} name={'notifications'}/>  
-        //             </View>),  
-        //     }  
-        // },  
-    },  
+
+      
+    }, 
+    
+    
     {  
-      initialRouteName: "Profile",  
+      initialRouteName: "Inventory",  
       activeColor: '#f0edf6',  
       inactiveColor: '#226557',  
       barStyle: { backgroundColor: '#3BAD87' },  
     },  
 );  
   
-export default createAppContainer(TabNavigator); 
+export default createAppContainer(TabForAdmin); 

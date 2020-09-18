@@ -43,49 +43,74 @@ const RegisterScreen = props => {
       return;
     }
 
-    //Show Loader
     setLoading(true);
-    var dataToSend = {
-      user_name: userName,
-      user_email: userEmail,
-      user_phone: Phone,
-      user_password: Password,
-    };
-    var formBody = [];
-    for (var key in dataToSend) {
-      var encodedKey = encodeURIComponent(key);
-      var encodedValue = encodeURIComponent(dataToSend[key]);
-      formBody.push(encodedKey + '=' + encodedValue);
-    }
-    formBody = formBody.join('&');
 
-    fetch('https://1fe2966d223d.ngrok.io/', {
-      method: 'GET',
+
+    fetch("https://medicine-sheba-server.herokuapp.com/signup", {
+      method: 'POST',
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
-      //body: formBody,
+      body: JSON.stringify({
+        userName: userName,
+        phone: Phone,
+        email: userEmail,
+        password: Password,
+      })
     })
-      .then(response => response.json())
-      .then(responseJson => {
-        //Hide Loader
+
+      .then((response) => response.json())
+      .then((responseJson) => {
+
         setLoading(false);
         console.log(responseJson);
         // If server response message same as Data Matched
-        if (responseJson.status == 1) {
+        if (responseJson.status == 'success') {
           setIsRegistraionSuccess(true);
           console.log('Registration Successful. Please Login to proceed');
         } else {
           setErrortext('Registration Unsuccessful');
         }
       })
-      .catch(error => {
-        //Hide Loader
-        setLoading(false);
-        console.error(error);
-      });
-  };
+      
+      .done();
+  }
+  //   var formBody = [];
+  //   for (var key in dataToSend) {
+  //     var encodedKey = encodeURIComponent(key);
+  //     var encodedValue = encodeURIComponent(dataToSend[key]);
+  //     formBody.push(encodedKey + '=' + encodedValue);
+  //   }
+  //   formBody = formBody.join('&');
+
+  //   fetch('https://8ac82cb5a333.ngrok.io/signup', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Accept': 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: formBody,
+  //   })
+  //     .then(response => response.json())
+  //     .then(responseJson => {
+  //       //Hide Loader
+  //       setLoading(false);
+  //       console.log(responseJson);
+  //       // If server response message same as Data Matched
+  //       if (responseJson.status == 1) {
+  //         setIsRegistraionSuccess(true);
+  //         console.log('Registration Successful. Please Login to proceed');
+  //       } else {
+  //         setErrortext('Registration Unsuccessful');
+  //       }
+  //     })
+  //     .catch(error => {
+  //       //Hide Loader
+  //       setLoading(false);
+  //       console.error(error);
+  //     });
+  // };
 
   if (isRegistraionSuccess) {
     return (

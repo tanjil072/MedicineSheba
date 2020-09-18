@@ -18,9 +18,8 @@ import AsyncStorage from '@react-native-community/async-storage';
 import Loader from './loader';
 import BottomNav from './Components/BuyerScreens/BuyerNav'
 import { createStackNavigator, createAppContainer } from 'react-navigation';
-import { RadioButton} from 'react-native-paper';
-import Icon from 'react-native-vector-icons/Ionicons'; 
-
+import { RadioButton } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const LoginScreen = props => {
   let [userEmail, setUserEmail] = useState('');
@@ -28,38 +27,41 @@ const LoginScreen = props => {
   let [loading, setLoading] = useState(false);
   let [errortext, setErrortext] = useState('');
   const [value, setValue] = React.useState('first');
+  const[data,setData]=useState([])
+
+  let [val, setVal] = useState('');
+
+
 
 
   const handleSignIn = () => {
-    // setErrortext('');
-    // if (!userEmail) {
-    //   alert('Please fill Email');
-    //   return;
-    // }
-    // if (!userPassword) {
-    //   alert('Please fill Password');
-    //   return;
-    // }
-    // setLoading(true);
-    // var dataToSend = { user_email: userEmail, user_password: userPassword };
-    // var formBody = [];
-    // for (var key in dataToSend) {
-    //   var encodedKey = encodeURIComponent(key);
-    //   var encodedValue = encodeURIComponent(dataToSend[key]);
-    //   formBody.push(encodedKey + '=' + encodedValue);
-    // }
 
-    // formBody = formBody.join('&');
-
-    //props.navigation.navigate('DrawerNavigationRoutes');
-    if(value=='buyer')
-    {
-      props.navigation.navigate('NavToBottom');
+     setErrortext('');
+    if (!userEmail) {
+      alert('Please fill Email');
+      return;
     }
-    if(value=='seller')
-    {
+    if (!userPassword) {
+      alert('Please fill Password');
+      return;
+    }
+    setLoading(true);
+
+
+    if (value == 'customer') {
+      apifetch();
+     //props.navigation.navigate('NavToBottom');
+      // console.log(val)
+
+    }
+    if (value == 'seller') {
       props.navigation.navigate('NavToSeller');
+      apifetch();
+
+
     }
+
+
 
     // fetch('https://aboutreact.herokuapp.com/login.php', {
     //   method: 'POST',
@@ -89,6 +91,46 @@ const LoginScreen = props => {
     //     console.error(error);
     //   });
   };
+
+  const apifetch = () => {
+    fetch("https://medicine-sheba-server.herokuapp.com/users/login", {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: userEmail ,
+        password: userPassword,
+      })
+    })
+
+      .then((response) => response.json())
+      .then((responseJson) => {
+        setLoading(false);
+        if(responseJson.status=='success'){
+         
+          var mail=responseJson.message.user.email;
+          var name=responseJson.message.user.userName;
+          var phone=responseJson.message.user.phone;
+          props.navigation.navigate('Profile',{email:mail,phone:phone,name:name});
+          
+          //console.log(responseJson.message.user.email)
+                
+              } else {
+                setErrortext('Please check your email id or password');
+               
+              }
+        
+        
+       
+      })
+      .catch(error => {
+        //     //Hide Loader
+            setLoading(false);
+            console.error(error);
+          });
+  }
 
   return (
     <View style={styles.mainBody}>
@@ -124,9 +166,9 @@ const LoginScreen = props => {
                   this._passwordinput && this._passwordinput.focus()
                 }
                 blurOnSubmit={false}
-                
+
               />
-               <Icon name="person" color='#2B2D2F' size={25} style={{marginLeft:-30,marginTop:7}}/>
+              <Icon name="person" color='#2B2D2F' size={25} style={{ marginLeft: -30, marginTop: 7 }} />
 
             </View>
             <View style={styles.SectionStyle}>
@@ -137,14 +179,12 @@ const LoginScreen = props => {
                 placeholder="Enter Password" //12345
                 placeholderTextColor="#08070D"
                 keyboardType="default"
-                // ref={ref => {
-                //   this._passwordinput = ref;
-                // }}
+               
                 onSubmitEditing={Keyboard.dismiss}
                 blurOnSubmit={false}
                 secureTextEntry={true}
               />
-              <Icon name="key" color='#2B2D2F' size={25} style={{marginLeft:-30,marginTop:8}}/>
+              <Icon name="key" color='#2B2D2F' size={25} style={{ marginLeft: -30, marginTop: 8 }} />
             </View>
             {errortext != '' ? (
               <Text style={styles.errorTextStyle}> {errortext} </Text>
@@ -153,11 +193,11 @@ const LoginScreen = props => {
 
             <RadioButton.Group onValueChange={value => setValue(value)} value={value} >
               <View style={styles.radioButtonStyle}>
-                <View style={{marginLeft:20}}>
+                <View style={{ marginLeft: 20 }}>
                   <Text>Customer</Text>
-                  <RadioButton value="buyer" color='black' />
+                  <RadioButton value="customer" color='black' />
                 </View>
-                <View style={{marginLeft:'20%'}}>
+                <View style={{ marginLeft: '20%' }}>
                   <Text>Admin</Text>
                   <RadioButton value="seller" color='black' />
                 </View>
@@ -211,10 +251,10 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 20,
   },
-  radioButtonStyle:{
-    flex: 1, 
+  radioButtonStyle: {
+    flex: 1,
     flexDirection: 'row',
-    alignItems: "center", 
+    alignItems: "center",
     justifyContent: "center"
   },
   buttonTextStyle: {
@@ -239,7 +279,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 14,
     marginLeft: 20,
-    marginTop:50
+    marginTop: 50
   },
   errorTextStyle: {
     color: 'red',

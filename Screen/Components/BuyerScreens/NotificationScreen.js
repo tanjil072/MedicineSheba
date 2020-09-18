@@ -12,15 +12,21 @@ import {
   Alert,
 } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import Icon from 'react-native-vector-icons/Ionicons'; 
+import Icon from 'react-native-vector-icons/Ionicons';
 //import all the components we are going to use.
 
 export default class App extends Component {
   constructor(props) {
     super(props);
     //setting default state
-    this.state = { isLoading: true, text: '' };
     this.arrayholder = [];
+
+    this.state = {
+      isLoading: true, 
+      text: '',
+
+    };
+
   }
 
   componentDidMount() {
@@ -45,7 +51,7 @@ export default class App extends Component {
     //passing the inserted text in textinput
     const newData = this.arrayholder.filter(function (item) {
       //applying filter for the inserted text in search bar
-      const itemData = item.term ? item.term.toUpperCase() : ''.toUpperCase();
+      const itemData = item.name ? item.name.toUpperCase() : ''.toUpperCase();
       const textData = text.toUpperCase();
       return itemData.indexOf(textData) > -1;
     });
@@ -56,6 +62,7 @@ export default class App extends Component {
       text: text,
     });
   }
+
   ListViewItemSeparator = () => {
     //Item sparator view
     return (
@@ -70,18 +77,17 @@ export default class App extends Component {
   };
 
 
-  a(id) {
-    alert(id)
+  a() {
+    alert("Hello")
   }
 
 
 
 
- 
-
 
 
   render() {
+
     if (this.state.isLoading) {
       //Loading View while data is loading
       return (
@@ -94,7 +100,7 @@ export default class App extends Component {
       //ListView to show with textinput used as search bar
 
       <View style={styles.viewStyle}>
-        <View style={{alignItems:'flex-end',}}>
+        <View style={{ alignItems: 'flex-end', }}>
           <Icon style={[{ color: "black" }]} size={35} name={'cart'} />
         </View>
         <TextInput
@@ -107,10 +113,11 @@ export default class App extends Component {
         <FlatList
           data={this.state.dataSource}
           ItemSeparatorComponent={this.ListViewItemSeparator}
+
           renderItem={({ item }) => (
             <View>
               <TouchableOpacity onPress={() => alert("clicked")}>
-                <Text style={{ marginLeft: 10, margin: 10, fontSize: 20 }}>{item.term} </Text>
+                <Text style={{ marginLeft: 10, margin: 10, fontSize: 20 }}>{item.name} </Text>
                 <Text onPress={() => alert(item.term)} style={styles.textStyle}>Description: {item.description} </Text>
               </TouchableOpacity>
             </View>
@@ -121,6 +128,8 @@ export default class App extends Component {
           style={{ marginTop: 10 }}
           keyExtractor={(item, index) => index.toString()}
         />
+
+
       </View>
 
     );
@@ -131,6 +140,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flex: 1,
     padding: 16,
+    backgroundColor: 'white'
   },
   textStyle: {
     padding: 10,

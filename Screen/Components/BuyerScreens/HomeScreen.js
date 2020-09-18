@@ -9,17 +9,14 @@ export default class Cart extends React.Component {
 
 	constructor(props) {
 		super(props);
+		this.arrayholder=[];
 		this.state = {
 			selectAll: false,
 			cartItemsIsLoading: false,
+			isLoading: true, 
+			text: '',
 			cartItems: [
-				/* Sample data from walmart */
-				{ itemId: "1", name: "Power Wheels Dune Racer Extreme", thumbnailImage: "https://i5.walmartimages.com/asr/a3922e8e-2128-4603-ba8c-b58d1333253b_1.44d66337098c1db8fed9abe2ff4b57ce.jpeg?odnHeight=100&odnWidth=100&odnBg=FFFFFF", color: "Red", qty: 1, salePrice: "105", checked: 0 },
-				{ itemId: "2", name: "Better Homes & Gardens Leighton Twin Over Twin Wood Bunk Bed, Multiple Finishes", thumbnailImage: "https://i5.walmartimages.com/asr/4aedb609-4b61-4593-ad8a-cdc8c88696b1_1.3f505ce3d55db4745cf4c51d559994dc.jpeg?odnHeight=100&odnWidth=100&odnBg=FFFFFF", qty: 1, color: "Green", salePrice: "199", checked: 0 },
-				{ itemId: "3", name: "LEGO Star Wars 2019 Advent Calendar 75245 Holiday Building Kit", thumbnailImage: "https://i5.walmartimages.com/asr/9a8ea1ab-311d-455c-bda8-ce15692a8185_3.208d48e0260f80891d32b351cb116a4b.jpeg?odnHeight=100&odnWidth=100&odnBg=FFFFFF", qty: 1, color: "Blue", salePrice: "27.99", checked: 0 },
-				{ itemId: "4", name: "Little Tikes Cape Cottage Playhouse, Tan", thumbnailImage: "https://i5.walmartimages.com/asr/2654cd64-1471-44af-8b0c-1debaf598cb3_1.c30c481d1ac8fdd6aa041c0690d7214c.jpeg?odnHeight=100&odnWidth=100&odnBg=FFFFFF", color: "Purple", qty: 1, salePrice: "129.99", checked: 0 },
-				{ itemId: "5", name: "HP 14\" Laptop, Intel Core i3-1005G1, 4GB SDRAM, 128GB SSD, Pale Gold, 14-DQ1038wm", thumbnailImage: "https://i5.walmartimages.com/asr/b442f6e7-c5e1-4387-9cd9-9205811d4980_1.82b94d1c11dd12a6697bc517219f331e.jpeg?odnHeight=100&odnWidth=100&odnBg=FFFFFF", qty: 1, color: "Black", salePrice: "269", checked: 0 },
-				{ itemId: "6", name:"iPhone 11",thumbnailImage:"https://static.toiimg.com/thumb/msid-67586564,width-220,resizemode-4,imgv-8/Apple-iPhone-11.jpg",color:"Midnight black",qty:1,salePrice:"899",checked:0}
+				
 			]
 		}
 	}
@@ -27,10 +24,12 @@ export default class Cart extends React.Component {
 	selectHandler = (index, value) => {
 		const newItems = [...this.state.cartItems]; // clone the array 
 		newItems[index]['checked'] = value == 1 ? 0 : 1; // set the new value 
-		
-		
+
+
 		this.setState({ cartItems: newItems }); // set new state
 	}
+
+
 
 	selectHandlerAll = (value) => {
 		const newItems = [...this.state.cartItems]; // clone the array 
@@ -39,6 +38,8 @@ export default class Cart extends React.Component {
 		});
 		this.setState({ cartItems: newItems, selectAll: (value == true ? false : true) }); // set new state
 	}
+
+
 
 	deleteHandler = (index) => {
 		Alert.alert(
@@ -80,32 +81,127 @@ export default class Cart extends React.Component {
 		return 0;
 	}
 
-	itemname=()=>{
-		this.props.navigation.navigate('Orders',{data:this.subtotalPrice().toFixed(2)})
-	
-		//alert(this.subtotalPrice().toFixed(2));
+	getData() {
+		setTimeout(() => {
+
+
+			fetch('http://10.0.2.2:3000/results')
+				.then(response => response.json())
+				.then(responseJson => {
+					this.setState(
+						{
+							isLoading: false,
+							datasource:responseJson,
+							cartItems: responseJson
+						},
+						
+						
+					);
+				})
+				.catch(error => {
+					console.error(error);
+				});
+			//console.log('Our data is fetched');
+			// let cartItems = [...this.state.cartItems];
+
+			// cartItems.push({ itemId: "6", name: "Apple AirPods with Charging", thumbnailImage: "https://images-na.ssl-images-amazon.com/images/I/71NTi82uBEL._AC_SL1500_.jpg", color: "Midnight black", qty: 1, salePrice: "599", checked: 0 });
+
+			// this.setState({ cartItems });
+
+		}, 0)
 	}
 
 
 
+	componentDidMount() {
+		this.getData();
+	}
+
+
+	itemname = () => {
+		this.props.navigation.navigate('Orders', { data: this.subtotalPrice().toFixed(2) })
+
+		//alert(this.subtotalPrice().toFixed(2));
+
+	}
+
+
+
+	SearchFilterFunction(text) {
+		//passing the inserted text in textinput
+		const newData = this.state.cartItems.filter(function (item) {
+		  //applying filter for the inserted text in search bar
+		  const itemData = item.name ? item.name.toUpperCase() : ''.toUpperCase();
+		  const textData = text.toUpperCase();
+		  //console.log()
+		  return itemData.indexOf(textData) > -1;
+		  
+		});
+		//console.log(newData)
+		this.setState({
+		  //setting the filtered newData on datasource
+		  //After setting the data it will automatically re-render the view
+		  
+		  cartItems: newData,
+		  text: text,
+		});
+	  }
+
+	  test = () => {
+		setTimeout(() => {
+
+
+			fetch('http://10.0.2.2:3000/results')
+				.then(response => response.json())
+				.then(responseJson => {
+					this.setState(
+						{
+							isLoading: false,
+							cartItems: responseJson
+						},
+						
+						
+					);
+				})
+				.catch(error => {
+					console.error(error);
+				});
+		
+		}, 0)
+
+	}
+
+
+
+
+
+
 	render() {
+
+		const { cartItems, cartItemsIsLoading, selectAll } = this.state;
+
+	
+   
+	
 		const styles = StyleSheet.create({
 			centerElement: { justifyContent: 'center', alignItems: 'center' },
 		});
-
-		const { cartItems, cartItemsIsLoading, selectAll } = this.state;
 
 
 		return (
 			<View style={{ flex: 1, backgroundColor: '#f6f6f6' }}>
 				<View style={{ flexDirection: 'row', backgroundColor: '#fff', marginBottom: 10 }}>
-				<TextInput
-				style={styles.textInputStyle}
-				onChangeText={text => this.SearchFilterFunction(text)}
-				value={this.state.text}
-				underlineColorAndroid="transparent"
-				placeholder="Search Here"
-			  />
+					<TextInput
+						style={styles.textInputStyle}
+						onChangeText={text => this.SearchFilterFunction(text)}
+						value={this.state.text}
+						underlineColorAndroid="transparent"
+						placeholder="Search Here"
+					/>
+				</View>
+				<View>
+				<Icon style={[{ color: "black" }]} size={35} name={'cart'} onPress={() => this.test()} />
+
 				</View>
 
 				{cartItemsIsLoading ? (
@@ -153,26 +249,29 @@ export default class Cart extends React.Component {
 						</ScrollView>
 					)}
 
-				<View style={{flexDirection: 'row'}}>
-					<View style={[styles.centerElement, { width: 60 }]}>
-						<TouchableOpacity style={[styles.centerElement, { width: 32, height: 32 }]} onPress={() => this.selectHandlerAll(selectAll)}>
-							<Icon style={{ marginTop: 20 }} name={selectAll == true ? "ios-checkmark-circle" : "ios-checkmark-circle-outline"} size={25} color={selectAll == true ? "#0faf9a" : "#aaaaaa"} />
-						</TouchableOpacity>
-					</View>
 
-					<View style={{ flexDirection: 'row', flexGrow: 1, flexShrink: 1, justifyContent: 'space-between', alignItems: 'center' }}>
-						<Text style={{ paddingTop: 20 }}>Select All</Text>
-						<View style={{ flexDirection: 'row', paddingRight: 20, marginTop: -20, alignItems: 'center' }}>
-							<Text style={{ color: '#8f8f8f' }}>SubTotal: </Text>
-							<Text>${this.subtotalPrice().toFixed(2)}</Text>
+				<View style={{ backgroundColor: '#616771' }}>
+					<View style={{ flexDirection: 'row' }}>
+						<View style={[styles.centerElement, { width: 60 }]}>
+							<TouchableOpacity style={[styles.centerElement, { width: 32, height: 32 }]} onPress={() => this.selectHandlerAll(selectAll)}>
+								<Icon style={{ marginTop: 20 }} name={selectAll == true ? "ios-checkmark-circle" : "ios-checkmark-circle-outline"} size={25} color={selectAll == true ? "#0faf9a" : "#aaaaaa"} />
+							</TouchableOpacity>
+						</View>
+
+						<View style={{ flexDirection: 'row', flexGrow: 1, flexShrink: 1, justifyContent: 'space-between', alignItems: 'center' }}>
+							<Text style={{ paddingTop: 20, color: 'white' }}>Select All</Text>
+							<View style={{ flexDirection: 'row', paddingRight: 20, marginTop: -8, alignItems: 'center' }}>
+								<Text style={{ color: 'white' }}>SubTotal: </Text>
+								<Text style={{ fontSize: 18, fontWeight: 'bold', color: '#0faf9a' }}>${this.subtotalPrice().toFixed(2)}</Text>
+							</View>
 						</View>
 					</View>
-				</View>
 
-				<View style={{ flexDirection: 'row', justifyContent: 'flex-end', height: 32, paddingRight: 20, alignItems: 'center' }}>
-					<TouchableOpacity   style={[styles.centerElement, { backgroundColor: '#0faf9a', width: 100, height: 25, borderRadius: 5 }]} onPress={() => this.itemname()}>
-						<Text style={{ color: '#ffffff' }}>Procced</Text>
-					</TouchableOpacity>
+					<View style={{ flexDirection: 'row', justifyContent: 'flex-end', height: 32, paddingRight: 20, alignItems: 'center' }}>
+						<TouchableOpacity style={[styles.centerElement, { backgroundColor: '#0faf9a', width: 100, height: 25, borderRadius: 5 }]} onPress={() => this.itemname()}>
+							<Text style={{ color: '#ffffff' }}>Procced</Text>
+						</TouchableOpacity>
+					</View>
 				</View>
 
 			</View>

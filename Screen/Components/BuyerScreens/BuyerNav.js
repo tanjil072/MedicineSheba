@@ -51,6 +51,7 @@ const TabNavigator = createMaterialBottomTabNavigator(
         Profile: { screen: Profile,  
             navigationOptions:{  
                 tabBarLabel:'Profile',  
+                
                 tabBarIcon: ({ tintColor }) => (  
                     <View>  
                         <Icon style={[{color: tintColor}]} size={25} name={'ios-person'}/> 

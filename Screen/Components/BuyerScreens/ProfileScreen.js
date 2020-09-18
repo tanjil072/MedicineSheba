@@ -57,6 +57,9 @@ export default class ProfileScreen extends Component {
 
 
   render() {
+    const mail =  this.props.navigation.getParam('email', 'Email retriving error')
+    const phone =  this.props.navigation.getParam('phone', 'Phone retriving error')
+    const name =  this.props.navigation.getParam('name', 'Name retriving error')
 
     return (
 
@@ -67,8 +70,8 @@ export default class ProfileScreen extends Component {
             <Image style={styles.avatar}
               source={{ uri: 'https://bootdey.com/img/Content/avatar/avatar7.png' }} />
 
-            <Text style={styles.name}>Tanjil Pranto </Text>
-            <Text style={styles.userInfo}>{this.state.Email}</Text>
+            <Text style={styles.name}>{name}</Text>
+            <Text style={styles.userInfo}>{mail}</Text>
           </View>
         </View>
 
@@ -77,7 +80,7 @@ export default class ProfileScreen extends Component {
           <View style={styles.detailBox}>
             <View style={styles.box1}>
               <Text style={{ fontSize: 20, color: 'white' }}>Username</Text>
-              <Text style={{ fontSize: 20, color: '#BEBEBE' }}>Tanjil</Text>
+              <Text style={{ fontSize: 20, color: '#BEBEBE' }}>{name}</Text>
             </View>
 
           </View>
@@ -89,7 +92,7 @@ export default class ProfileScreen extends Component {
           <View style={styles.detailBox}>
             <View style={styles.box1}>
               <Text style={{ fontSize: 20, color: 'white' }}>Email</Text>
-              <Text style={{ fontSize: 20, color: '#BEBEBE' }}>{this.state.Email}</Text>
+              <Text style={{ fontSize: 20, color: '#BEBEBE' }}>{mail}</Text>
             </View>
             <View style={styles.box2}>
               <Icon name="create" size={25} style={{ marginTop: 5 }} onPress={() => { this.showDialog('Email') }} />
@@ -99,7 +102,7 @@ export default class ProfileScreen extends Component {
           <View style={styles.detailBox}>
             <View style={styles.box1}>
               <Text style={{ fontSize: 20, color: 'white' }}>Phone</Text>
-              <Text style={{ fontSize: 20, color: '#BEBEBE' }}>{this.state.Phone}</Text>
+              <Text style={{ fontSize: 20, color: '#BEBEBE' }}>{phone}</Text>
             </View>
             <View style={styles.box2}>
               <Icon name="create" size={25} style={{ marginTop: 5 }} onPress={() => { this.showDialog('Phone') }} />
