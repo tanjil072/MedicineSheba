@@ -19,11 +19,6 @@ export default class Cart extends React.Component {
 			dialogVisible: false,
 			cartItems: [
 
-				{ itemId: "1", name: "Napa", generic: "R", qty: 1, salePrice: "105", company: "A", checked: 0 },
-				{ itemId: "2", name: "Vitamin", qty: 1, generic: "B", salePrice: "199", company: "A", checked: 0 },
-				{ itemId: "3", name: "Vitamin D", qty: 1, generic: "C", salePrice: "27.99", company: "A", checked: 0 },
-				{ itemId: "4", name: "Glucose", qty: 1, generic: "C", salePrice: "129.99", company: "A", checked: 0 },
-				{ itemId: "5", name: "Vitamin B", qty: 1, generic: "Black", salePrice: "269", company: "A", checked: 0 }
 			]
 		}
 	}
@@ -116,16 +111,48 @@ export default class Cart extends React.Component {
 		return 0;
 	}
 
-	itemname = () => {
+	addMedicine = () => {
 
-		alert(this.subtotalPrice().toFixed(2));
+		this.props.navigation.navigate('EditMedi');
+		//alert("Hi")
+		
 	}
 
 	test = (itemName) => {
 
-		this.props.navigation.navigate('EditMedi',{text: itemName });
+		//this.props.navigation.navigate('EditMedi');
+		console.log(this.state.cartItems);
 		 
 	}
+
+	componentDidMount() {
+		this.getData();
+	}
+
+
+	  getData() {
+
+
+			fetch('https://medicine-sheba-server.herokuapp.com/admin/medicines')
+				.then(response => response.json())
+				.then(responseJson => {
+					//console.log(responseJson.message)
+					this.setState(
+						{
+						
+							cartItems: responseJson.message
+						},
+						
+					);
+				})
+				.catch(error => {
+					console.error(error);
+				});
+
+		
+	}
+
+
 
 
 
@@ -174,11 +201,12 @@ export default class Cart extends React.Component {
 
 										</TouchableOpacity>
 										<View style={{ flexGrow: 1, flexShrink: 1, alignSelf: 'center' }}>
-											<Text numberOfLines={1} style={{ fontSize: 15 }}>{item.name}</Text>
-											<Text numberOfLines={1} style={{ color: '#8f8f8f' }}>{item.generic ? 'Generic: ' + item.generic : ''}</Text>
-											<Text numberOfLines={1} style={{ color: '#8f8f8f' }}>{item.salePrice ? 'Price: ' + item.salePrice : ''}$</Text>
-											<Text numberOfLines={1} style={{ color: '#8f8f8f' }}>{item.qty ? 'Qty: ' + item.qty : ''}pcs</Text>
-											<Text numberOfLines={1} style={{ color: '#8f8f8f' }}>{item.company ? 'Company: ' + item.company : ''}</Text>
+											<Text numberOfLines={1} style={{ fontSize: 15 }}>{item.medicineName}</Text>
+											<Text numberOfLines={1} style={{ color: '#8f8f8f' }}>{item.strength} {item.unit}</Text>
+											
+											<Text numberOfLines={1} style={{ color: '#8f8f8f' }}>Generic Name: {item.genericName}</Text>
+											<Text numberOfLines={1} style={{ color: '#8f8f8f' }}>Manufacturer: {item.manufacturer}</Text>
+											<Text numberOfLines={1} style={{ color: '#8f8f8f' }}>Price: {item.price} tk.</Text>
 
 
 											<View style={{ flexDirection: 'row' }}>
@@ -231,7 +259,7 @@ export default class Cart extends React.Component {
 				</View>
 
 				<View style={{ flexDirection: 'row', justifyContent: 'flex-end', height: 32, paddingRight: 20, alignItems: 'center' }}>
-					<TouchableOpacity style={[styles.centerElement, { backgroundColor: '#0faf9a', width: 40, height: 40, marginBottom: 40, borderRadius: 20 }]} onPress={() => this.itemname()}>
+					<TouchableOpacity style={[styles.centerElement, { backgroundColor: '#0faf9a', width: 40, height: 40, marginBottom: 40, borderRadius: 20 }]} onPress={() => this.addMedicine()}>
 						<Text style={{ color: '#ffffff' }}>+</Text>
 					</TouchableOpacity>
 				</View>

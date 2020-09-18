@@ -56,7 +56,7 @@ const LoginScreen = props => {
     }
     if (value == 'seller') {
       props.navigation.navigate('NavToSeller');
-      apifetch();
+      //apifetch();
 
 
     }
@@ -113,6 +113,7 @@ const LoginScreen = props => {
           var mail=responseJson.message.user.email;
           var name=responseJson.message.user.userName;
           var phone=responseJson.message.user.phone;
+
           props.navigation.navigate('Profile',{email:mail,phone:phone,name:name});
           
           //console.log(responseJson.message.user.email)

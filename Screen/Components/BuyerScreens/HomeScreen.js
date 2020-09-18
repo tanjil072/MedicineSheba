@@ -76,7 +76,7 @@ export default class Cart extends React.Component {
 	subtotalPrice = () => {
 		const { cartItems } = this.state;
 		if (cartItems) {
-			return cartItems.reduce((sum, item) => sum + (item.checked == 1 ? item.qty * item.salePrice : 0), 0);
+			return cartItems.reduce((sum, item) => sum + (item.checked == 1 ? item.qty * item.price : 0), 0);
 		}
 		return 0;
 	}
@@ -85,32 +85,24 @@ export default class Cart extends React.Component {
 		setTimeout(() => {
 
 
-			fetch('http://10.0.2.2:3000/results')
+			fetch('https://medicine-sheba-server.herokuapp.com/medicines')
 				.then(response => response.json())
 				.then(responseJson => {
+					//console.log(responseJson.message)
 					this.setState(
 						{
-							isLoading: false,
-							datasource:responseJson,
-							cartItems: responseJson
-						},
 						
+							cartItems: responseJson.message
+						},
 						
 					);
 				})
 				.catch(error => {
 					console.error(error);
 				});
-			//console.log('Our data is fetched');
-			// let cartItems = [...this.state.cartItems];
-
-			// cartItems.push({ itemId: "6", name: "Apple AirPods with Charging", thumbnailImage: "https://images-na.ssl-images-amazon.com/images/I/71NTi82uBEL._AC_SL1500_.jpg", color: "Midnight black", qty: 1, salePrice: "599", checked: 0 });
-
-			// this.setState({ cartItems });
 
 		}, 0)
 	}
-
 
 
 	componentDidMount() {
@@ -147,29 +139,29 @@ export default class Cart extends React.Component {
 		});
 	  }
 
-	  test = () => {
-		setTimeout(() => {
+	//   test = () => {
+	// 	setTimeout(() => {
 
 
-			fetch('http://10.0.2.2:3000/results')
-				.then(response => response.json())
-				.then(responseJson => {
-					this.setState(
-						{
-							isLoading: false,
-							cartItems: responseJson
-						},
+	// 		fetch('http://10.0.2.2:3000/results')
+	// 			.then(response => response.json())
+	// 			.then(responseJson => {
+	// 				this.setState(
+	// 					{
+	// 						isLoading: false,
+	// 						cartItems: responseJson
+	// 					},
 						
 						
-					);
-				})
-				.catch(error => {
-					console.error(error);
-				});
+	// 				);
+	// 			})
+	// 			.catch(error => {
+	// 				console.error(error);
+	// 			});
 		
-		}, 0)
+	// 	}, 0)
 
-	}
+	// }
 
 
 
@@ -224,10 +216,12 @@ export default class Cart extends React.Component {
 											<Image source={{ uri: item.thumbnailImage }} style={[styles.centerElement, { height: 60, width: 60, backgroundColor: '#eeeeee' }]} />
 										</TouchableOpacity>
 										<View style={{ flexGrow: 1, flexShrink: 1, alignSelf: 'center' }}>
-											<Text numberOfLines={1} style={{ fontSize: 15 }}>{item.name}</Text>
-											<Text numberOfLines={1} style={{ color: '#8f8f8f' }}>{item.color ? 'Variation: ' + item.color : ''}</Text>
-											<Text numberOfLines={1} style={{ color: '#333333', marginBottom: 10 }}>${item.qty * item.salePrice}</Text>
+											<Text numberOfLines={1} style={{ fontSize: 15 }}>{item.medicineName}</Text>
+											<Text numberOfLines={1} style={{ color: '#8f8f8f' }}>{item.strength ? item.strength+" "+item.unit : ''}</Text>
+											<Text numberOfLines={1} style={{ color: '#333333', marginBottom: 10 }}>${item.qty * item.price}</Text>
 											<View style={{ flexDirection: 'row' }}>
+
+
 												<TouchableOpacity onPress={() => this.quantityHandler('less', i)} style={{ borderWidth: 1, borderColor: '#cccccc' }}>
 													<Icon name="remove" size={22} color="#cccccc" />
 												</TouchableOpacity>
