@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, Picker } from 'react-native';
 
 export default class EditMedi extends Component {
 
     constructor() {
         super();
         this.state = {
-            id:'',
             medicineName: '',
             strength: '',
             unit: '',
@@ -20,34 +19,41 @@ export default class EditMedi extends Component {
 
     Add = () => {
 
-        // if (!userName) {
-        //   alert('Please fill Name');
-        //   return;
-        // }
-        // if (!userEmail) {
-        //   alert('Please fill Email');
-        //   return;
-        // }
-        // if (!Phone) {
-        //   alert('Please fill Phone');
-        //   return;
-        // }
-        // if (!Password) {
-        //   alert('Please fill Password');
-        //   return;
-        // }
+        if (!this.state.medicineName) {
+          alert('Please fill Name');
+          return;
+        }
+        if (!this.state.strength) {
+          alert('Please fill Email');
+          return;
+        }
+        if (!this.state.unit) {
+          alert('Please fill Phone');
+          return;
+        }
+        if (!this.state.genericName) {
+          alert('Please fill Password');
+          return;
+        }
+        if (!this.state.manufacturer) {
+            alert('Please fill Password');
+            return;
+          }
+          if (!this.state.price) {
+            alert('Please fill Password');
+            return;
+          }
 
         // setLoading(true);
 
 
-        fetch("https://medicine-sheba-server.herokuapp.com/admin/update-medicine", {
+        fetch("https://medicine-sheba-server.herokuapp.com/admin/add-medicine", {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                _id:this.state.id,
                 medicineName: this.state.medicineName,
                 strength: this.state.strength,
                 unit: this.state.unit,
@@ -64,8 +70,8 @@ export default class EditMedi extends Component {
                 console.log(responseJson);
                 // If server response message same as Data Matched
                 if (responseJson.status == 'success') {
-                    console.log('Medicine Updated Successfully');
-                    this.setState({ successText: "Medicine updated successfully" })
+                    // console.log('Medicine Added');
+                    this.setState({ successText: "Medicine Added successfully" })
 
                 }
             })
@@ -76,26 +82,21 @@ export default class EditMedi extends Component {
 
     cancel = () => {
 
-		this.props.navigation.navigate('NavToSeller');
-		//alert("Hi")
-		
-	}
+        this.props.navigation.navigate('NavToSeller');
+        //alert("Hi")
+
+    }
 
 
     render() {
-
-       const name =  this.props.navigation.getParam('name', 'name retriving error')
-       const id =  this.props.navigation.getParam('id', 'id retriving error')
-       this.state.id=id;
-       console.log(name)
 
 
         return (
             <KeyboardAvoidingView enabled>
                 <View style={styles.container}>
-                <View>
-                <Text style={{fontSize:30,fontWeight:'bold',textDecorationLine: 'underline',marginBottom:25}}>Edit {name}</Text>
-                </View>
+                    <View>
+                        <Text style={{ fontSize: 30, fontWeight: 'bold', textDecorationLine: 'underline', marginBottom: 25 }}>Add Medicine to the List</Text>
+                    </View>
                     <TextInput style={styles.inputBox}
                         onChangeText={(medicineName) => this.setState({ medicineName: medicineName })}
                         underlineColorAndroid='rgba(0,0,0,0)'
@@ -113,14 +114,18 @@ export default class EditMedi extends Component {
                         placeholderTextColor="#002f6c"
                         ref={(input) => this.password = input}
                     />
-                    <TextInput style={styles.inputBox}
-                        onChangeText={(unit) => this.setState({ unit: unit })}
-                        underlineColorAndroid='rgba(0,0,0,0)'
-                        placeholder="Unit"
 
-                        placeholderTextColor="#002f6c"
-                        ref={(input) => this.password = input}
-                    />
+                    <View style={styles.inputBox}>
+                        <Picker
+                            selectedValue={this.state.unit}
+                            style={{ height: 50, width: 280, color: '#002f6c' }}
+                            onValueChange={(unit) => this.setState({ unit: unit })}
+                        >
+                            <Picker.Item label="mg" value="mg" />
+                            <Picker.Item label="ml" value="ml" />
+                        </Picker>
+                    </View>
+
                     <TextInput style={styles.inputBox}
                         onChangeText={(genericName) => this.setState({ genericName: genericName })}
                         underlineColorAndroid='rgba(0,0,0,0)'
@@ -147,7 +152,7 @@ export default class EditMedi extends Component {
                     />
 
                     <TouchableOpacity style={styles.button}>
-                        <Text style={styles.buttonText} onPress={() => this.Add()} >Update</Text>
+                        <Text style={styles.buttonText} onPress={() => this.Add()} >ADD</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity style={styles.button}>

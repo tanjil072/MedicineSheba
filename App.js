@@ -14,7 +14,9 @@ import BottomNav from './Screen/Components/BuyerScreens/BuyerNav';
 import SellerNav from './Screen/Components/Seller/SellerNav';
 import RegisterAs from './Screen/RegisterAs'
 import SellerRegistration from './Screen/SellerRegistration'
+import AddMedi from './Screen/Components/Seller/AddMedi'
 import EditMedi from './Screen/Components/Seller/EditMedi'
+
 
 const Auth = createStackNavigator({
   //Stack Navigator for Login and Sign up Screen
@@ -25,6 +27,12 @@ const Auth = createStackNavigator({
     },
   },
 
+  AddMedi: {
+    screen: AddMedi,
+    navigationOptions: {
+      headerShown: false,
+    },
+  },
   EditMedi: {
     screen: EditMedi,
     navigationOptions: {

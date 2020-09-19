@@ -9,14 +9,15 @@ export default class Cart extends React.Component {
 
 	constructor(props) {
 		super(props);
-		this.arrayholder=[];
+		this.arrayholder = [];
 		this.state = {
 			selectAll: false,
 			cartItemsIsLoading: false,
-			isLoading: true, 
+			isLoading: true,
 			text: '',
+			qty: 1,
 			cartItems: [
-				
+
 			]
 		}
 	}
@@ -60,6 +61,8 @@ export default class Cart extends React.Component {
 	}
 
 	quantityHandler = (action, index) => {
+
+
 		const newItems = [...this.state.cartItems]; // clone the array 
 
 		let currentQty = newItems[index]['qty'];
@@ -91,10 +94,14 @@ export default class Cart extends React.Component {
 					//console.log(responseJson.message)
 					this.setState(
 						{
-						
-							cartItems: responseJson.message
+
+							//cartItems: responseJson.message,
+							dataSource: responseJson.message
 						},
-						
+						function () {
+							this.state.cartItems = responseJson.message;
+						}
+
 					);
 				})
 				.catch(error => {
@@ -122,22 +129,27 @@ export default class Cart extends React.Component {
 	SearchFilterFunction(text) {
 		//passing the inserted text in textinput
 		const newData = this.state.cartItems.filter(function (item) {
-		  //applying filter for the inserted text in search bar
-		  const itemData = item.name ? item.name.toUpperCase() : ''.toUpperCase();
-		  const textData = text.toUpperCase();
-		  //console.log()
-		  return itemData.indexOf(textData) > -1;
-		  
+			//applying filter for the inserted text in search bar
+			const itemData = item.medicineName ? item.medicineName.toUpperCase() : ''.toUpperCase();
+			const textData = text.toUpperCase();
+			//console.log()
+			return itemData.indexOf(textData) > -1;
+
 		});
 		//console.log(newData)
 		this.setState({
-		  //setting the filtered newData on datasource
-		  //After setting the data it will automatically re-render the view
-		  
-		  cartItems: newData,
-		  text: text,
+			//setting the filtered newData on datasource
+			//After setting the data it will automatically re-render the view
+
+			dataSource: newData,
+			text: text,
 		});
-	  }
+	}
+
+
+
+
+
 
 	//   test = () => {
 	// 	setTimeout(() => {
@@ -151,14 +163,14 @@ export default class Cart extends React.Component {
 	// 						isLoading: false,
 	// 						cartItems: responseJson
 	// 					},
-						
-						
+
+
 	// 				);
 	// 			})
 	// 			.catch(error => {
 	// 				console.error(error);
 	// 			});
-		
+
 	// 	}, 0)
 
 	// }
@@ -166,15 +178,20 @@ export default class Cart extends React.Component {
 
 
 
+	// 	<TouchableOpacity onPress={() => {/*this.props.navigation.navigate('ProductDetails', {productDetails: item})*/ }} style={{ paddingRight: 10 }}>
+	// 	<Image source={{ uri: item.thumbnailImage }} style={[styles.centerElement, { height: 60, width: 60, backgroundColor: '#eeeeee' }]} />
+	// </TouchableOpacity>
+
+
 
 
 	render() {
 
-		const { cartItems, cartItemsIsLoading, selectAll } = this.state;
+		const { cartItemsIsLoading, selectAll } = this.state;
 
-	
-   
-	
+
+
+
 		const styles = StyleSheet.create({
 			centerElement: { justifyContent: 'center', alignItems: 'center' },
 		});
@@ -183,18 +200,18 @@ export default class Cart extends React.Component {
 		return (
 			<View style={{ flex: 1, backgroundColor: '#f6f6f6' }}>
 				<View style={{ flexDirection: 'row', backgroundColor: '#fff', marginBottom: 10 }}>
-					<TextInput
-						style={styles.textInputStyle}
-						onChangeText={text => this.SearchFilterFunction(text)}
-						value={this.state.text}
-						underlineColorAndroid="transparent"
-						placeholder="Search Here"
-					/>
-				</View>
-				<View>
-				<Icon style={[{ color: "black" }]} size={35} name={'cart'} onPress={() => this.test()} />
+					<View style={[styles.centerElement, { width: 50, height: 50 }]}>
+						<Icon style={[{ color: "black" }]} size={25} name="search" />
+					</View>
+
+					<View style={[styles.centerElement, { height: 40, marginTop: 5 }]}>
+						<TextInput onChangeText={text => this.SearchFilterFunction(text)}
+							value={this.state.text} style={{ borderWidth: 2, width: 320, borderRadius: 8, paddingLeft: 10 }} placeholder={'Search'}></TextInput>
+
+					</View>
 
 				</View>
+
 
 				{cartItemsIsLoading ? (
 					<View style={[styles.centerElement, { height: 300 }]}>
@@ -204,7 +221,7 @@ export default class Cart extends React.Component {
 
 
 						<ScrollView>
-							{cartItems && cartItems.map((item, i) => (
+							{this.state.dataSource && this.state.dataSource.map((item, i) => (
 								<View key={i} style={{ flexDirection: 'row', backgroundColor: '#fff', marginBottom: 2, height: 120 }}>
 									<View style={[styles.centerElement, { width: 60 }]}>
 										<TouchableOpacity style={[styles.centerElement, { width: 32, height: 32 }]} onPress={() => this.selectHandler(i, item.checked)}>
@@ -212,20 +229,24 @@ export default class Cart extends React.Component {
 										</TouchableOpacity>
 									</View>
 									<View style={{ flexDirection: 'row', flexGrow: 1, flexShrink: 1, alignSelf: 'center' }}>
-										<TouchableOpacity onPress={() => {/*this.props.navigation.navigate('ProductDetails', {productDetails: item})*/ }} style={{ paddingRight: 10 }}>
-											<Image source={{ uri: item.thumbnailImage }} style={[styles.centerElement, { height: 60, width: 60, backgroundColor: '#eeeeee' }]} />
-										</TouchableOpacity>
+
+
+
 										<View style={{ flexGrow: 1, flexShrink: 1, alignSelf: 'center' }}>
-											<Text numberOfLines={1} style={{ fontSize: 15 }}>{item.medicineName}</Text>
-											<Text numberOfLines={1} style={{ color: '#8f8f8f' }}>{item.strength ? item.strength+" "+item.unit : ''}</Text>
-											<Text numberOfLines={1} style={{ color: '#333333', marginBottom: 10 }}>${item.qty * item.price}</Text>
+											<TouchableOpacity onPress={() => alert("Name: " + item.medicineName + "\n" + item.strength + " " + item.unit + "\n" + "Generic: " + item.genericName + "\n" + "Company: " + item.manufacturer + "\n" + "Price: " + item.price + "tk.")}>
+												<Text numberOfLines={1} style={{ fontSize: 15 }}>{item.medicineName}</Text>
+												<Text numberOfLines={1} style={{ color: '#8f8f8f' }}>{item.strength ? item.strength + " " + item.unit : ''}</Text>
+												<Text numberOfLines={1} style={{ color: '#333333', marginBottom: 10 }}>${this.state.qty * item.price}</Text>
+
+											</TouchableOpacity>
+
 											<View style={{ flexDirection: 'row' }}>
 
 
 												<TouchableOpacity onPress={() => this.quantityHandler('less', i)} style={{ borderWidth: 1, borderColor: '#cccccc' }}>
 													<Icon name="remove" size={22} color="#cccccc" />
 												</TouchableOpacity>
-												<Text style={{ borderTopWidth: 1, borderBottomWidth: 1, borderColor: '#cccccc', paddingHorizontal: 7, paddingTop: 3, color: '#bbbbbb', fontSize: 13 }}>{item.qty}</Text>
+												<Text style={{ borderTopWidth: 1, borderBottomWidth: 1, borderColor: '#cccccc', paddingHorizontal: 7, paddingTop: 3, color: '#bbbbbb', fontSize: 13 }}>{this.state.qty}</Text>
 												<TouchableOpacity onPress={() => this.quantityHandler('more', i)} style={{ borderWidth: 1, borderColor: '#cccccc' }}>
 													<Icon name="add" size={22} color="#cccccc" />
 												</TouchableOpacity>
@@ -266,12 +287,114 @@ export default class Cart extends React.Component {
 							<Text style={{ color: '#ffffff' }}>Procced</Text>
 						</TouchableOpacity>
 					</View>
+					
 				</View>
 
 			</View>
 
 
 
-		);
+		)
 	}
 }
+
+const styles = StyleSheet.create({
+
+	centerElement: { 
+	justifyContent: 'center',
+	 alignItems: 'center' 
+	},
+
+	box1: {
+		flex: 1,
+
+	},
+	container: {
+		height: '100%'
+	},
+
+	box2: {
+		flex: 1,
+		alignItems: 'flex-end'
+	},
+	detailBox: {
+		flexDirection: 'row',
+		margin: 10
+	},
+	header: {
+		backgroundColor: "rgb(171, 235, 198)",
+	},
+	headerContent: {
+		padding: 10,
+		alignItems: 'center',
+	},
+	avatar: {
+		width: 130,
+		height: 130,
+		borderRadius: 63,
+		borderWidth: 4,
+		borderColor: "pink",
+		marginBottom: 10,
+	},
+	name: {
+		fontSize: 22,
+		color: "#000000",
+		fontWeight: '600',
+	},
+	buttonStyle: {
+		backgroundColor: 'rgb(230, 45, 82)',
+		borderWidth: 0,
+		color: '#FFFFFF',
+		height: 45,
+		width: '25%',
+		alignItems: 'center',
+		justifyContent: 'center',
+		borderRadius: 8,
+		marginLeft: '38%',
+		marginTop: 85,
+
+	},
+	buttonTextStyle: {
+		color: 'rgb(255,255, 255)',
+		paddingVertical: 10,
+		fontSize: 16,
+	},
+	userInfo: {
+		fontSize: 16,
+		color: "#778899",
+
+	},
+	body: {
+		backgroundColor: "rgb(255,255,255)",
+		height: '68%',
+
+	},
+	item: {
+		flexDirection: 'row',
+		marginTop: 20,
+
+	},
+	infoContent: {
+		flex: 1,
+		alignItems: 'flex-start',
+		paddingLeft: 5
+	},
+	iconContent: {
+		flex: 1,
+		paddingRight: 1,
+	},
+	icon: {
+		width: 30,
+		height: 30,
+		marginTop: 20,
+	},
+	info: {
+		fontSize: 18,
+		marginTop: 10,
+		color: "white",
+		marginLeft: 20
+	}
+
+});
+
+

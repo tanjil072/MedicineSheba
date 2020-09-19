@@ -25,16 +25,16 @@ const TabNavigator = createMaterialBottomTabNavigator(
             }  
         },  
 
-        Cart: {  
-            screen: Notifications,  
-            navigationOptions:{  
-                tabBarLabel:'Home',  
-                tabBarIcon: ({ tintColor }) => (  
-                    <View>  
-                        <Icon style={[{color: tintColor}]} size={25} name={'ios-home'}/>  
-                    </View>),  
-            }  
-        },
+        // Cart: {  
+        //     screen: Notifications,  
+        //     navigationOptions:{  
+        //         tabBarLabel:'Home',  
+        //         tabBarIcon: ({ tintColor }) => (  
+        //             <View>  
+        //                 <Icon style={[{color: tintColor}]} size={25} name={'ios-home'}/>  
+        //             </View>),  
+        //     }  
+        // },
         
         Orders: { screen: Orders,  
             navigationOptions:{  
@@ -64,7 +64,7 @@ const TabNavigator = createMaterialBottomTabNavigator(
         
     },  
     {  
-      initialRouteName: "Cart",  
+      initialRouteName: "Home",  
       activeColor: '#f0edf6',  
       inactiveColor: '#226557',  
       barStyle: { backgroundColor: '#3BAD87' },  

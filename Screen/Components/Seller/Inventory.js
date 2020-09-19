@@ -17,6 +17,7 @@ export default class Cart extends React.Component {
 			selectAll: false,
 			cartItemsIsLoading: false,
 			dialogVisible: false,
+			id:'',
 			cartItems: [
 
 			]
@@ -113,53 +114,110 @@ export default class Cart extends React.Component {
 
 	addMedicine = () => {
 
-		this.props.navigation.navigate('EditMedi');
+		this.props.navigation.navigate('AddMedi');
 		//alert("Hi")
-		
+
 	}
 
-	test = (itemName) => {
+	test = (itemName,ID) => {
 
-		//this.props.navigation.navigate('EditMedi');
-		console.log(itemName);
-		 
+		this.props.navigation.navigate('EditMedi',{name:itemName,id:ID});
+		//console.log(itemName);
+
 	}
 
 	componentDidMount() {
 		this.getData();
 	}
 
+	Delete = (id) => {
 
-	  getData() {
+
+        fetch("https://medicine-sheba-server.herokuapp.com/admin/remove-medicine", {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                _id:id
+              
+            })
+        })
+
+            .then((response) => response.json())
+            .then((responseJson) => {
+
+                //setLoading(false);
+                console.log(responseJson);
+                // If server response message same as Data Matched
+                if (responseJson.status == 'success') {
+					console.log('Medicine Deleted');
+					this.getData();
+                    //this.setState({ successText: "Medicine Deleted successfully" })
+                }
+            })
+
+            .done();
+    }
 
 
-			fetch('https://medicine-sheba-server.herokuapp.com/admin/medicines')
-				.then(response => response.json())
-				.then(responseJson => {
-					//console.log(responseJson.message)
-					this.setState(
-						{
-						
-							cartItems: responseJson.message
-						},
-						
-					);
-				})
-				.catch(error => {
-					console.error(error);
-				});
 
-		
+	getData() {
+
+
+		fetch('https://medicine-sheba-server.herokuapp.com/admin/medicines')
+			.then(response => response.json())
+			.then(responseJson => {
+				//console.log(responseJson.message)
+				this.setState(
+					{
+						dataSource: responseJson.message
+					},
+					function () {
+						this.state.cartItems = responseJson.message;
+					  }
+
+				);
+			})
+			.catch(error => {
+				console.error(error);
+			});
+
+
 	}
+
+	test=()=>{
+		console.log(filter(cartItems, {medicineName: 'Antacid' }));
+	}
+
+
+	SearchFilterFunction(text) {
+		//passing the inserted text in textinput
+		const newData = this.state.cartItems.filter(function (item) {
+		  //applying filter for the inserted text in search bar
+		  const itemData = item.medicineName ? item.medicineName.toUpperCase() : ''.toUpperCase();
+		  const textData = text.toUpperCase();
+		  //console.log()
+		  return itemData.indexOf(textData) > -1;
+		  
+		});
+		//console.log(newData)
+		this.setState({
+		  //setting the filtered newData on datasource
+		  //After setting the data it will automatically re-render the view
+		  
+		  dataSource: newData,
+		  text: text,
+		});
+	  }
 
 
 
 
 
 	render() {
-		const styles = StyleSheet.create({
-			centerElement: { justifyContent: 'center', alignItems: 'center' },
-		});
+		
 
 		const { cartItems, cartItemsIsLoading, selectAll } = this.state;
 
@@ -171,13 +229,11 @@ export default class Cart extends React.Component {
 						<Icon style={[{ color: "black" }]} size={25} name="search" />
 					</View>
 
-					<View style={[styles.centerElement, { height: 50 }]}>
-						<TextInput style={{ borderWidth: 0, borderRadius: 8, paddingLeft: 10, borderLength: 50 }} placeholder={'Search'}></TextInput>
-
+					<View style={[styles.centerElement, { height: 40,marginTop:5 }]}>
+						<TextInput onChangeText={text => this.SearchFilterFunction(text)}
+						value={this.state.text} style={{ borderWidth: 2,width:320, borderRadius: 8, paddingLeft: 10 }} placeholder={'Search'}></TextInput>
 
 					</View>
-
-
 
 				</View>
 
@@ -189,7 +245,7 @@ export default class Cart extends React.Component {
 
 
 						<ScrollView>
-							{cartItems && cartItems.map((item, i) => (
+							{this.state.dataSource && this.state.dataSource.map((item, i) => (
 								<View key={i} style={{ flexDirection: 'row', backgroundColor: '#fff', marginBottom: 2, height: 120 }}>
 									<View style={[styles.centerElement, { width: 60 }]}>
 										<TouchableOpacity style={[styles.centerElement, { width: 32, height: 32 }]} onPress={() => this.selectHandler(i, item.checked)}>
@@ -201,36 +257,32 @@ export default class Cart extends React.Component {
 
 										</TouchableOpacity>
 										<View style={{ flexGrow: 1, flexShrink: 1, alignSelf: 'center' }}>
-											<Text numberOfLines={1} style={{ fontSize: 15 }}>{item.medicineName}</Text>
+
+										<TouchableOpacity onPress={() => alert("Name: "+item.medicineName+"\n"+item.strength+" "+item.unit+"\n"+"Generic: "+item.genericName+"\n"+"Company: "+item.manufacturer+"\n"+"Price: "+item.price+"tk.")}>
+											<Text numberOfLines={1} style={{ fontSize: 20 }}>{item.medicineName}</Text>
 											<Text numberOfLines={1} style={{ color: '#8f8f8f' }}>{item.strength} {item.unit}</Text>
-											
+
 											<Text numberOfLines={1} style={{ color: '#8f8f8f' }}>Generic Name: {item.genericName}</Text>
 											<Text numberOfLines={1} style={{ color: '#8f8f8f' }}>Manufacturer: {item.manufacturer}</Text>
 											<Text numberOfLines={1} style={{ color: '#8f8f8f' }}>Price: {item.price} tk.</Text>
 
-
-											<View style={{ flexDirection: 'row' }}>
-
-											</View>
+											</TouchableOpacity>
+											
 										</View>
 
-
-										<View style={styles.box2}>
-
-										</View>
 
 									</View>
 
 									<View >
 
-										<Icons onPress={() =>this.test(item.medicineName)} name="pencil" size={25} style={{ marginTop: 50 }} />
+										<Icons onPress={() => this.test(item.medicineName,item._id)} name="pencil" size={25} style={{ marginTop: 50 }} />
 
 
 									</View>
 
 
 									<View style={[styles.centerElement, { width: 60 }]}>
-										<TouchableOpacity style={[styles.centerElement, { width: 32, height: 32 }]} onPress={() => this.deleteHandler(i)}>
+										<TouchableOpacity style={[styles.centerElement, { width: 32, height: 32 }]} onPress={() => this.Delete(item._id)}>
 											<Icon name="md-trash" size={25} color="rgb(129,122,126)" />
 										</TouchableOpacity>
 									</View>
@@ -273,6 +325,10 @@ export default class Cart extends React.Component {
 
 const styles = StyleSheet.create({
 
+	centerElement: { 
+	justifyContent: 'center',
+	 alignItems: 'center' 
+	},
 
 	box1: {
 		flex: 1,
@@ -363,10 +419,6 @@ const styles = StyleSheet.create({
 		color: "white",
 		marginLeft: 20
 	}
-
-
-
-
 
 });
 

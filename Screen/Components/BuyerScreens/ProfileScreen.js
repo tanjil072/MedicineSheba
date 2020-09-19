@@ -12,7 +12,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import Dialog from "react-native-dialog";
 
 
-var text = ""; //Dialogue Title setter
+//var text = ""; //Dialogue Title setter
 
 
 export default class ProfileScreen extends Component {
@@ -21,14 +21,15 @@ export default class ProfileScreen extends Component {
     dialogVisible: false,
     Email:"tanjilh84@gmail.com",
     Phone:"+88017********",
-    Password:"********"
+    Password:"********",
+    text:''
   };
 
   signout = () => {
     this.props.navigation.navigate('LoginScreen');
   }
   showDialog = (mail) => {
-    this.text = mail;
+    this.setState({ text: mail });
     this.setState({ dialogVisible: true });
 
   };
@@ -136,9 +137,9 @@ export default class ProfileScreen extends Component {
           <View>
 
             <Dialog.Container visible={this.state.dialogVisible}>
-              <Dialog.Title>Edit {this.text}</Dialog.Title>
+              <Dialog.Title>Edit {this.state.text}</Dialog.Title>
 
-              <Dialog.Input style={{ borderWidth: 1, borderRadius: 15, paddingLeft: 10 }} placeholder={this.text}  onChangeText={(textinp) => this.handleText(textinp,this.text)} >
+              <Dialog.Input style={{ borderWidth: 1, borderRadius: 15, paddingLeft: 10 }} placeholder={this.state.text}  onChangeText={(textinp) => this.handleText(textinp,this.text)} >
 
               </Dialog.Input>
               <Dialog.Button label="Cancel" onPress={this.handleCancel} />

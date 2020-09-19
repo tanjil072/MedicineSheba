@@ -27,7 +27,7 @@ const LoginScreen = props => {
   let [loading, setLoading] = useState(false);
   let [errortext, setErrortext] = useState('');
   const [value, setValue] = React.useState('first');
-  const[data,setData]=useState([])
+  const [data, setData] = useState([])
 
   let [val, setVal] = useState('');
 
@@ -36,7 +36,8 @@ const LoginScreen = props => {
 
   const handleSignIn = () => {
 
-     setErrortext('');
+    setErrortext('');
+
     if (!userEmail) {
       alert('Please fill Email');
       return;
@@ -50,15 +51,11 @@ const LoginScreen = props => {
 
     if (value == 'customer') {
       apifetch();
-     //props.navigation.navigate('NavToBottom');
-      // console.log(val)
 
     }
     if (value == 'seller') {
       props.navigation.navigate('NavToSeller');
       //apifetch();
-
-
     }
 
 
@@ -100,7 +97,7 @@ const LoginScreen = props => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        email: userEmail ,
+        email: userEmail,
         password: userPassword,
       })
     })
@@ -108,29 +105,29 @@ const LoginScreen = props => {
       .then((response) => response.json())
       .then((responseJson) => {
         setLoading(false);
-        if(responseJson.status=='success'){
-         
-          var mail=responseJson.message.user.email;
-          var name=responseJson.message.user.userName;
-          var phone=responseJson.message.user.phone;
 
-          props.navigation.navigate('Profile',{email:mail,phone:phone,name:name});
-          
+        if (responseJson.status == 'success') {
+
+          var mail = responseJson.message.user.email;
+          var name = responseJson.message.user.userName;
+          var phone = responseJson.message.user.phone;
+
+          props.navigation.navigate('Profile', { email: mail, phone: phone, name: name });
+
           //console.log(responseJson.message.user.email)
-                
-              } else {
-                setErrortext('Please check your email id or password');
-               
-              }
-        
-        
-       
+
+        } else {
+          setErrortext('Please check your email id or password');
+
+        }
+
+
+
       })
       .catch(error => {
-        //     //Hide Loader
-            setLoading(false);
-            console.error(error);
-          });
+        setLoading(false);
+        console.error(error);
+      });
   }
 
   return (
@@ -154,14 +151,11 @@ const LoginScreen = props => {
               <TextInput
                 style={styles.inputStyle}
                 onChangeText={UserEmail => setUserEmail(UserEmail)}
-                // underlineColorAndroid="#FFFFFF"
-                placeholder="Enter Email" //dummy@abc.com
+
+                placeholder="Enter Email"
                 placeholderTextColor="#08070D"
                 autoCapitalize="none"
                 keyboardType="email-address"
-                // ref={ref => {
-                //   this._emailinput = ref;
-                // }}
                 returnKeyType="next"
                 onSubmitEditing={() =>
                   this._passwordinput && this._passwordinput.focus()
@@ -176,11 +170,11 @@ const LoginScreen = props => {
               <TextInput
                 style={styles.inputStyle}
                 onChangeText={UserPassword => setUserPassword(UserPassword)}
-                // underlineColorAndroid="#FFFFFF"
-                placeholder="Enter Password" //12345
+
+                placeholder="Enter Password"
                 placeholderTextColor="#08070D"
                 keyboardType="default"
-               
+
                 onSubmitEditing={Keyboard.dismiss}
                 blurOnSubmit={false}
                 secureTextEntry={true}
