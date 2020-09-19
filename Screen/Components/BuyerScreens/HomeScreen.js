@@ -222,27 +222,26 @@ export default class Cart extends React.Component {
 
 						<ScrollView>
 							{this.state.dataSource && this.state.dataSource.map((item, i) => (
-								<View key={i} style={{ flexDirection: 'row', backgroundColor: '#fff', marginBottom: 2, height: 120 }}>
-									<View style={[styles.centerElement, { width: 60 }]}>
+								<View key={i} style={{ flexDirection: 'row', backgroundColor: '#fff', marginBottom: 2, height: 140 }}>
+									<View style={[styles.centerElement, { width: 100 }]}>
 										<TouchableOpacity style={[styles.centerElement, { width: 32, height: 32 }]} onPress={() => this.selectHandler(i, item.checked)}>
 											<Icon name={item.checked == 1 ? "ios-checkmark-circle" : "ios-checkmark-circle-outline"} size={25} color={item.checked == 1 ? "#0faf9a" : "#aaaaaa"} />
 										</TouchableOpacity>
 									</View>
-									<View style={{ flexDirection: 'row', flexGrow: 1, flexShrink: 1, alignSelf: 'center' }}>
+									<View style={{ flexDirection: 'row', flexGrow: 1, flexShrink: 1, alignSelf: 'center'}}>
 
 
 
 										<View style={{ flexGrow: 1, flexShrink: 1, alignSelf: 'center' }}>
 											<TouchableOpacity onPress={() => alert("Name: " + item.medicineName + "\n" + item.strength + " " + item.unit + "\n" + "Generic: " + item.genericName + "\n" + "Company: " + item.manufacturer + "\n" + "Price: " + item.price + "tk.")}>
-												<Text numberOfLines={1} style={{ fontSize: 15 }}>{item.medicineName}</Text>
-												<Text numberOfLines={1} style={{ color: '#8f8f8f' }}>{item.strength ? item.strength + " " + item.unit : ''}</Text>
-												<Text numberOfLines={1} style={{ color: '#333333', marginBottom: 10 }}>${this.state.qty * item.price}</Text>
+												<Text numberOfLines={1} style={{ fontSize: 20 }}>{item.medicineName}</Text>
+												<Text numberOfLines={1} style={{ color: '#8f8f8f',fontSize:15 }}>{item.strength ? item.strength + " " + item.unit : ''}</Text>
+												<Text numberOfLines={1} style={{ fontSize: 15, color: '#8f8f8f'}}>manufacturer: {item.manufacturer}</Text>
+												<Text numberOfLines={1} style={{ color: '#333333', marginBottom:2,fontSize:18 }}>Price: {this.state.qty * item.price} tk.</Text>
 
 											</TouchableOpacity>
 
 											<View style={{ flexDirection: 'row' }}>
-
-
 												<TouchableOpacity onPress={() => this.quantityHandler('less', i)} style={{ borderWidth: 1, borderColor: '#cccccc' }}>
 													<Icon name="remove" size={22} color="#cccccc" />
 												</TouchableOpacity>
@@ -254,11 +253,7 @@ export default class Cart extends React.Component {
 										</View>
 
 									</View>
-									<View style={[styles.centerElement, { width: 60 }]}>
-										<TouchableOpacity style={[styles.centerElement, { width: 32, height: 32 }]} onPress={() => this.deleteHandler(i)}>
-											<Icon name="md-trash" size={25} color="#ee4d2d" />
-										</TouchableOpacity>
-									</View>
+								
 								</View>
 							))}
 						</ScrollView>

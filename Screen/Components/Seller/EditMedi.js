@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, KeyboardAvoidingView,Picker } from 'react-native';
 
 export default class EditMedi extends Component {
 
@@ -9,7 +9,7 @@ export default class EditMedi extends Component {
             id:'',
             medicineName: '',
             strength: '',
-            unit: '',
+            unit: 'mg',
             genericName: '',
             manufacturer: '',
             price: '',
@@ -113,14 +113,17 @@ export default class EditMedi extends Component {
                         placeholderTextColor="#002f6c"
                         ref={(input) => this.password = input}
                     />
-                    <TextInput style={styles.inputBox}
-                        onChangeText={(unit) => this.setState({ unit: unit })}
-                        underlineColorAndroid='rgba(0,0,0,0)'
-                        placeholder="Unit"
+                    <View style={styles.inputBox}>
+                        <Picker
+                            selectedValue={this.state.unit}
+                            style={{ height: 50, width: 280, color: '#002f6c' }}
+                            onValueChange={(unit) => this.setState({ unit: unit })}
+                        >
+                            <Picker.Item label="mg" value="mg" />
+                            <Picker.Item label="ml" value="ml" />
+                        </Picker>
+                    </View>
 
-                        placeholderTextColor="#002f6c"
-                        ref={(input) => this.password = input}
-                    />
                     <TextInput style={styles.inputBox}
                         onChangeText={(genericName) => this.setState({ genericName: genericName })}
                         underlineColorAndroid='rgba(0,0,0,0)'

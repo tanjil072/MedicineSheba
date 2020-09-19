@@ -33,24 +33,6 @@ export default class Cart extends React.Component {
 
 	};
 
-	deleteHandler = (index) => {
-		Alert.alert(
-			'Are you sure you want to delete this item from your order list?',
-			'',
-			[
-				{ text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
-				{
-					text: 'Delete', onPress: () => {
-						let updatedCart = this.state.cartItems; /* Clone it first */
-						updatedCart.splice(index, 1); /* Remove item from the cloned cart state */
-						this.state.cartItems = updatedCart;
-						this.setState(updatedCart); /* Update the state */
-					}
-				},
-			],
-			{ cancelable: false }
-		);
-	}
 
 	handleCancel = () => {
 		this.setState({ dialogVisible: false });
@@ -69,8 +51,6 @@ export default class Cart extends React.Component {
 		}
 	}
 
-
-	// };
 
 
 	selectHandler = (index, value) => {
@@ -133,32 +113,46 @@ export default class Cart extends React.Component {
 	Delete = (id) => {
 
 
-        fetch("https://medicine-sheba-server.herokuapp.com/admin/remove-medicine", {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                _id:id
-              
-            })
-        })
+		Alert.alert(
+			'Are you sure you want to delete this Medicine?',
+			'',
+			[
+				{ text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+				{
+					text: 'Delete', onPress: () => {
 
-            .then((response) => response.json())
-            .then((responseJson) => {
+						fetch("https://medicine-sheba-server.herokuapp.com/admin/remove-medicine", {
+							method: 'POST',
+							headers: {
+								'Accept': 'application/json',
+								'Content-Type': 'application/json'
+							},
+							body: JSON.stringify({
+								_id:id
+							  
+							})
+						})
+				
+							.then((response) => response.json())
+							.then((responseJson) => {
+				
+								
+								console.log(responseJson);
+								// If server response message same as Data Matched
+								if (responseJson.status == 'success') {
+									console.log('Medicine Deleted');
+									this.getData();
+									//this.setState({ successText: "Medicine Deleted successfully" })
+								}
+							})
+				
+							.done();
+					}
+				},
+			],
+			{ cancelable: false }
+		);
 
-                //setLoading(false);
-                console.log(responseJson);
-                // If server response message same as Data Matched
-                if (responseJson.status == 'success') {
-					console.log('Medicine Deleted');
-					this.getData();
-                    //this.setState({ successText: "Medicine Deleted successfully" })
-                }
-            })
-
-            .done();
     }
 
 
@@ -187,9 +181,6 @@ export default class Cart extends React.Component {
 
 	}
 
-	test=()=>{
-		console.log(filter(cartItems, {medicineName: 'Antacid' }));
-	}
 
 
 	SearchFilterFunction(text) {

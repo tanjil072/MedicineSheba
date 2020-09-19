@@ -8,7 +8,7 @@ export default class EditMedi extends Component {
         this.state = {
             medicineName: '',
             strength: '',
-            unit: '',
+            unit: 'mg',
             genericName: '',
             manufacturer: '',
             price: '',
@@ -19,32 +19,7 @@ export default class EditMedi extends Component {
 
     Add = () => {
 
-        if (!this.state.medicineName) {
-          alert('Please fill Name');
-          return;
-        }
-        if (!this.state.strength) {
-          alert('Please fill Email');
-          return;
-        }
-        if (!this.state.unit) {
-          alert('Please fill Phone');
-          return;
-        }
-        if (!this.state.genericName) {
-          alert('Please fill Password');
-          return;
-        }
-        if (!this.state.manufacturer) {
-            alert('Please fill Password');
-            return;
-          }
-          if (!this.state.price) {
-            alert('Please fill Password');
-            return;
-          }
-
-        // setLoading(true);
+       
 
 
         fetch("https://medicine-sheba-server.herokuapp.com/admin/add-medicine", {
