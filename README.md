@@ -21,7 +21,7 @@ it will istall all the dependencies in the node_module folder.
 
 After installing all the modules run "react-native run-android" command in vs code terminal & the project will run successfully.
 
-Still if it doesn't work you have to install all the dependicies manually. So follow the below instructions to run further:
+**Still if it doesn't work you have to install all the dependicies manually. So follow the below instructions to run further:**
 
 ### 1. Install react-navigation dependency to import createAppContainer
 
