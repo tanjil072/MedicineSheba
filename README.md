@@ -22,7 +22,7 @@ First of all you have to setup the environment for **React Native**. To do so fo
 <u>https://reactnative.dev/docs/environment-setup</u> </br>
 Remember to follow the **React Native CLI Quickstart** instructions.</br>
 
-**After finishing the setup of React Native clone the git or just download the ZIP file**
+**After finishing the setup of React Native, clone the git or just download the ZIP file**
 
 # Installing Dependencies:
 ### Run "npm install" in  project folder with cmd/powershell/vs code terminal.
