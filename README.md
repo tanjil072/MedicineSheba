@@ -25,11 +25,11 @@ Remember to follow the **React Native CLI Quickstart** instructions.</br>
 After finishing the setup of React Native, **clone** the git or just **download the ZIP** file
 
 # Installing Dependencies:
-### Run "npm install" in  project folder with cmd/powershell/vs code terminal.
+### Run "npm install" in  project folder with Powershell/VScode terminal.
 
 it will install all the dependencies in the node_modules folder.
 
 # Running the app:
-After installing all the modules run **react-native run-android** command in vs code terminal/powershell in project folder 
+After installing all the modules run **react-native run-android** command in Visual Studio Code terminal/powershell in project folder 
 & Boom you have successfully run the app.<br/>
 Thanks
