@@ -20,7 +20,8 @@ To run this application on VSCode follow the instructions below:
 it will install all the dependencies in the node_module folder.
 
 After installing all the modules run **react-native run-android** command in vs code terminal & the project will run successfully.
-
+<br/>
+<br/>
 **Still if it doesn't work you have to install all the dependicies manually. <ins>So follow the below instructions to run further:**</ins>
 
 ### 1. Install react-navigation dependency to import createAppContainer
