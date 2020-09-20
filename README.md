@@ -16,20 +16,25 @@ This is a Medicine delivery application build with React Native
 
 <i> If you have already setup the environment for React Native you don't need to follow the setup instructions. You can start from **npm install**</i></br>
 
-# <u> Environment Setup: </u><br/>
+# Environment Setup:<br/>
 
 First of all you have to setup the environment for **React Native**. To do so follow the link below:<br/>
 <u>https://reactnative.dev/docs/environment-setup</u> </br>
 Remember to follow the **React Native CLI Quickstart** instructions.</br>
 
 **After finishing the setup of React Native clone the git or just download the ZIP file**
+
+# Installing Dependencies:
 ### Run "npm install" in  project folder with cmd/powershell/vs code terminal.
 
 it will install all the dependencies in the node_module folder.
 
+# Running the app:
 After installing all the modules run **react-native run-android** command in vs code terminal & the project will run successfully.<br/> <br/> <br/>
 
-**Still if it doesn't work you have to check if the environment setup is successfully done or not and install all the dependicies manually. <ins>So follow the below instructions to run further:**</ins>
+**Still if it doesn't work you have to check if the environment setup is successfully done or not and install all the dependecies manually. <ins>So follow the below instructions to run further:**</ins>
+
+# Manual Dependencies Installing: <br/>
 
 ### 1. Install react-navigation dependency to import createAppContainer
 
@@ -93,11 +98,6 @@ After installing all the modules run **react-native run-android** command in vs 
 
 **command:** npm install react-native-modal
 
-
-
-These commands will copy all the dependencies into your node_module directory.
-
-
-Now run the project with this command in cmd/terminal in project folder: **react-native run-android**
+<br/>Now run the project with this command in cmd/terminal in project folder: **react-native run-android**
 
 & Boom you have successfully run the app.Thanks
