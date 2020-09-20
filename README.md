@@ -14,7 +14,7 @@ This is a Medicine delivery application build with React Native
 
 # How to run:
 To run this application on VSCode follow the instructions below:
-
+<i> If you have already setup the environment for React Native you don't need to follow the setup instruction. You can start from **npm install**
 First of all you have to setup the environment for **React Native**. To do so follow the link below:<br/>
 <u>https://reactnative.dev/docs/environment-setup</u> </br>
 Remember to follow the **React Native CLI Quickstart** instructions.</br>
