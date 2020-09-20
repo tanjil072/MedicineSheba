@@ -27,10 +27,10 @@ After finishing the setup of React Native, **clone** the git or just **download 
 # Installing Dependencies:
 ### Run "npm install" in  project folder with cmd/powershell/vs code terminal.
 
-it will install all the dependencies in the node_module folder.
+it will install all the dependencies in the node_modules folder.
 
 # Running the app:
-After installing all the modules run **react-native run-android** command in vs code terminal & the project will run successfully.<br/> <br/> <br/>
+After installing all the modules run **react-native run-android** command in vs code terminal & the project will run successfully.<br/>
 
 **Still if it doesn't work you have to check if the environment setup is successfully done or not and install all the dependecies manually. <ins>So follow the below instructions to run further:**</ins>
 
