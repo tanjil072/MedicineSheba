@@ -1,12 +1,5 @@
 import React from 'react';
 import { StyleSheet, Button, Text, View, TouchableOpacity, ScrollView, Image, ActivityIndicator, TextInput, Alert } from 'react-native';
-//import { MaterialIcons, AntDesign, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
-import Icon from 'react-native-vector-icons/Ionicons';
-import Icons from 'react-native-vector-icons/Octicons';
-import Dialog from "react-native-dialog";
-
-
-var text = ""; //Dialogue Title setter
 
 
 export default class Cart extends React.Component {
