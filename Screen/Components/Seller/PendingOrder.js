@@ -77,6 +77,46 @@ export default class Cart extends React.Component {
 			});
 	}
 
+	AcceptOrder=(orderNo)=>{
+		fetch("https://medicine-sheba-server.herokuapp.com/admin/orders/change-status", {
+			method: 'POST',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				orderNo:orderNo,
+				statusFrom:"Pending",
+				statusTo:"Accepted"
+			})
+		})
+
+				.then((response) => response.json())
+				.then((responseJson) => {
+					//setLoading(false);
+
+					console.log(responseJson)
+
+					if (responseJson.status == 'success') {
+
+						alert("Order Accepted")
+						this.getData();
+
+					} else {
+						alert("Accept Error")
+
+					}
+
+
+
+				})
+				.catch(error => {
+					setLoading(false);
+					console.error(error);
+				});
+
+	}
+
 
 
 
@@ -126,7 +166,7 @@ export default class Cart extends React.Component {
 
 									<View style={{marginRight:20}}>
 
-										<Icon onPress={() => this.test(item.medicineName,item._id)} name="checkmark-circle" size={35}  style={{ marginTop: 50 }} />
+										<Icon onPress={() => this.AcceptOrder(item.orderNo)} name="checkmark-circle" size={35}  style={{ marginTop: 50 }} />
 
 
 									</View>
