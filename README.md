@@ -13,9 +13,9 @@ This is a Medicine delivery application build with React Native
 </p>
 
 # How to run:
-To run this application on VSCode follow the instruction below:
+To run this application on VSCode follow the instructions below:
 
-### Run "npm install" in cmd/powershell(Admin) in  project folder 
+### Run "npm install" in  project folder with cmd/powershell/vs code terminal.
 
 it will istall all the dependencies in the node_module folder.
 
