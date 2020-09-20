@@ -111,10 +111,11 @@ const LoginScreen = props => {
           var mail = responseJson.message.user.email;
           var name = responseJson.message.user.userName;
           var phone = responseJson.message.user.phone;
+          var ID=responseJson.message.user._id
 
-          props.navigation.navigate('Profile', { email: mail, phone: phone, name: name });
+          props.navigation.navigate('Profile', { email: mail, phone: phone, name: name,ID:responseJson.message.user._id});
 
-          //console.log(responseJson.message.user.email)
+          //console.log(responseJson.message.user._id)
 
         } else {
           setErrortext('Please check your email id or password');

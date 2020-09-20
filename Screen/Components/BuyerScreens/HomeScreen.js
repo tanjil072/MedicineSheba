@@ -4,6 +4,8 @@ import { StyleSheet, Button, Text, View, TouchableOpacity, ScrollView, Image, Ac
 import Icon from 'react-native-vector-icons/Ionicons';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import CustomComp from './CustomComp';
+import PlaceOrder from './PlaceOrder'
 
 export default class Cart extends React.Component {
 
@@ -62,10 +64,11 @@ export default class Cart extends React.Component {
 
 	quantityHandler = (action, index) => {
 
-
+	
+		
 		const newItems = [...this.state.cartItems]; // clone the array 
 
-		let currentQty = newItems[index]['qty'];
+		let currentQty = newItems[index][this.state.qty];
 
 		if (action == 'more') {
 			newItems[index]['qty'] = currentQty + 1;
@@ -91,11 +94,8 @@ export default class Cart extends React.Component {
 			fetch('https://medicine-sheba-server.herokuapp.com/medicines')
 				.then(response => response.json())
 				.then(responseJson => {
-					//console.log(responseJson.message)
 					this.setState(
 						{
-
-							//cartItems: responseJson.message,
 							dataSource: responseJson.message
 						},
 						function () {
@@ -176,8 +176,6 @@ export default class Cart extends React.Component {
 	// }
 
 
-
-
 	// 	<TouchableOpacity onPress={() => {/*this.props.navigation.navigate('ProductDetails', {productDetails: item})*/ }} style={{ paddingRight: 10 }}>
 	// 	<Image source={{ uri: item.thumbnailImage }} style={[styles.centerElement, { height: 60, width: 60, backgroundColor: '#eeeeee' }]} />
 	// </TouchableOpacity>
@@ -187,104 +185,9 @@ export default class Cart extends React.Component {
 
 	render() {
 
-		const { cartItemsIsLoading, selectAll } = this.state;
-
-
-
-
-		const styles = StyleSheet.create({
-			centerElement: { justifyContent: 'center', alignItems: 'center' },
-		});
-
-
 		return (
 			<View style={{ flex: 1, backgroundColor: '#f6f6f6' }}>
-				<View style={{ flexDirection: 'row', backgroundColor: '#fff', marginBottom: 10 }}>
-					<View style={[styles.centerElement, { width: 50, height: 50 }]}>
-						<Icon style={[{ color: "black" }]} size={25} name="search" />
-					</View>
-
-					<View style={[styles.centerElement, { height: 40, marginTop: 5 }]}>
-						<TextInput onChangeText={text => this.SearchFilterFunction(text)}
-							value={this.state.text} style={{ borderWidth: 2, width: 320, borderRadius: 8, paddingLeft: 10 }} placeholder={'Search'}></TextInput>
-
-					</View>
-
-				</View>
-
-
-				{cartItemsIsLoading ? (
-					<View style={[styles.centerElement, { height: 300 }]}>
-						<ActivityIndicator size="large" color="#ef5739" />
-					</View>
-				) : (
-
-
-						<ScrollView>
-							{this.state.dataSource && this.state.dataSource.map((item, i) => (
-								<View key={i} style={{ flexDirection: 'row', backgroundColor: '#fff', marginBottom: 2, height: 140 }}>
-									<View style={[styles.centerElement, { width: 100 }]}>
-										<TouchableOpacity style={[styles.centerElement, { width: 32, height: 32 }]} onPress={() => this.selectHandler(i, item.checked)}>
-											<Icon name={item.checked == 1 ? "ios-checkmark-circle" : "ios-checkmark-circle-outline"} size={25} color={item.checked == 1 ? "#0faf9a" : "#aaaaaa"} />
-										</TouchableOpacity>
-									</View>
-									<View style={{ flexDirection: 'row', flexGrow: 1, flexShrink: 1, alignSelf: 'center'}}>
-
-
-
-										<View style={{ flexGrow: 1, flexShrink: 1, alignSelf: 'center' }}>
-											<TouchableOpacity onPress={() => alert("Name: " + item.medicineName + "\n" + item.strength + " " + item.unit + "\n" + "Generic: " + item.genericName + "\n" + "Company: " + item.manufacturer + "\n" + "Price: " + item.price + "tk.")}>
-												<Text numberOfLines={1} style={{ fontSize: 20 }}>{item.medicineName}</Text>
-												<Text numberOfLines={1} style={{ color: '#8f8f8f',fontSize:15 }}>{item.strength ? item.strength + " " + item.unit : ''}</Text>
-												<Text numberOfLines={1} style={{ fontSize: 15, color: '#8f8f8f'}}>manufacturer: {item.manufacturer}</Text>
-												<Text numberOfLines={1} style={{ color: '#333333', marginBottom:2,fontSize:18 }}>Price: {this.state.qty * item.price} tk.</Text>
-
-											</TouchableOpacity>
-
-											<View style={{ flexDirection: 'row' }}>
-												<TouchableOpacity onPress={() => this.quantityHandler('less', i)} style={{ borderWidth: 1, borderColor: '#cccccc' }}>
-													<Icon name="remove" size={22} color="#cccccc" />
-												</TouchableOpacity>
-												<Text style={{ borderTopWidth: 1, borderBottomWidth: 1, borderColor: '#cccccc', paddingHorizontal: 7, paddingTop: 3, color: '#bbbbbb', fontSize: 13 }}>{this.state.qty}</Text>
-												<TouchableOpacity onPress={() => this.quantityHandler('more', i)} style={{ borderWidth: 1, borderColor: '#cccccc' }}>
-													<Icon name="add" size={22} color="#cccccc" />
-												</TouchableOpacity>
-											</View>
-										</View>
-
-									</View>
-								
-								</View>
-							))}
-						</ScrollView>
-					)}
-
-
-				<View style={{ backgroundColor: '#616771' }}>
-					<View style={{ flexDirection: 'row' }}>
-						<View style={[styles.centerElement, { width: 60 }]}>
-							<TouchableOpacity style={[styles.centerElement, { width: 32, height: 32 }]} onPress={() => this.selectHandlerAll(selectAll)}>
-								<Icon style={{ marginTop: 20 }} name={selectAll == true ? "ios-checkmark-circle" : "ios-checkmark-circle-outline"} size={25} color={selectAll == true ? "#0faf9a" : "#aaaaaa"} />
-							</TouchableOpacity>
-						</View>
-
-						<View style={{ flexDirection: 'row', flexGrow: 1, flexShrink: 1, justifyContent: 'space-between', alignItems: 'center' }}>
-							<Text style={{ paddingTop: 20, color: 'white' }}>Select All</Text>
-							<View style={{ flexDirection: 'row', paddingRight: 20, marginTop: -8, alignItems: 'center' }}>
-								<Text style={{ color: 'white' }}>SubTotal: </Text>
-								<Text style={{ fontSize: 18, fontWeight: 'bold', color: '#0faf9a' }}>${this.subtotalPrice().toFixed(2)}</Text>
-							</View>
-						</View>
-					</View>
-
-					<View style={{ flexDirection: 'row', justifyContent: 'flex-end', height: 32, paddingRight: 20, alignItems: 'center' }}>
-						<TouchableOpacity style={[styles.centerElement, { backgroundColor: '#0faf9a', width: 100, height: 25, borderRadius: 5 }]} onPress={() => this.itemname()}>
-							<Text style={{ color: '#ffffff' }}>Procced</Text>
-						</TouchableOpacity>
-					</View>
-					
-				</View>
-
+				<PlaceOrder/>
 			</View>
 
 

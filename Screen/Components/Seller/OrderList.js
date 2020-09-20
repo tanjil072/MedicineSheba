@@ -9,6 +9,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 import PendingOrder from './PendingOrder';
 import DeliveredOrder from './DeliveredOrder';
+import AcceptedOrder from './AcceptedOrder'
 
 const Stack = createStackNavigator();
 const Tab = createMaterialTopTabNavigator();
@@ -47,6 +48,17 @@ function TabStack() {
                 }} />
 
             <Tab.Screen
+                name="AcceptedOrder"
+                component={AcceptedOrder}
+                options={{
+                    tabBarLabel: 'Accepted',
+                    tabBarIcon: ({ tintColor }) => (
+                        <Icon name="checkmark-circle" size={25} />
+                    )
+
+                }} />
+
+                <Tab.Screen
                 name="DeliveredOrder"
                 component={DeliveredOrder}
                 options={{

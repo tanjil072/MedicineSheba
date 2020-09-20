@@ -61,6 +61,8 @@ export default class ProfileScreen extends Component {
     const mail =  this.props.navigation.getParam('email', 'Email retriving error')
     const phone =  this.props.navigation.getParam('phone', 'Phone retriving error')
     const name =  this.props.navigation.getParam('name', 'Name retriving error')
+    const id =  this.props.navigation.getParam('ID', 'Name retriving error')
+    
 
     return (
 
