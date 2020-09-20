@@ -15,13 +15,18 @@ This is a Medicine delivery application build with React Native
 # How to run:
 To run this application on VSCode follow the instructions below:
 
+First of all you have to setup the environment for **React Native**. To do so follow the link below:
+<u>https://reactnative.dev/docs/environment-setup</u> </br>
+Remember to follow the **React Native CLI Quickstart** instructions.</br>
+
+**After finishing the setup of React Native clone the git or just download the ZIP file**
 ### Run "npm install" in  project folder with cmd/powershell/vs code terminal.
 
 it will install all the dependencies in the node_module folder.
 
 After installing all the modules run **react-native run-android** command in vs code terminal & the project will run successfully.<br/> <br/> <br/>
 
-**Still if it doesn't work you have to install all the dependicies manually. <ins>So follow the below instructions to run further:**</ins>
+**Still if it doesn't work you have to check if the environment setup is successfully done or not and install all the dependicies manually. <ins>So follow the below instructions to run further:**</ins>
 
 ### 1. Install react-navigation dependency to import createAppContainer
 
