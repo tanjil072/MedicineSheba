@@ -14,7 +14,7 @@ This is a Medicine delivery application build with React Native
 
 # How to run:
 
-<i> If you have already setup the environment for React Native you don't need to follow the setup instructions. You can start from **npm install**</i></br>
+<i> If you have already setup the environment for React Native you don't need to follow the setup instructions. You can start from **Installing Dependencies**</i></br>
 
 # Environment Setup:<br/>
 
