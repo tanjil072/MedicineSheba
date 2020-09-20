@@ -17,9 +17,9 @@ To run this application on VSCode follow the instructions below:
 
 ### Run "npm install" in  project folder with cmd/powershell/vs code terminal.
 
-it will istall all the dependencies in the node_module folder.
+it will install all the dependencies in the node_module folder.
 
-After installing all the modules run "react-native run-android" command in vs code terminal & the project will run successfully.
+After installing all the modules run **react-native run-android** command in vs code terminal & the project will run successfully.
 
 **Still if it doesn't work you have to install all the dependicies manually. So follow the below instructions to run further:**
 
