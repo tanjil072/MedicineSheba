@@ -39,16 +39,6 @@ const LoginScreen = props => {
 
   const handleSignIn = () => {
 
-    // setErrortext('');
-
-    // if (!userEmail) {
-    //   alert('Please fill Email');
-    //   return;
-    // }
-    // if (!userPassword) {
-    //   alert('Please fill Password');
-    //   return;
-    // }
     setLoading(true);
 
 
@@ -56,9 +46,8 @@ const LoginScreen = props => {
      apifetch();
 
     }
+
     if (value == 'seller') {
-      //props.navigation.navigate('NavToSeller');
-      //apifetch();
 
         fetch("https://medicine-sheba-server.herokuapp.com/admin/login", {
           method: 'POST',
@@ -124,29 +113,25 @@ const LoginScreen = props => {
       .then((responseJson) => {
         setLoading(false);
 
+        console.log(responseJson)
+
         if (responseJson.status == 'success') {
 
           var mail = responseJson.message.user.email;
           var name = responseJson.message.user.userName;
           var phone = responseJson.message.user.phone;
           var ID=responseJson.message.user._id
+          
           global.token=responseJson.message.token;
           global.owner=ID
 
+          props.navigation.navigate('Profile', {address:responseJson.message.user.address, email: mail, phone: phone, name: name,ID:responseJson.message.user._id,token:responseJson.message.token});
 
-
-          props.navigation.navigate('Profile', { email: mail, phone: phone, name: name,ID:responseJson.message.user._id,token:responseJson.message.token});
-         // props.navigation.navigate('PlaceOrder', { token:responseJson.message.token});
-         
-
-        //console.log(global.owner)
 
         } else {
           setErrortext('Please check your email id or password');
 
         }
-
-
 
       })
       .catch(error => {

@@ -38,7 +38,7 @@ export default class ProfileScreen extends Component {
 
       .then((response) => response.json())
       .then((responseJson) => {
-          
+          console.log(responseJson)
         
           if (responseJson.status == 'success') {
             this.props.navigation.navigate('LoginScreen');
@@ -90,6 +90,8 @@ export default class ProfileScreen extends Component {
     const mail =  this.props.navigation.getParam('email', 'Email retriving error')
     const phone =  this.props.navigation.getParam('phone', 'Phone retriving error')
     const name =  this.props.navigation.getParam('name', 'Name retriving error')
+    const add =  this.props.navigation.getParam('address', 'Address retriving error')
+
     id =  this.props.navigation.getParam('ID', 'Name retriving error')
     
     
@@ -127,8 +129,8 @@ export default class ProfileScreen extends Component {
 
           <View style={styles.detailBox}>
             <View style={styles.box1}>
-              <Text style={{ fontSize: 20, color: 'white' }}>Email</Text>
-              <Text style={{ fontSize: 20, color: '#BEBEBE' }}>{mail}</Text>
+              <Text style={{ fontSize: 20, color: 'white' }}>Address</Text>
+              <Text style={{ fontSize: 20, color: '#BEBEBE' }}>{add}</Text>
             </View>
             
           </View>

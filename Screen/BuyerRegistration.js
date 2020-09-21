@@ -18,6 +18,7 @@ const RegisterScreen = props => {
 
   let [userName, setUserName] = useState('');
   let [userEmail, setUserEmail] = useState('');
+  let [userAddress, setUserAddress] = useState('');
   let [Phone, setUserPhone] = useState('');
   let [Password, setUserPassword] = useState('');
   let [loading, setLoading] = useState(false);
@@ -51,8 +52,9 @@ const RegisterScreen = props => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
+        address: userAddress,
         userName: userName,
-        phone: Phone,
+        phone: 88+Phone,
         email: userEmail,
         password: Password,
       })
@@ -66,9 +68,10 @@ const RegisterScreen = props => {
         // If server response message same as Data Matched
         if (responseJson.status == 'success') {
           setIsRegistraionSuccess(true);
-          console.log('Registration Successful. Please Login to proceed');
+          //console.log('Registration Successful. Please Login to proceed');
         } else {
           setErrortext('Registration Unsuccessful');
+          alert(responseJson.message)
         }
       })
       
@@ -113,7 +116,7 @@ const RegisterScreen = props => {
               width: '100%',
               height: 80,
               resizeMode: 'contain',
-              marginTop: 80,
+              marginTop: 40,
               marginBottom: 40,
             }}
           />
@@ -162,9 +165,19 @@ const RegisterScreen = props => {
               placeholder="Enter Email"
               placeholderTextColor="#08070D"
               keyboardType="email-address"
-              // ref={ref => {
-              //   this._emailinput = ref;
-              // }}
+              returnKeyType="next"
+              onSubmitEditing={() => this._ageinput && this._ageinput.focus()}
+              blurOnSubmit={false}
+            />
+          </View>
+          <View style={styles.SectionStyle}>
+            <TextInput
+              style={styles.inputStyle}
+              onChangeText={UserAddress => setUserAddress(UserAddress)}
+              underlineColorAndroid="#F6F6F7"
+              placeholder="Enter Address"
+              placeholderTextColor="#08070D"
+              keyboardType="email-address"
               returnKeyType="next"
               onSubmitEditing={() => this._ageinput && this._ageinput.focus()}
               blurOnSubmit={false}
@@ -202,6 +215,7 @@ const RegisterScreen = props => {
               blurOnSubmit={false}
             />
           </View>
+
 
 
           {errortext != '' ? (

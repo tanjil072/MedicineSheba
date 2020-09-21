@@ -55,16 +55,16 @@ export default class Pending extends React.Component {
     })
 			.then(response => response.json())
 			.then(responseJson => {
-				//console.log("Pending"+responseJson)
-				this.setState(
-					{
-						dataSource: responseJson.message
-					},
-					function () {
-						this.state.cartItems = responseJson.message;
-					  }
+				console.log("Past"+responseJson)
+				// this.setState(
+				// 	{
+				// 		dataSource: responseJson.message
+				// 	},
+				// 	function () {
+				// 		this.state.cartItems = responseJson.message;
+				// 	  }
 
-				);
+				// );
 			})
 			.catch(error => {
 				console.error(error);

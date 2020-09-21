@@ -123,7 +123,7 @@ export default class Cart extends React.Component {
             fetch('https://medicine-sheba-server.herokuapp.com/medicines',{
                 method: 'GET',
                 headers: {
-                    'Authorization':'Bearer '+global.adminToken,
+                    'Authorization':'Bearer '+global.token,
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
@@ -131,15 +131,19 @@ export default class Cart extends React.Component {
                 .then(response => response.json())
                 .then(responseJson => {
                      console.log(responseJson.message)
-                    this.setState(
-                        {
-                            dataSource: responseJson.message
-                        },
-                        function () {
-                            this.state.cartItems = responseJson.message;
-                        }
-
-                    );
+                     if(responseJson.status=='success'){
+                        this.setState(
+                            {
+                                dataSource: responseJson.message
+                            },
+                            function () {
+                                this.state.cartItems = responseJson.message;
+                              }
+        
+                        );
+                    }else if(responseJson.status=='error'){
+                        console.log(responseJson.message)
+                    }
                 })
                 .catch(error => {
                     console.error(error);
