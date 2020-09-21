@@ -148,41 +148,6 @@ export default class Cart extends React.Component {
 
 
 
-
-
-
-	//   test = () => {
-	// 	setTimeout(() => {
-
-
-	// 		fetch('http://10.0.2.2:3000/results')
-	// 			.then(response => response.json())
-	// 			.then(responseJson => {
-	// 				this.setState(
-	// 					{
-	// 						isLoading: false,
-	// 						cartItems: responseJson
-	// 					},
-
-
-	// 				);
-	// 			})
-	// 			.catch(error => {
-	// 				console.error(error);
-	// 			});
-
-	// 	}, 0)
-
-	// }
-
-
-	// 	<TouchableOpacity onPress={() => {/*this.props.navigation.navigate('ProductDetails', {productDetails: item})*/ }} style={{ paddingRight: 10 }}>
-	// 	<Image source={{ uri: item.thumbnailImage }} style={[styles.centerElement, { height: 60, width: 60, backgroundColor: '#eeeeee' }]} />
-	// </TouchableOpacity>
-
-
-
-
 	render() {
 
 		return (

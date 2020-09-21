@@ -17,6 +17,7 @@ import SellerRegistration from './Screen/SellerRegistration'
 import AddMedi from './Screen/Components/Seller/AddMedi'
 import EditMedi from './Screen/Components/Seller/EditMedi'
 import EditProfile from './Screen/Components/BuyerScreens/EditProfile'
+import PlaceOrder from './Screen/Components/BuyerScreens/PlaceOrder'
 
 
 const Auth = createStackNavigator({
@@ -42,6 +43,12 @@ const Auth = createStackNavigator({
   },
   EditProfile: {
     screen: EditProfile,
+    navigationOptions: {
+      headerShown: false,
+    },
+  },
+  PlaceOrder: {
+    screen: PlaceOrder,
     navigationOptions: {
       headerShown: false,
     },

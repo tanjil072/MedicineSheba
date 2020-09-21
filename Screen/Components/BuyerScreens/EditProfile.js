@@ -21,9 +21,10 @@ export default class EditMedi extends Component {
         if(text=='Username')
         {
            
-            fetch("https://medicine-sheba-server.herokuapp.com/users/"+id, {
+            fetch("https://medicine-sheba-server.herokuapp.com/users/update-profile", {
             method: 'PATCH',
             headers: {
+                'Authorization':'Bearer '+global.token,
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
@@ -50,9 +51,10 @@ export default class EditMedi extends Component {
         }else if(text=='Phone')
         {
             
-            fetch("https://medicine-sheba-server.herokuapp.com/users/"+id, {
+            fetch("https://medicine-sheba-server.herokuapp.com/users/update-profile", {
             method: 'PATCH',
             headers: {
+                'Authorization':'Bearer '+global.token,
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
@@ -77,9 +79,10 @@ export default class EditMedi extends Component {
         }else if(text=='Password')
         {
           
-            fetch("https://medicine-sheba-server.herokuapp.com/users/"+id, {
+            fetch("https://medicine-sheba-server.herokuapp.com/users/update-profile", {
             method: 'PATCH',
             headers: {
+                'Authorization':'Bearer '+global.token,
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },

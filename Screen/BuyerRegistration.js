@@ -25,25 +25,23 @@ const RegisterScreen = props => {
   let [isRegistraionSuccess, setIsRegistraionSuccess] = useState(false);
 
   const handleSubmitButton = () => {
-    setErrortext('');
-    if (!userName) {
-      alert('Please fill Name');
-      return;
-    }
-    if (!userEmail) {
-      alert('Please fill Email');
-      return;
-    }
-    if (!Phone) {
-      alert('Please fill Phone');
-      return;
-    }
-    if (!Password) {
-      alert('Please fill Password');
-      return;
+    //setErrortext('');
+   
+    if(Phone.length<11)
+    {
+      alert("Phone Minimum Length is 11")
+      return
     }
 
-    setLoading(true);
+    if(Password.length<8)
+    {
+      alert("Password Minimum Length is 8")
+      return
+    }
+
+    if(true)
+    {
+       setLoading(true);
 
 
     fetch("https://medicine-sheba-server.herokuapp.com/signup", {
@@ -75,42 +73,11 @@ const RegisterScreen = props => {
       })
       
       .done();
-  }
-  //   var formBody = [];
-  //   for (var key in dataToSend) {
-  //     var encodedKey = encodeURIComponent(key);
-  //     var encodedValue = encodeURIComponent(dataToSend[key]);
-  //     formBody.push(encodedKey + '=' + encodedValue);
-  //   }
-  //   formBody = formBody.join('&');
+    }
 
-  //   fetch('https://8ac82cb5a333.ngrok.io/signup', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Accept': 'application/json',
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: formBody,
-  //   })
-  //     .then(response => response.json())
-  //     .then(responseJson => {
-  //       //Hide Loader
-  //       setLoading(false);
-  //       console.log(responseJson);
-  //       // If server response message same as Data Matched
-  //       if (responseJson.status == 1) {
-  //         setIsRegistraionSuccess(true);
-  //         console.log('Registration Successful. Please Login to proceed');
-  //       } else {
-  //         setErrortext('Registration Unsuccessful');
-  //       }
-  //     })
-  //     .catch(error => {
-  //       //Hide Loader
-  //       setLoading(false);
-  //       console.error(error);
-  //     });
-  // };
+   
+  }
+
 
   if (isRegistraionSuccess) {
     return (

@@ -122,10 +122,17 @@ export default class Cart extends React.Component {
         setTimeout(() => {
 
 
-            fetch('https://medicine-sheba-server.herokuapp.com/medicines')
+            fetch('https://medicine-sheba-server.herokuapp.com/medicines',{
+                method: 'GET',
+                headers: {
+                    'Authorization':'Bearer '+global.token,
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+            })
                 .then(response => response.json())
                 .then(responseJson => {
-                    // console.log(responseJson.message)
+                     console.log(responseJson.message)
                     this.setState(
                         {
                             dataSource: responseJson.message
@@ -152,16 +159,12 @@ export default class Cart extends React.Component {
 
     Procced = () => {
 
-
-
-      // console.log(this.temp)
-            
-
-        //
+       // console.log(global.owner)
        
             fetch("https://medicine-sheba-server.herokuapp.com/order", {
                 method: 'POST',
                 headers: {
+                    'Authorization':'Bearer '+global.token,
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
@@ -169,7 +172,7 @@ export default class Cart extends React.Component {
                     orderDetails:this.temp,
 
                     subTotal: this.subtotalPrice().toFixed(2),
-                    owner: '5f64bdbe0c90c30017e9f92f'
+                    owner: global.owner
                 })
             })
 
@@ -187,8 +190,6 @@ export default class Cart extends React.Component {
                             alert("Error Placing Order")
 
                         }
-
-
 
                     })
                     .catch(error => {
@@ -227,6 +228,9 @@ export default class Cart extends React.Component {
 
             const { cartItemsIsLoading, selectAll } = this.state;
             const qty = '1';
+
+            // const category = this.props.navigation.state.params.category
+            
 
 
 

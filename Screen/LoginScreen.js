@@ -1,6 +1,8 @@
 
 import React, { useState } from 'react';
 
+global.token='';
+global.owner='';
 //Import all required component
 import {
   StyleSheet,
@@ -85,10 +87,16 @@ const LoginScreen = props => {
           var name = responseJson.message.user.userName;
           var phone = responseJson.message.user.phone;
           var ID=responseJson.message.user._id
+          global.token=responseJson.message.token;
+          global.owner=ID
 
-          props.navigation.navigate('Profile', { email: mail, phone: phone, name: name,ID:responseJson.message.user._id});
 
-          //console.log(responseJson.message.user._id)
+
+          props.navigation.navigate('Profile', { email: mail, phone: phone, name: name,ID:responseJson.message.user._id,token:responseJson.message.token});
+         // props.navigation.navigate('PlaceOrder', { token:responseJson.message.token});
+         
+
+        //console.log(global.owner)
 
         } else {
           setErrortext('Please check your email id or password');
