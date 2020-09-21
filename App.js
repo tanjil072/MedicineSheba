@@ -22,6 +22,7 @@ import AdminProfile from './Screen/Components/Seller/AdminProfile'
 import AddAdmin from './Screen/Components/Seller/AddAdmin'
 
 
+
 const Auth = createStackNavigator({
   //Stack Navigator for Login and Sign up Screen
   LoginScreen: {
@@ -50,6 +51,7 @@ const Auth = createStackNavigator({
       headerShown: false,
     },
   },
+  
   EditProfile: {
     screen: EditProfile,
     navigationOptions: {

@@ -25,7 +25,31 @@ export default class ProfileScreen extends Component {
   };
 
   signout = () => {
-    this.props.navigation.navigate('LoginScreen');
+
+    fetch("https://medicine-sheba-server.herokuapp.com/users/logout", {
+      method: 'POST',
+      headers: {
+          'Authorization':'Bearer '+global.token,
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+      },
+     
+  })
+
+      .then((response) => response.json())
+      .then((responseJson) => {
+          
+        
+          if (responseJson.status == 'success') {
+            this.props.navigation.navigate('LoginScreen');
+              //this.setState({ successText: "Admi successfull" })
+             //console.log("Success")
+
+          }
+      })
+
+      .done();
+    //this.props.navigation.navigate('LoginScreen');
   }
   EditScreen = (mail) => {
     this.props.navigation.navigate('EditProfile',{editText:mail,id:id});

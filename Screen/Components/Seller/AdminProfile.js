@@ -25,41 +25,40 @@ export default class ProfileScreen extends Component {
   };
 
   signout = () => {
-    this.props.navigation.navigate('LoginScreen');
+
+    fetch("https://medicine-sheba-server.herokuapp.com/admin/logout", {
+      method: 'POST',
+      headers: {
+          'Authorization':'Bearer '+global.adminToken,
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+      },
+     
+  })
+
+      .then((response) => response.json())
+      .then((responseJson) => {
+          
+        
+          if (responseJson.status == 'success') {
+            this.props.navigation.navigate('LoginScreen');
+              //this.setState({ successText: "Admi successfull" })
+             // console.log("Success")
+
+          }
+      })
+
+      .done();
+    //this.props.navigation.navigate('LoginScreen');
   }
-  showDialog = (mail) => {
-    this.text = mail;
-    this.setState({ dialogVisible: true });
 
-  };
 
-  handleCancel = () => {
-    this.setState({ dialogVisible: false });
-  };
-
-  handleSubmit = () => {
-    //alert(this.Text2)
-    this.setState({ dialogVisible: false });
-  };
-
-  handleText = (textinp, ref) => {
-    if (ref == 'Email') {
-      this.setState({ Email: textinp });
-    }
-    if (ref == 'Phone') {
-      this.setState({ Phone: textinp });
-    }
-    if (ref == 'Password') {
-      this.setState({ Password: textinp });
-    }
-
-  };
-
+ 
 
   render() {
     const mail = this.props.navigation.getParam('email', 'Email retriving error')
     const name = this.props.navigation.getParam('name', 'Name retriving error')
-    console.log("GT:"+global.adminToken)
+    //console.log("GT:"+global.adminToken)
 
     return (
 
@@ -69,9 +68,6 @@ export default class ProfileScreen extends Component {
           <View style={styles.headerContent}>
             <Image style={styles.avatar}
               source={{ uri: 'https://bootdey.com/img/Content/avatar/avatar7.png' }} />
-
-            <Text style={styles.name}>{name}</Text>
-            <Text style={styles.userInfo}>{mail}</Text>
           </View>
         </View>
 
@@ -82,9 +78,7 @@ export default class ProfileScreen extends Component {
               <Text style={{ fontSize: 20, color: 'white' }}>Email</Text>
               <Text style={{ fontSize: 20, color: '#BEBEBE' }}>{mail}</Text>
             </View>
-            <View style={styles.box2}>
-              <Icon name="create" size={25} style={{ marginTop: 5 }} onPress={() => { this.showDialog('Email') }} />
-            </View>
+            
           </View>
 
 
@@ -93,9 +87,7 @@ export default class ProfileScreen extends Component {
               <Text style={{ fontSize: 20, color: 'white' }}>Password</Text>
               <Text style={{ fontSize: 20, color: '#BEBEBE' }}>{this.state.Password}</Text>
             </View>
-            <View style={styles.box2}>
-              <Icon name="create" size={25} style={{ marginTop: 5 }} onPress={() => { this.showDialog('Password') }} />
-            </View>
+           
           </View>
 
           
@@ -154,7 +146,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#DCDCDC",
   },
   headerContent: {
-    padding: 10,
+    padding: 30,
     alignItems: 'center',
   },
   avatar: {
