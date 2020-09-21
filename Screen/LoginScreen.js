@@ -36,16 +36,16 @@ const LoginScreen = props => {
 
   const handleSignIn = () => {
 
-    setErrortext('');
+    // setErrortext('');
 
-    if (!userEmail) {
-      alert('Please fill Email');
-      return;
-    }
-    if (!userPassword) {
-      alert('Please fill Password');
-      return;
-    }
+    // if (!userEmail) {
+    //   alert('Please fill Email');
+    //   return;
+    // }
+    // if (!userPassword) {
+    //   alert('Please fill Password');
+    //   return;
+    // }
     setLoading(true);
 
 

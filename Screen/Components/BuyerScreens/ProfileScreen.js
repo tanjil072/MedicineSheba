@@ -18,7 +18,6 @@ var id='';
 export default class ProfileScreen extends Component {
 
   state = {
-    dialogVisible: false,
     Email:"tanjilh84@gmail.com",
     Phone:"+88017********",
     Password:"********",
@@ -28,34 +27,32 @@ export default class ProfileScreen extends Component {
   signout = () => {
     this.props.navigation.navigate('LoginScreen');
   }
-  showDialog = (mail) => {
-   // this.setState({ text: mail });
-    //this.setState({ dialogVisible: true });
+  EditScreen = (mail) => {
     this.props.navigation.navigate('EditProfile',{editText:mail,id:id});
 
   };
 
-  handleCancel = () => {
-    this.setState({ dialogVisible: false });
-  };
+  // handleCancel = () => {
+  //   this.setState({ dialogVisible: false });
+  // };
 
-  handleSubmit = () => {
-    //alert(this.Text2)
-    this.setState({ dialogVisible: false });
-  };
+  // handleSubmit = () => {
 
-  handleText = (textinp,ref) => {
-    if(ref=='Email'){
-      this.setState({ Email: textinp });
-    }
-    if(ref=='Phone'){
-      this.setState({ Phone: textinp });
-    }
-    if(ref=='Password'){
-      this.setState({ Password: textinp });
-    }
+  //   this.setState({ dialogVisible: false });
+  // };
+
+  // handleText = (textinp,ref) => {
+  //   if(ref=='Email'){
+  //     this.setState({ Email: textinp });
+  //   }
+  //   if(ref=='Phone'){
+  //     this.setState({ Phone: textinp });
+  //   }
+  //   if(ref=='Password'){
+  //     this.setState({ Password: textinp });
+  //   }
     
-  };
+  // };
 
 
   render() {
@@ -88,7 +85,7 @@ export default class ProfileScreen extends Component {
               <Text style={{ fontSize: 20, color: '#BEBEBE' }}>{name}</Text>
             </View>
             <View style={styles.box2}>
-              <Icon name="create" size={25} style={{ marginTop: 5 }} onPress={() => { this.showDialog('Username') }} />
+              <Icon name="create" size={25} style={{ marginTop: 5 }} onPress={() => { this.EditScreen('Username') }} />
             </View>
 
           </View>
@@ -111,7 +108,7 @@ export default class ProfileScreen extends Component {
               <Text style={{ fontSize: 20, color: '#BEBEBE' }}>{phone}</Text>
             </View>
             <View style={styles.box2}>
-              <Icon name="create" size={25} style={{ marginTop: 5 }} onPress={() => { this.showDialog('Phone') }} />
+              <Icon name="create" size={25} style={{ marginTop: 5 }} onPress={() => { this.EditScreen('Phone') }} />
             </View>
           </View>
 
@@ -121,7 +118,7 @@ export default class ProfileScreen extends Component {
               <Text style={{ fontSize: 20, color: '#BEBEBE' }}>{this.state.Password}</Text>
             </View>
             <View style={styles.box2}>
-              <Icon name="create" size={25} style={{ marginTop: 5 }} onPress={() => { this.showDialog('Password') }} />
+              <Icon name="create" size={25} style={{ marginTop: 5 }} onPress={() => { this.EditScreen('Password') }} />
             </View>
           </View>
 

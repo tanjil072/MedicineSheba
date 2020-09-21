@@ -37,6 +37,7 @@ function TabStack() {
                     borderBottomWidth: 4,
                 },
             }}>
+
             <Tab.Screen
                 name="PendingOrder"
                 children={() => <PendingOrder data={val} />}
@@ -82,7 +83,7 @@ const App = ({ navigation }) => {
 
         <NavigationContainer>
             <Stack.Navigator
-                initialRouteName="Settings"
+                initialRouteName="PendingOrder"
                 screenOptions={{
                     headerStyle: { backgroundColor: 'rgb(0,0,0)' },
                     headerTintColor: '#fff',

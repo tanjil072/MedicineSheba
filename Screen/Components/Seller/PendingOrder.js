@@ -9,7 +9,7 @@ import Dialog from "react-native-dialog";
 var text = ""; //Dialogue Title setter
 
 
-export default class Cart extends React.Component {
+export default class Pending extends React.Component {
 
 	constructor(props) {
 		super(props);
@@ -27,8 +27,17 @@ export default class Cart extends React.Component {
 
 	componentDidMount() {
 		this.getData();
+
+		//console.log("Pending")
 	}
 
+	componentDidUpdate() {
+
+		this.getData();
+		//console.log("Accepted Update")
+	  
+	}
+	
 
 
 
@@ -38,7 +47,7 @@ export default class Cart extends React.Component {
 		fetch('https://medicine-sheba-server.herokuapp.com/admin/orders/pending')
 			.then(response => response.json())
 			.then(responseJson => {
-				console.log(responseJson.message)
+				//console.log("Pending"+responseJson)
 				this.setState(
 					{
 						dataSource: responseJson.message
@@ -61,7 +70,7 @@ export default class Cart extends React.Component {
 		fetch('https://medicine-sheba-server.herokuapp.com/admin/orders/'+order)
 			.then(response => response.json())
 			.then(responseJson => {
-				console.log(responseJson.message)
+				
 				// this.setState(
 				// 	{
 				// 		dataSource: responseJson.message
@@ -95,7 +104,7 @@ export default class Cart extends React.Component {
 				.then((responseJson) => {
 					//setLoading(false);
 
-					console.log(responseJson)
+					//console.log(responseJson)
 
 					if (responseJson.status == 'success') {
 
@@ -138,7 +147,7 @@ export default class Cart extends React.Component {
 
 
 						<ScrollView>
-							{this.state.dataSource && this.state.dataSource.map((item, i) => (
+							{this.state.cartItems && this.state.cartItems.map((item, i) => (
 								<View key={i} style={{ flexDirection: 'row', backgroundColor: '#fff', marginBottom: 2, height: 120 }}>
 									<View style={[styles.centerElement, { width: 60 }]}>
 										<TouchableOpacity style={[styles.centerElement, { width: 32, height: 32 }]} onPress={() => alert("")}>
@@ -288,6 +297,3 @@ const styles = StyleSheet.create({
 	}
 
 });
-
-
-

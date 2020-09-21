@@ -35,11 +35,9 @@ export default class EditMedi extends Component {
             .then((response) => response.json())
             .then((responseJson) => {
 
-                //setLoading(false);
-                console.log(responseJson);
-                // If server response message same as Data Matched
+              
                 if (responseJson.status == 'success') {
-                    //console.log('Medicine Updated Successfully');
+                    alert("Update Successfull")
                     this.setState({ successText: "Update successfull" })
 
                 }
@@ -66,11 +64,8 @@ export default class EditMedi extends Component {
             .then((response) => response.json())
             .then((responseJson) => {
 
-                //setLoading(false);
-                console.log(responseJson);
-                // If server response message same as Data Matched
                 if (responseJson.status == 'success') {
-                    //console.log('Medicine Updated Successfully');
+                    alert("Update Successfull")
                     this.setState({ successText: "Update successfull" })
 
                 }
@@ -96,12 +91,11 @@ export default class EditMedi extends Component {
             .then((response) => response.json())
             .then((responseJson) => {
 
-                //setLoading(false);
-                console.log(responseJson);
-                // If server response message same as Data Matched
+               
                 if (responseJson.status == 'success') {
-                    //console.log('Medicine Updated Successfully');
+              
                     this.setState({ successText: "Update successfull" })
+                    alert("Update Successfull")
 
                 }
             })
@@ -112,6 +106,8 @@ export default class EditMedi extends Component {
 
        
     }
+
+    
 
 
     cancel = () => {
@@ -126,8 +122,6 @@ export default class EditMedi extends Component {
 
        const text =  this.props.navigation.getParam('editText', 'Text retriving error')
        id =  this.props.navigation.getParam('id', 'Text retriving error')
-       
-       //console.log(id)
        
 
         return (

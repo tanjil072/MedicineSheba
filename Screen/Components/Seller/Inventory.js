@@ -110,6 +110,11 @@ export default class Cart extends React.Component {
 		this.getData();
 	}
 
+	componentDidMount() {
+		this.getData();
+		//console.log("Accepted")
+	}
+
 	Delete = (id) => {
 
 

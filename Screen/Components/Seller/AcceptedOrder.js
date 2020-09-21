@@ -1,8 +1,9 @@
 import React from 'react';
 import { StyleSheet, Button, Text, View, TouchableOpacity, ScrollView, Image, ActivityIndicator, TextInput, Alert } from 'react-native';
 
-
-export default class Cart extends React.Component {
+import Icon from 'react-native-vector-icons/Ionicons';
+import Icons from 'react-native-vector-icons/Octicons';
+export default class Accepted extends React.Component {
 
 	constructor(props) {
 		super(props);
@@ -20,7 +21,19 @@ export default class Cart extends React.Component {
 
 	componentDidMount() {
 		this.getData();
+		//console.log("Accepted")
 	}
+
+	componentDidUpdate() {
+
+		this.getData();
+		//console.log("Accepted Update")
+	  
+	}
+
+	
+
+
 
 	getData() {
 
@@ -28,7 +41,7 @@ export default class Cart extends React.Component {
 		fetch('https://medicine-sheba-server.herokuapp.com/admin/orders/accepted')
 			.then(response => response.json())
 			.then(responseJson => {
-				console.log(responseJson.message)
+				//console.log("Accepted"+responseJson.message)
 				this.setState(
 					{
 						dataSource: responseJson.message
@@ -46,66 +59,66 @@ export default class Cart extends React.Component {
 
 	}
 
-	// orderDetails=(order)=>
-	// {
-	// 	fetch('https://medicine-sheba-server.herokuapp.com/admin/orders/'+order)
-	// 		.then(response => response.json())
-	// 		.then(responseJson => {
-	// 			console.log(responseJson.message)
-	// 			// this.setState(
-	// 			// 	{
-	// 			// 		dataSource: responseJson.message
-	// 			// 	},
-	// 			// 	function () {
-	// 			// 		this.state.cartItems = responseJson.message;
-	// 			// 	  }
+	orderDetails=(order)=>
+	{
+		fetch('https://medicine-sheba-server.herokuapp.com/admin/orders/'+order)
+			.then(response => response.json())
+			.then(responseJson => {
+				console.log(responseJson.message)
+				// this.setState(
+				// 	{
+				// 		dataSource: responseJson.message
+				// 	},
+				// 	function () {
+				// 		this.state.cartItems = responseJson.message;
+				// 	  }
 
-	// 			// );
-	// 		})
-	// 		.catch(error => {
-	// 			console.error(error);
-	// 		});
-	// }
+				// );
+			})
+			.catch(error => {
+				console.error(error);
+			});
+	}
 
-	// AcceptOrder=(orderNo)=>{
-	// 	fetch("https://medicine-sheba-server.herokuapp.com/admin/orders/change-status", {
-	// 		method: 'POST',
-	// 		headers: {
-	// 			'Accept': 'application/json',
-	// 			'Content-Type': 'application/json'
-	// 		},
-	// 		body: JSON.stringify({
-	// 			orderNo:orderNo,
-	// 			statusFrom:"Pending",
-	// 			statusTo:"Accepted"
-	// 		})
-	// 	})
+	AcceptOrder=(orderNo)=>{
+		fetch("https://medicine-sheba-server.herokuapp.com/admin/orders/change-status", {
+			method: 'POST',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				orderNo:orderNo,
+				statusFrom:"Accepted",
+				statusTo:"Delivered"
+			})
+		})
 
-	// 			.then((response) => response.json())
-	// 			.then((responseJson) => {
-	// 				//setLoading(false);
+				.then((response) => response.json())
+				.then((responseJson) => {
+					//setLoading(false);
 
-	// 				console.log(responseJson)
+					console.log(responseJson)
 
-	// 				if (responseJson.status == 'success') {
+					if (responseJson.status == 'success') {
 
-	// 					alert("Order Accepted")
-	// 					this.getData();
+						alert("Order Delivered")
+						this.getData();
 
-	// 				} else {
-	// 					alert("Accept Error")
+					} else {
+						alert("Delivery Error")
 
-	// 				}
+					}
 
 
 
-	// 			})
-	// 			.catch(error => {
-	// 				setLoading(false);
-	// 				console.error(error);
-	// 			});
+				})
+				.catch(error => {
+					setLoading(false);
+					console.error(error);
+				});
 
-	// }
+	}
 
 
 
@@ -128,7 +141,7 @@ export default class Cart extends React.Component {
 
 
 						<ScrollView>
-							{this.state.dataSource && this.state.dataSource.map((item, i) => (
+							{this.state.cartItems && this.state.cartItems.map((item, i) => (
 								<View key={i} style={{ flexDirection: 'row', backgroundColor: '#fff', marginBottom: 2, height: 120 }}>
 									<View style={[styles.centerElement, { width: 60 }]}>
 										<TouchableOpacity style={[styles.centerElement, { width: 32, height: 32 }]} onPress={() => alert("")}>
@@ -151,6 +164,12 @@ export default class Cart extends React.Component {
 											</TouchableOpacity>
 											
 										</View>
+
+									</View>
+									<View style={{marginRight:20}}>
+
+										<Icon onPress={() => this.AcceptOrder(item.orderNo)} name="checkmark-circle" size={35}  style={{ marginTop: 50 }} />
+
 
 									</View>
 
