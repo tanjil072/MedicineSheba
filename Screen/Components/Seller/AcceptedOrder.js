@@ -38,7 +38,14 @@ export default class Accepted extends React.Component {
 	getData() {
 
 
-		fetch('https://medicine-sheba-server.herokuapp.com/admin/orders/accepted')
+		fetch('https://medicine-sheba-server.herokuapp.com/admin/orders/accepted',{
+			method: 'GET',
+      headers: {
+          'Authorization':'Bearer '+global.adminToken,
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+      },
+		})
 			.then(response => response.json())
 			.then(responseJson => {
 				//console.log("Accepted"+responseJson.message)

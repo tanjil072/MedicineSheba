@@ -35,7 +35,15 @@ export default class Delivered extends React.Component {
 	getData() {
 
 
-		fetch('https://medicine-sheba-server.herokuapp.com/admin/orders/Delivered')
+		fetch('https://medicine-sheba-server.herokuapp.com/admin/orders/Delivered',
+		{
+			method: 'GET',
+      headers: {
+          'Authorization':'Bearer '+global.adminToken,
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+      },
+		})
 			.then(response => response.json())
 			.then(responseJson => {
 				//console.log("Delivered"+responseJson.message)

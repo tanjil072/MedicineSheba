@@ -119,13 +119,11 @@ export default class Cart extends React.Component {
     }
 
     getData() {
-        setTimeout(() => {
-
-
+       
             fetch('https://medicine-sheba-server.herokuapp.com/medicines',{
                 method: 'GET',
                 headers: {
-                    'Authorization':'Bearer '+global.token,
+                    'Authorization':'Bearer '+global.adminToken,
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
@@ -147,7 +145,6 @@ export default class Cart extends React.Component {
                     console.error(error);
                 });
 
-        }, 0)
     }
 
 

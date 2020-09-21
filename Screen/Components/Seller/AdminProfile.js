@@ -13,15 +13,15 @@ import Dialog from "react-native-dialog";
 
 
 var text = ""; //Dialogue Title setter
-
+global.AT='';
 
 export default class ProfileScreen extends Component {
 
   state = {
     dialogVisible: false,
-    Email:"tanjilh84@gmail.com",
-    Phone:"+88017********",
-    Password:"********"
+    Email: "tanjilh84@gmail.com",
+    Phone: "+88017********",
+    Password: "********"
   };
 
   signout = () => {
@@ -42,24 +42,24 @@ export default class ProfileScreen extends Component {
     this.setState({ dialogVisible: false });
   };
 
-  handleText = (textinp,ref) => {
-    if(ref=='Email'){
+  handleText = (textinp, ref) => {
+    if (ref == 'Email') {
       this.setState({ Email: textinp });
     }
-    if(ref=='Phone'){
+    if (ref == 'Phone') {
       this.setState({ Phone: textinp });
     }
-    if(ref=='Password'){
+    if (ref == 'Password') {
       this.setState({ Password: textinp });
     }
-    
+
   };
 
 
   render() {
-    const mail =  this.props.navigation.getParam('email', 'Email retriving error')
-    const phone =  this.props.navigation.getParam('phone', 'Phone retriving error')
-    const name =  this.props.navigation.getParam('name', 'Name retriving error')
+    const mail = this.props.navigation.getParam('email', 'Email retriving error')
+    const name = this.props.navigation.getParam('name', 'Name retriving error')
+    console.log("GT:"+global.adminToken)
 
     return (
 
@@ -79,18 +79,6 @@ export default class ProfileScreen extends Component {
 
           <View style={styles.detailBox}>
             <View style={styles.box1}>
-              <Text style={{ fontSize: 20, color: 'white' }}>Username</Text>
-              <Text style={{ fontSize: 20, color: '#BEBEBE' }}>{name}</Text>
-            </View>
-
-          </View>
-
-
-
-
-
-          <View style={styles.detailBox}>
-            <View style={styles.box1}>
               <Text style={{ fontSize: 20, color: 'white' }}>Email</Text>
               <Text style={{ fontSize: 20, color: '#BEBEBE' }}>{mail}</Text>
             </View>
@@ -99,15 +87,6 @@ export default class ProfileScreen extends Component {
             </View>
           </View>
 
-          <View style={styles.detailBox}>
-            <View style={styles.box1}>
-              <Text style={{ fontSize: 20, color: 'white' }}>Phone</Text>
-              <Text style={{ fontSize: 20, color: '#BEBEBE' }}>{phone}</Text>
-            </View>
-            <View style={styles.box2}>
-              <Icon name="create" size={25} style={{ marginTop: 5 }} onPress={() => { this.showDialog('Phone') }} />
-            </View>
-          </View>
 
           <View style={styles.detailBox}>
             <View style={styles.box1}>
@@ -119,33 +98,27 @@ export default class ProfileScreen extends Component {
             </View>
           </View>
 
-          <View style={styles.item}>
+          
+            <View style={styles.item}>
+              <TouchableOpacity
+                style={styles.buttonStyle}
+                activeOpacity={0.5}
+                onPress={this.signout}
+              >
 
-            <TouchableOpacity
-              style={styles.buttonStyle}
-              activeOpacity={0.5}
-              onPress={this.signout}
-            >
+                <Text style={styles.buttonTextStyle}>Sign Out</Text>
+              </TouchableOpacity>
+            </View>
 
-              <Text style={styles.buttonTextStyle}>Sign Out</Text>
-            </TouchableOpacity>
+            <View style={{alignItems:'center',marginLeft:20,marginTop:5}}>
+            <Text onPress={() => this.props.navigation.navigate('AddAdmin')} style={{ fontStyle: 'italic', fontWeight: 'bold',fontSize:20 }}>Create new ADMIN</Text>
+            </View>
+        
+              
 
 
-          </View>
+         
 
-          <View>
-
-            <Dialog.Container visible={this.state.dialogVisible}>
-              <Dialog.Title>Edit {this.text}</Dialog.Title>
-
-              <Dialog.Input style={{ borderWidth: 1, borderRadius: 15, paddingLeft: 10 }} placeholder={this.text}  onChangeText={(textinp) => this.handleText(textinp,this.text)} >
-
-              </Dialog.Input>
-              <Dialog.Button label="Cancel" onPress={this.handleCancel} />
-              <Dialog.Button label="Submit" onPress={this.handleSubmit} />
-
-            </Dialog.Container>
-          </View>
 
         </View>
       </View>
@@ -160,7 +133,15 @@ const styles = StyleSheet.create({
     flex: 1,
 
   },
-  
+  registerTextStyle: {
+    color: '#08070D',
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 14,
+    marginLeft: 20,
+    marginTop: 50
+  },
+
   box2: {
     flex: 1,
     alignItems: 'flex-end'

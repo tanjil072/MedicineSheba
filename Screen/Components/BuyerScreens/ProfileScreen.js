@@ -32,28 +32,6 @@ export default class ProfileScreen extends Component {
 
   };
 
-  // handleCancel = () => {
-  //   this.setState({ dialogVisible: false });
-  // };
-
-  // handleSubmit = () => {
-
-  //   this.setState({ dialogVisible: false });
-  // };
-
-  // handleText = (textinp,ref) => {
-  //   if(ref=='Email'){
-  //     this.setState({ Email: textinp });
-  //   }
-  //   if(ref=='Phone'){
-  //     this.setState({ Phone: textinp });
-  //   }
-  //   if(ref=='Password'){
-  //     this.setState({ Password: textinp });
-  //   }
-    
-  // };
-
 
   render() {
     const mail =  this.props.navigation.getParam('email', 'Email retriving error')

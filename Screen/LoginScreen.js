@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 
 global.token='';
 global.owner='';
+global.adminToken='';
 //Import all required component
 import {
   StyleSheet,
@@ -56,8 +57,50 @@ const LoginScreen = props => {
 
     }
     if (value == 'seller') {
-      props.navigation.navigate('NavToSeller');
+      //props.navigation.navigate('NavToSeller');
       //apifetch();
+
+        fetch("https://medicine-sheba-server.herokuapp.com/admin/login", {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            email: userEmail,
+            password: userPassword,
+          })
+        })
+    
+          .then((response) => response.json())
+          .then((responseJson) => {
+            setLoading(false);
+            
+    
+            if (responseJson.status == 'success') {
+    
+              var mail = responseJson.message.user.email;
+              global.adminToken=responseJson.message.token
+    
+              console.log(global.adminToken)
+    
+              props.navigation.navigate('AdminProfile', { email: mail});
+             // props.navigation.navigate('PlaceOrder', { token:responseJson.message.token});
+             
+    
+            //
+    
+            } else {
+              setErrortext('Please check your email id or password');
+    
+            }
+    
+          })
+          .catch(error => {
+            setLoading(false);
+            console.error(error);
+          });
+      
     }
 
   };
