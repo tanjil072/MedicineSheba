@@ -49,15 +49,19 @@ export default class Accepted extends React.Component {
 			.then(response => response.json())
 			.then(responseJson => {
 				//console.log("Accepted"+responseJson.message)
-				this.setState(
-					{
-						dataSource: responseJson.message
-					},
-					function () {
-						this.state.cartItems = responseJson.message;
-					  }
-
-				);
+				if(responseJson.status=='success'){
+					this.setState(
+						{
+							dataSource: responseJson.message
+						},
+						function () {
+							this.state.cartItems = responseJson.message;
+						  }
+	
+					);
+				}else if(responseJson.status=='error'){
+					console.log(responseJson.message)
+				}
 			})
 			.catch(error => {
 				console.error(error);
