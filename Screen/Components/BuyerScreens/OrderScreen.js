@@ -9,7 +9,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 import InProgress from './InProgress';
 import PastOrders from './PastOrders';
-import AcceptedOrders from './Unknown';
+import AcceptedOrders from './AcceptedOrders';
 
 
 const Stack = createStackNavigator();

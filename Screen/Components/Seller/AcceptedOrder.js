@@ -22,9 +22,6 @@ export default class Cart extends React.Component {
 		this.getData();
 	}
 
-
-
-
 	getData() {
 
 

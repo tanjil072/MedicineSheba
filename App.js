@@ -16,6 +16,7 @@ import RegisterAs from './Screen/RegisterAs'
 import SellerRegistration from './Screen/SellerRegistration'
 import AddMedi from './Screen/Components/Seller/AddMedi'
 import EditMedi from './Screen/Components/Seller/EditMedi'
+import EditProfile from './Screen/Components/BuyerScreens/EditProfile'
 
 
 const Auth = createStackNavigator({
@@ -39,7 +40,12 @@ const Auth = createStackNavigator({
       headerShown: false,
     },
   },
-
+  EditProfile: {
+    screen: EditProfile,
+    navigationOptions: {
+      headerShown: false,
+    },
+  },
   SignScreen: {
     screen: BottomNav,
     navigationOptions: {

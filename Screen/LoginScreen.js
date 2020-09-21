@@ -50,7 +50,7 @@ const LoginScreen = props => {
 
 
     if (value == 'customer') {
-      apifetch();
+     apifetch();
 
     }
     if (value == 'seller') {
@@ -58,36 +58,9 @@ const LoginScreen = props => {
       //apifetch();
     }
 
-
-
-    // fetch('https://aboutreact.herokuapp.com/login.php', {
-    //   method: 'POST',
-    //   body: formBody,
-    //   headers: {
-    //     //Header Defination
-    //     'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
-    //   },
-    // }).then(response => response.json())
-    //   .then(responseJson => {
-    //     //Hide Loader
-    //     setLoading(false);
-    //     console.log(responseJson);
-    //     // If server response message same as Data Matched
-    //     if (responseJson.status == 1) {
-    //       AsyncStorage.setItem('user_id', responseJson.data[0].user_id);
-    //       console.log(responseJson.data[0].user_id);
-    //       props.navigation.navigate('DrawerNavigationRoutes');
-    //     } else {
-    //       setErrortext('Please check your email id or password');
-    //       console.log('Please check your email id or password');
-    //     }
-    //   })
-    //   .catch(error => {
-    //     //Hide Loader
-    //     setLoading(false);
-    //     console.error(error);
-    //   });
   };
+
+
 
   const apifetch = () => {
     fetch("https://medicine-sheba-server.herokuapp.com/users/login", {

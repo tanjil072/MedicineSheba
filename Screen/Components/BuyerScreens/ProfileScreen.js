@@ -14,7 +14,7 @@ import Dialog from "react-native-dialog";
 
 //var text = ""; //Dialogue Title setter
 
-
+var id='';
 export default class ProfileScreen extends Component {
 
   state = {
@@ -29,8 +29,9 @@ export default class ProfileScreen extends Component {
     this.props.navigation.navigate('LoginScreen');
   }
   showDialog = (mail) => {
-    this.setState({ text: mail });
-    this.setState({ dialogVisible: true });
+   // this.setState({ text: mail });
+    //this.setState({ dialogVisible: true });
+    this.props.navigation.navigate('EditProfile',{editText:mail,id:id});
 
   };
 
@@ -61,7 +62,8 @@ export default class ProfileScreen extends Component {
     const mail =  this.props.navigation.getParam('email', 'Email retriving error')
     const phone =  this.props.navigation.getParam('phone', 'Phone retriving error')
     const name =  this.props.navigation.getParam('name', 'Name retriving error')
-    const id =  this.props.navigation.getParam('ID', 'Name retriving error')
+    id =  this.props.navigation.getParam('ID', 'Name retriving error')
+    
     
 
     return (
@@ -85,6 +87,9 @@ export default class ProfileScreen extends Component {
               <Text style={{ fontSize: 20, color: 'white' }}>Username</Text>
               <Text style={{ fontSize: 20, color: '#BEBEBE' }}>{name}</Text>
             </View>
+            <View style={styles.box2}>
+              <Icon name="create" size={25} style={{ marginTop: 5 }} onPress={() => { this.showDialog('Username') }} />
+            </View>
 
           </View>
 
@@ -97,9 +102,7 @@ export default class ProfileScreen extends Component {
               <Text style={{ fontSize: 20, color: 'white' }}>Email</Text>
               <Text style={{ fontSize: 20, color: '#BEBEBE' }}>{mail}</Text>
             </View>
-            <View style={styles.box2}>
-              <Icon name="create" size={25} style={{ marginTop: 5 }} onPress={() => { this.showDialog('Email') }} />
-            </View>
+            
           </View>
 
           <View style={styles.detailBox}>
@@ -136,19 +139,6 @@ export default class ProfileScreen extends Component {
 
           </View>
 
-          <View>
-
-            <Dialog.Container visible={this.state.dialogVisible}>
-              <Dialog.Title>Edit {this.state.text}</Dialog.Title>
-
-              <Dialog.Input style={{ borderWidth: 1, borderRadius: 15, paddingLeft: 10 }} placeholder={this.state.text}  onChangeText={(textinp) => this.handleText(textinp,this.text)} >
-
-              </Dialog.Input>
-              <Dialog.Button label="Cancel" onPress={this.handleCancel} />
-              <Dialog.Button label="Submit" onPress={this.handleSubmit} />
-
-            </Dialog.Container>
-          </View>
 
         </View>
       </View>
