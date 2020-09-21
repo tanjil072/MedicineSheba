@@ -20,29 +20,11 @@ export default class EditMedi extends Component {
 
     Add = () => {
 
-        // if (!userName) {
-        //   alert('Please fill Name');
-        //   return;
-        // }
-        // if (!userEmail) {
-        //   alert('Please fill Email');
-        //   return;
-        // }
-        // if (!Phone) {
-        //   alert('Please fill Phone');
-        //   return;
-        // }
-        // if (!Password) {
-        //   alert('Please fill Password');
-        //   return;
-        // }
-
-        // setLoading(true);
-
 
         fetch("https://medicine-sheba-server.herokuapp.com/admin/update-medicine", {
             method: 'POST',
             headers: {
+                'Authorization':'Bearer '+global.adminToken,
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },

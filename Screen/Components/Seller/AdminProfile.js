@@ -52,6 +52,33 @@ export default class ProfileScreen extends Component {
     //this.props.navigation.navigate('LoginScreen');
   }
 
+  signoutAll = () => {
+
+    fetch("https://medicine-sheba-server.herokuapp.com/admin/logoutAll", {
+      method: 'POST',
+      headers: {
+          'Authorization':'Bearer '+global.adminToken,
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+      },
+     
+  })
+
+      .then((response) => response.json())
+      .then((responseJson) => {
+          
+        
+          if (responseJson.status == 'success') {
+            this.props.navigation.navigate('LoginScreen');
+             
+
+          }
+      })
+
+      .done();
+  }
+
+
 
  
 
@@ -102,7 +129,18 @@ export default class ProfileScreen extends Component {
               </TouchableOpacity>
             </View>
 
-            <View style={{alignItems:'center',marginLeft:20,marginTop:5}}>
+            <View style={styles.item}>
+              <TouchableOpacity
+                style={styles.buttonStyle}
+                activeOpacity={0.5}
+                onPress={this.signoutAll}
+              >
+
+                <Text style={styles.buttonTextStyle}>Sign Out All</Text>
+              </TouchableOpacity>
+            </View>
+
+            <View style={{alignItems:'center',marginLeft:20,marginTop:40}}>
             <Text onPress={() => this.props.navigation.navigate('AddAdmin')} style={{ fontStyle: 'italic', fontWeight: 'bold',fontSize:20 }}>Create new ADMIN</Text>
             </View>
         

@@ -126,6 +126,7 @@ export default class Cart extends React.Component {
 						fetch("https://medicine-sheba-server.herokuapp.com/admin/remove-medicine", {
 							method: 'POST',
 							headers: {
+								'Authorization':'Bearer '+global.adminToken,
 								'Accept': 'application/json',
 								'Content-Type': 'application/json'
 							},
@@ -140,11 +141,11 @@ export default class Cart extends React.Component {
 
 
 								console.log(responseJson);
-								// If server response message same as Data Matched
+						
 								if (responseJson.status == 'success') {
-									console.log('Medicine Deleted');
+									alert("Medicine Deleted")
 									this.getData();
-									//this.setState({ successText: "Medicine Deleted successfully" })
+								
 								}
 							})
 
@@ -248,12 +249,8 @@ export default class Cart extends React.Component {
 						<ScrollView>
 							{this.state.dataSource && this.state.dataSource.map((item, i) => (
 								<View key={i} style={{ flexDirection: 'row', backgroundColor: '#fff', marginBottom: 2, height: 120 }}>
-									<View style={[styles.centerElement, { width: 60 }]}>
-										<TouchableOpacity style={[styles.centerElement, { width: 32, height: 32 }]} onPress={() => this.selectHandler(i, item.checked)}>
-											<Icon name={item.checked == 1 ? "checkbox" : "checkbox-outline"} size={25} color={item.checked == 1 ? "#0faf9a" : "#aaaaaa"} />
-										</TouchableOpacity>
-									</View>
-									<View style={{ flexDirection: 'row', flexGrow: 1, flexShrink: 1, alignSelf: 'center' }}>
+									
+									<View style={{ flexDirection: 'row', flexGrow: 1, flexShrink: 1, alignSelf: 'center',marginLeft:20 }}>
 										<TouchableOpacity onPress={() => {/*this.props.navigation.navigate('ProductDetails', {productDetails: item})*/ }} style={{ paddingRight: 10 }}>
 
 										</TouchableOpacity>
@@ -294,22 +291,11 @@ export default class Cart extends React.Component {
 						</ScrollView>
 					)}
 
-				<View style={{ flexDirection: 'row' }}>
-					<View style={[styles.centerElement, { width: 60 }]}>
-						<TouchableOpacity style={[styles.centerElement, { width: 32, height: 32 }]} onPress={() => this.selectHandlerAll(selectAll)}>
-							<Icon style={{ marginTop: 20 }} name={selectAll == true ? "checkbox" : "checkbox-outline"} size={25} color={selectAll == true ? "#0faf9a" : "#aaaaaa"} />
-						</TouchableOpacity>
-					</View>
-
-					<View style={{ flexDirection: 'row', flexGrow: 1, flexShrink: 1, justifyContent: 'space-between', alignItems: 'center' }}>
-						<Text style={{ paddingTop: 20 }}>Select All</Text>
-
-					</View>
-				</View>
+				
 
 				<View style={{ flexDirection: 'row', justifyContent: 'flex-end', height: 32, paddingRight: 20, alignItems: 'center' }}>
 					<TouchableOpacity style={[styles.centerElement, { backgroundColor: '#0faf9a', width: 40, height: 40, marginBottom: 40, borderRadius: 20 }]} onPress={() => this.addMedicine()}>
-						<Text style={{ color: '#ffffff' }}>+</Text>
+					<Icon name="add" color='white' size={25} />
 					</TouchableOpacity>
 				</View>
 

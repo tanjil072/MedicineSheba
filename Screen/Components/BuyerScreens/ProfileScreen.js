@@ -51,6 +51,35 @@ export default class ProfileScreen extends Component {
       .done();
     //this.props.navigation.navigate('LoginScreen');
   }
+
+  signoutAll = () => {
+
+    fetch("https://medicine-sheba-server.herokuapp.com/users/logoutAll", {
+      method: 'POST',
+      headers: {
+          'Authorization':'Bearer '+global.token,
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+      },
+     
+  })
+
+      .then((response) => response.json())
+      .then((responseJson) => {
+          
+        
+          if (responseJson.status == 'success') {
+            this.props.navigation.navigate('LoginScreen');
+             
+
+          }
+      })
+
+      .done();
+  }
+
+
+
   EditScreen = (mail) => {
     this.props.navigation.navigate('EditProfile',{editText:mail,id:id});
 
@@ -138,6 +167,20 @@ export default class ProfileScreen extends Component {
 
           </View>
 
+          <View style={styles.item}>
+
+            <TouchableOpacity
+              style={styles.buttonStyle}
+              activeOpacity={0.5}
+              onPress={this.signoutAll}
+            >
+
+              <Text style={styles.buttonTextStyle}>Sign Out All</Text>
+            </TouchableOpacity>
+
+
+          </View>
+
 
         </View>
       </View>
@@ -211,7 +254,7 @@ const styles = StyleSheet.create({
   },
   item: {
     flexDirection: 'row',
-    marginTop: 20,
+    marginTop: 5,
 
   },
   infoContent: {

@@ -87,10 +87,11 @@ export default class Accepted extends React.Component {
 			});
 	}
 
-	AcceptOrder=(orderNo)=>{
+	DeliverOrder=(orderNo)=>{
 		fetch("https://medicine-sheba-server.herokuapp.com/admin/orders/change-status", {
 			method: 'POST',
 			headers: {
+				'Authorization':'Bearer '+global.adminToken,
 				'Accept': 'application/json',
 				'Content-Type': 'application/json'
 			},
@@ -175,7 +176,7 @@ export default class Accepted extends React.Component {
 									</View>
 									<View style={{marginRight:20}}>
 
-										<Icon onPress={() => this.AcceptOrder(item.orderNo)} name="checkmark-circle" size={35}  style={{ marginTop: 50 }} />
+										<Icon onPress={() => this.DeliverOrder(item.orderNo)} name="checkmark-circle" size={35}  style={{ marginTop: 50 }} />
 
 
 									</View>

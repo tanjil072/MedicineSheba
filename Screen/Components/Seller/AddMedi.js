@@ -25,6 +25,7 @@ export default class EditMedi extends Component {
         fetch("https://medicine-sheba-server.herokuapp.com/admin/add-medicine", {
             method: 'POST',
             headers: {
+                'Authorization':'Bearer '+global.adminToken,
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
@@ -46,6 +47,7 @@ export default class EditMedi extends Component {
                 // If server response message same as Data Matched
                 if (responseJson.status == 'success') {
                     // console.log('Medicine Added');
+                    alert("Medicine Added successfully")
                     this.setState({ successText: "Medicine Added successfully" })
 
                 }
