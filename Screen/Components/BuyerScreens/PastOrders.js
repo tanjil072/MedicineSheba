@@ -55,16 +55,20 @@ export default class Pending extends React.Component {
     })
 			.then(response => response.json())
 			.then(responseJson => {
-				console.log("Past"+responseJson)
-				// this.setState(
-				// 	{
-				// 		dataSource: responseJson.message
-				// 	},
-				// 	function () {
-				// 		this.state.cartItems = responseJson.message;
-				// 	  }
-
-				// );
+				if(responseJson.status=='success'){
+					console.log(responseJson.message)
+					this.setState(
+						{
+							dataSource: responseJson.message
+						},
+						function () {
+							this.state.cartItems = responseJson.message;
+						  }
+	
+					);
+				}else if(responseJson.status=='error'){
+					console.log(responseJson.message)
+				}
 			})
 			.catch(error => {
 				console.error(error);
@@ -85,16 +89,10 @@ export default class Pending extends React.Component {
     })
 			.then(response => response.json())
 			.then(responseJson => {
-				
-				// this.setState(
-				// 	{
-				// 		dataSource: responseJson.message
-				// 	},
-				// 	function () {
-				// 		this.state.cartItems = responseJson.message;
-				// 	  }
-
-				// );
+				if(responseJson.status=='success'){
+					//console.log("Order Details: "+responseJson)
+				}
+			
 			})
 			.catch(error => {
 				console.error(error);
@@ -135,11 +133,11 @@ export default class Pending extends React.Component {
 										</TouchableOpacity>
 										<View style={{ flexGrow: 1, flexShrink: 1, alignSelf: 'center' }}>
 
-										<TouchableOpacity onPress={() => this.orderDetails(item.orderNo)}>
-											<Text numberOfLines={1} style={{ fontSize: 20 }}>{item.customerName}            <Text style={{fontSize:15}}>{item.dateTime}</Text>  </Text>
+										<TouchableOpacity onPress={() => this.orderDetails(item._id)}>
+										
 										
 
-											<Text numberOfLines={1} style={{ color: '#8f8f8f' }}>Total: {item.subTotal} tk.</Text>
+											<Text numberOfLines={1} style={{ color: '#8f8f8f',fontSize:20 }}>Total: {item.subTotal} tk.</Text>
 											
 
 											</TouchableOpacity>

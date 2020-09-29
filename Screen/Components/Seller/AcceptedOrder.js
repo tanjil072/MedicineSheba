@@ -167,7 +167,8 @@ export default class Accepted extends React.Component {
 										<View style={{ flexGrow: 1, flexShrink: 1, alignSelf: 'center' }}>
 
 										<TouchableOpacity onPress={() => this.orderDetails(item.orderNo)}>
-											<Text numberOfLines={1} style={{ fontSize: 20 }}>{item.customerName}            <Text style={{fontSize:15}}>{item.dateTime}</Text>  </Text>
+											<Text numberOfLines={1} style={{ fontSize: 20 }}>{item.customerName} </Text>
+											<Text style={{fontSize:15, color: '#8f8f8f'}}>{item.dateTime}</Text> 
 										
 
 											<Text numberOfLines={1} style={{ color: '#8f8f8f' }}>Total: {item.subTotal} tk.</Text>

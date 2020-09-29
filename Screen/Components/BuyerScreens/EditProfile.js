@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, KeyboardAvoidingView,Picker } from 'react-native';
 
 var id='';
+global.update=0;
 export default class EditMedi extends Component {
 
     constructor() {
@@ -10,6 +11,7 @@ export default class EditMedi extends Component {
             EditText: '',
             ToChange:'',
             successText: '',
+            ChangeText:''
         }
     }
 
@@ -36,9 +38,12 @@ export default class EditMedi extends Component {
             .then((response) => response.json())
             .then((responseJson) => {
 
-              
+              //console.log(responseJson.message.userName)
                 if (responseJson.status == 'success') {
                     alert("Update Successfull")
+                   // global.update=1;
+                    this.setState({ChangeText:responseJson.message.userName})
+                    //console.log(this.state.ChangeText)
                     this.setState({ successText: "Update successfull" })
 
                 }
@@ -87,6 +92,7 @@ export default class EditMedi extends Component {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
+                
                 password:this.state.EditText,
             })
         })
@@ -113,9 +119,9 @@ export default class EditMedi extends Component {
     
 
 
-    cancel = () => {
+    BackToProfile = () => {
 
-		this.props.navigation.navigate('Profile');
+		this.props.navigation.navigate('Profile',{text:this.state.ChangeText});
         
 		
 	}
@@ -130,7 +136,7 @@ export default class EditMedi extends Component {
         return (
             <KeyboardAvoidingView enabled>
                 <View style={styles.container}>
-                <View>
+                <View style={{marginTop:30}}>
                 <Text style={{fontSize:30,fontWeight:'bold',textDecorationLine: 'underline',marginBottom:25}}>Edit {text}</Text>
                 </View>
                     <TextInput style={styles.inputBox}
@@ -148,7 +154,7 @@ export default class EditMedi extends Component {
                     </TouchableOpacity>
 
                     <TouchableOpacity style={styles.button}>
-                        <Text style={styles.buttonText} onPress={() => this.cancel()} >Back To Profile</Text>
+                        <Text style={styles.buttonText} onPress={() => this.BackToProfile()} >Back To Profile</Text>
                     </TouchableOpacity>
 
                     {this.state.successText != '' ? (
@@ -162,9 +168,9 @@ export default class EditMedi extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 30
+        backgroundColor:'#B2BEB5',
+        height:'100%'
     },
     successTextStyle: {
         color: 'red',
@@ -180,13 +186,38 @@ const styles = StyleSheet.create({
         color: '#002f6c',
         marginVertical: 10
     },
+    inputStyle: {
+        flex: 1,
+        paddingLeft: 15,
+        paddingRight: 15,
+        borderWidth: 1,
+        maxWidth: '70%',
+        marginLeft: '17%',
+        borderRadius: 10,
+        backgroundColor: 'white',
+        borderColor: 'grey',
+      },
     button: {
-        width: 300,
-        backgroundColor: '#4f83cc',
+        width: '40%',
+        backgroundColor: '#2B2D2F',
         borderRadius: 25,
         marginVertical: 10,
         paddingVertical: 12
     },
+
+    buttonStyle: {
+        backgroundColor: '#2B2D2F',
+        borderWidth: 0,
+        color: '#FFFFFF',
+        height: 40,
+        width: '25%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 10,
+        marginLeft: '40%',
+        marginTop: 20,
+        marginBottom: 20,
+      },
     buttonText: {
         fontSize: 16,
         fontWeight: '500',

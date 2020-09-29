@@ -64,7 +64,7 @@ export default class EditMedi extends Component {
             <KeyboardAvoidingView enabled>
                 <View style={styles.container}>
                 <View>
-                <Text style={{fontSize:30,fontWeight:'bold',textDecorationLine: 'underline',marginBottom:25}}>Add New ADMIN</Text>
+                <Text style={{fontSize:30,fontWeight:'bold',marginTop:20,textDecorationLine: 'underline',marginBottom:25}}>Add New ADMIN</Text>
                 </View>
                     <TextInput style={styles.inputBox}
                         onChangeText={(text) => this.setState({ Email: text })}
@@ -104,9 +104,9 @@ export default class EditMedi extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 30
+        backgroundColor:'#B2BEB5',
+        height:'100%'
     },
     successTextStyle: {
         color: 'red',
@@ -123,8 +123,8 @@ const styles = StyleSheet.create({
         marginVertical: 10
     },
     button: {
-        width: 300,
-        backgroundColor: '#4f83cc',
+        width: "40%",
+        backgroundColor: '#2B2D2F',
         borderRadius: 25,
         marginVertical: 10,
         paddingVertical: 12

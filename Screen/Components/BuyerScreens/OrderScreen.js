@@ -2,6 +2,7 @@
 import 'react-native-gesture-handler';
 
 import * as React from 'react';
+import { StyleSheet, Text, View, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
@@ -22,12 +23,11 @@ function TabStack() {
       tabBarOptions={{
         showIcon: true,
         activeTintColor: 'white',
-        inactiveTintColor: 'black',
-
-
+        inactiveTintColor: 'grey',
+        
 
         style: {
-          backgroundColor: '#8CCEEB',
+          backgroundColor: '#2B2D2F',
         },
         labelStyle: {
           textAlign: 'center',
@@ -39,23 +39,30 @@ function TabStack() {
 
         },
       }}>
+
       <Tab.Screen
         name="InProgress"
-        children={() => <InProgress data={val}/>}
+        children={() => <InProgress data={val} />}
         options={{
-          tabBarLabel: 'In Progress',
+          tabBarLabel: 'Pending',
           tabBarIcon: ({ tintColor }) => (
-            <Icon name="download" size={25} />
-          )
+            <View>
+              <Icon style={[{ color: 'grey' }]} size={25} name={'download'} />
+            </View>
+          ),
+         
         }} />
 
-        <Tab.Screen
+      <Tab.Screen
         name="AcceptedOrders"
         component={AcceptedOrders}
         options={{
           tabBarLabel: 'Accepted',
           tabBarIcon: ({ tintColor }) => (
-            <Icon name="checkmark-circle" size={25} />
+            
+            <View>
+            <Icon style={[{ color: 'grey' }]} size={25} name={'checkmark-circle'} />
+          </View>
           )
 
         }} />
@@ -66,7 +73,9 @@ function TabStack() {
         options={{
           tabBarLabel: 'Past Orders',
           tabBarIcon: ({ tintColor }) => (
-            <Icon name="timer" size={25} />
+            <View>
+            <Icon style={[{ color: 'grey' }]} size={25} name={'timer'} />
+          </View>
           )
 
         }} />
@@ -76,7 +85,7 @@ function TabStack() {
 
 const App = ({ navigation }) => {
   val = navigation.getParam('data');
- // val=message;
+  // val=message;
   //console.log(message)
 
 
@@ -86,7 +95,7 @@ const App = ({ navigation }) => {
       <Stack.Navigator
         initialRouteName="Settings"
         screenOptions={{
-          headerStyle: { backgroundColor: '#633689' },
+          headerStyle: { backgroundColor: 'black' },
           headerTintColor: '#fff',
           headerTitleAlign: 'center',
           headerTitleStyle: { fontWeight: 'bold' },

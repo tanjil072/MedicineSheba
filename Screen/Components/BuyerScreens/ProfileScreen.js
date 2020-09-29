@@ -91,9 +91,10 @@ export default class ProfileScreen extends Component {
     const phone =  this.props.navigation.getParam('phone', 'Phone retriving error')
     const name =  this.props.navigation.getParam('name', 'Name retriving error')
     const add =  this.props.navigation.getParam('address', 'Address retriving error')
+    const username =  this.props.navigation.getParam('text', 'Test retriving error')
 
     id =  this.props.navigation.getParam('ID', 'Name retriving error')
-    
+  
     
 
     return (
@@ -122,10 +123,6 @@ export default class ProfileScreen extends Component {
             </View>
 
           </View>
-
-
-
-
 
           <View style={styles.detailBox}>
             <View style={styles.box1}>
@@ -169,19 +166,6 @@ export default class ProfileScreen extends Component {
 
           </View>
 
-          <View style={styles.item}>
-
-            <TouchableOpacity
-              style={styles.buttonStyle}
-              activeOpacity={0.5}
-              onPress={this.signoutAll}
-            >
-
-              <Text style={styles.buttonTextStyle}>Sign Out All</Text>
-            </TouchableOpacity>
-
-
-          </View>
 
 
         </View>
@@ -227,7 +211,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   buttonStyle: {
-    backgroundColor: '#f60c0d',
+    backgroundColor: '#2B2D2F',
     borderWidth: 0,
     color: '#FFFFFF',
     height: 40,
@@ -236,8 +220,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 10,
     marginLeft: '40%',
-    marginTop: 0,
-
+    marginTop: 20,
+    marginBottom: 20,
   },
   buttonTextStyle: {
     color: '#FFFFFF',

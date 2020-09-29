@@ -129,19 +129,9 @@ export default class ProfileScreen extends Component {
               </TouchableOpacity>
             </View>
 
-            <View style={styles.item}>
-              <TouchableOpacity
-                style={styles.buttonStyle}
-                activeOpacity={0.5}
-                onPress={this.signoutAll}
-              >
 
-                <Text style={styles.buttonTextStyle}>Sign Out All</Text>
-              </TouchableOpacity>
-            </View>
-
-            <View style={{alignItems:'center',marginLeft:20,marginTop:40}}>
-            <Text onPress={() => this.props.navigation.navigate('AddAdmin')} style={{ fontStyle: 'italic', fontWeight: 'bold',fontSize:20 }}>Create new ADMIN</Text>
+            <View style={{alignItems:'center',marginTop:24,backgroundColor:'#2B2D2F',height:40,borderRadius:50}}>
+            <Text onPress={() => this.props.navigation.navigate('AddAdmin')} style={{ marginTop:5,marginLeft:20,color:'white', fontWeight: 'bold',fontSize:20 }}>Create new ADMIN</Text>
             </View>
         
               
@@ -201,7 +191,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   buttonStyle: {
-    backgroundColor: '#f60c0d',
+    backgroundColor: '#2B2D2F',
     borderWidth: 0,
     color: '#FFFFFF',
     height: 40,
@@ -230,7 +220,7 @@ const styles = StyleSheet.create({
   },
   item: {
     flexDirection: 'row',
-    marginTop: 20,
+    marginTop: "30%",
 
   },
   infoContent: {

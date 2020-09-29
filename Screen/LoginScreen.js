@@ -176,6 +176,8 @@ const LoginScreen = props => {
               <Icon name="person" color='#2B2D2F' size={25} style={{ marginLeft: -30, marginTop: 7 }} />
 
             </View>
+
+            
             <View style={styles.SectionStyle}>
               <TextInput
                 style={styles.inputStyle}

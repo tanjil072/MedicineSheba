@@ -21,6 +21,7 @@ const RegisterScreen = props => {
   let [userAddress, setUserAddress] = useState('');
   let [Phone, setUserPhone] = useState('');
   let [Password, setUserPassword] = useState('');
+  let [RePassword, setUserRePassword] = useState('');
   let [loading, setLoading] = useState(false);
   let [errortext, setErrortext] = useState('');
   let [isRegistraionSuccess, setIsRegistraionSuccess] = useState(false);
@@ -37,6 +38,10 @@ const RegisterScreen = props => {
     if(Password.length<8)
     {
       alert("Password Minimum Length is 8")
+      return
+    }
+    if(Password!=RePassword){
+      alert("Password not Matched")
       return
     }
 
@@ -64,11 +69,9 @@ const RegisterScreen = props => {
       .then((responseJson) => {
 
         setLoading(false);
-        console.log(responseJson);
-        // If server response message same as Data Matched
+
         if (responseJson.status == 'success') {
           setIsRegistraionSuccess(true);
-          //console.log('Registration Successful. Please Login to proceed');
         } else {
           setErrortext('Registration Unsuccessful');
           alert(responseJson.message)
@@ -184,34 +187,28 @@ const RegisterScreen = props => {
             />
           </View>
           <View style={styles.SectionStyle}>
-            <TextInput
-              style={styles.inputStyle}
-              onChangeText={Password => setUserPassword(Password)}
-              underlineColorAndroid="#F6F6F7"
-              placeholder="Password"
-              placeholderTextColor="#08070D"
-              keyboardType="email-address"
-              // ref={ref => {
-              //   this._emailinput = ref;
-              // }}
-              returnKeyType="next"
-              onSubmitEditing={() => this._ageinput && this._ageinput.focus()}
-              blurOnSubmit={false}
-            />
+          <TextInput
+          style={styles.inputStyle}
+          onChangeText={Passwword => setUserPassword(Passwword)}
+          underlineColorAndroid="#F6F6F7"
+          placeholder="Passowrd"
+          placeholderTextColor="#08070D"
+          keyboardType="default"
+          secureTextEntry={true}
+          onSubmitEditing={Keyboard.dismiss}
+          blurOnSubmit={false}
+        />
           </View>
           <View style={styles.SectionStyle}>
             <TextInput
               style={styles.inputStyle}
-              onChangeText={ConfirmPasswword => setUserPassword(ConfirmPasswword)}
+              onChangeText={ConfirmRePasswword => setUserRePassword(ConfirmRePasswword)}
               underlineColorAndroid="#F6F6F7"
               placeholder="Confirm Passowrd"
               placeholderTextColor="#08070D"
-              keyboardType="email-address"
-              // ref={ref => {
-              //   this._emailinput = ref;
-              // }}
-              returnKeyType="next"
-              onSubmitEditing={() => this._ageinput && this._ageinput.focus()}
+              keyboardType="default"
+              secureTextEntry={true}
+              onSubmitEditing={Keyboard.dismiss}
               blurOnSubmit={false}
             />
           </View>

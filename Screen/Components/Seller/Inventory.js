@@ -22,7 +22,6 @@ export default class Cart extends React.Component {
 	}
 
 
-
 	showDialog = (value) => {
 		this.text = value + 1;
 		this.setState({ dialogVisible: true });
@@ -297,7 +296,7 @@ export default class Cart extends React.Component {
 				
 
 				<View style={{ flexDirection: 'row', justifyContent: 'flex-end', height: 32, paddingRight: 20, alignItems: 'center' }}>
-					<TouchableOpacity style={[styles.centerElement, { backgroundColor: '#0faf9a', width: 40, height: 40, marginBottom: 40, borderRadius: 20 }]} onPress={() => this.addMedicine()}>
+					<TouchableOpacity style={[styles.centerElement, { backgroundColor: '#2B2D2F', width: 40, height: 40, marginBottom: 40, borderRadius: 20 }]} onPress={() => this.addMedicine()}>
 					<Icon name="add" color='white' size={25} />
 					</TouchableOpacity>
 				</View>

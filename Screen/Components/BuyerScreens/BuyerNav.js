@@ -22,6 +22,9 @@ const TabNavigator = createMaterialBottomTabNavigator(
                     <View>  
                         <Icon style={[{color: tintColor}]} size={25} name={'ios-search'}/>  
                     </View>),  
+                    activeColor: 'white',  
+                    inactiveColor: 'grey',   
+                barStyle: { backgroundColor: '#2B2D2F' },
             }  
         },  
 
@@ -43,9 +46,9 @@ const TabNavigator = createMaterialBottomTabNavigator(
                     <View>  
                         <Icon style={[{color: tintColor}]} size={25} name={'ios-cart'}/>  
                     </View>),  
-                activeColor: '#615af6',  
-                inactiveColor: '#46f6d7',  
-                barStyle: { backgroundColor: '#67baf6' },  
+                    activeColor: 'white',  
+                    inactiveColor: 'grey', 
+                    barStyle: { backgroundColor: '#2B2D2F' },  
             }  
         },  
         Profile: { screen: Profile,  
@@ -56,9 +59,9 @@ const TabNavigator = createMaterialBottomTabNavigator(
                     <View>  
                         <Icon style={[{color: tintColor}]} size={25} name={'ios-person'}/> 
                     </View>),  
-                activeColor: '#f60c0d',  
-                inactiveColor: '#f65a22',  
-                barStyle: { backgroundColor: '#f69b31' },  
+                activeColor: 'white',  
+                inactiveColor: 'grey',  
+                barStyle: { backgroundColor: '#2B2D2F' },  
             }  
         }, 
         

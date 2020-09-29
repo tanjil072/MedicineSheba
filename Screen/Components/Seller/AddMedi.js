@@ -50,6 +50,9 @@ export default class EditMedi extends Component {
                     alert("Medicine Added successfully")
                     this.setState({ successText: "Medicine Added successfully" })
 
+                }else if(responseJson.status == 'error')
+                {
+                    alert("Medicine add failed")
                 }
             })
 
@@ -57,7 +60,7 @@ export default class EditMedi extends Component {
     }
 
 
-    cancel = () => {
+    GoToList = () => {
 
         this.props.navigation.navigate('NavToSeller');
         //alert("Hi")
@@ -72,7 +75,7 @@ export default class EditMedi extends Component {
             <KeyboardAvoidingView enabled>
                 <View style={styles.container}>
                     <View>
-                        <Text style={{ fontSize: 30, fontWeight: 'bold', textDecorationLine: 'underline', marginBottom: 25 }}>Add Medicine to the List</Text>
+                        <Text style={{ fontSize: 30,marginTop:20, fontWeight: 'bold', textDecorationLine: 'underline', marginBottom: 25 }}>Add Medicine to the List</Text>
                     </View>
                     <TextInput style={styles.inputBox}
                         onChangeText={(medicineName) => this.setState({ medicineName: medicineName })}
@@ -133,7 +136,7 @@ export default class EditMedi extends Component {
                     </TouchableOpacity>
 
                     <TouchableOpacity style={styles.button}>
-                        <Text style={styles.buttonText} onPress={() => this.cancel()} >Go to List</Text>
+                        <Text style={styles.buttonText} onPress={() => this.GoToList()} >Go to List</Text>
                     </TouchableOpacity>
 
                     {this.state.successText != '' ? (
@@ -147,9 +150,9 @@ export default class EditMedi extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 30
+        backgroundColor:'#B2BEB5',
+        height:'100%'
     },
     successTextStyle: {
         color: 'red',
@@ -166,8 +169,8 @@ const styles = StyleSheet.create({
         marginVertical: 10
     },
     button: {
-        width: 300,
-        backgroundColor: '#4f83cc',
+        width: "40%",
+        backgroundColor: '#2B2D2F',
         borderRadius: 25,
         marginVertical: 10,
         paddingVertical: 12

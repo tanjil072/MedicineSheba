@@ -21,16 +21,15 @@ const TabForAdmin = createMaterialBottomTabNavigator(
         Inventory: {
             screen: Inventory,
             navigationOptions: {
-                tabBarLabel: '      ',
+                tabBarLabel: 'Home',
                 tabBarIcon: ({ tintColor }) => (
                     <View>
                         <Icons style={[{ color: tintColor }]} size={25} name={"magnifier"} />
                     </View>),
 
-                activeColor: 'rgb(108, 52, 131)',
-                inactiveColor: 'rgb(240, 243, 244)',
-              
-                barStyle: { backgroundColor: 'rgb(241, 148, 138)' },
+                    activeColor: 'white',  
+                    inactiveColor: 'grey', 
+                    barStyle: { backgroundColor: '#2B2D2F' }, 
 
             }
         },
@@ -42,15 +41,14 @@ const TabForAdmin = createMaterialBottomTabNavigator(
         OrderList: {
             screen: OrderList,
             navigationOptions: {
-                tabBarLabel: '   ',
+                tabBarLabel: 'Orders',
                 tabBarIcon: ({ tintColor }) => (
                     <View>
                         <Icons style={[{ color: tintColor }]} size={25} name="list" />
                     </View>),
-                activeColor: 'rgb(29, 131, 72)',
-                inactiveColor: 'rgb(240, 243, 244)',
-               
-                barStyle: { backgroundColor: 'rgb(133, 193, 233)'}, 
+                    activeColor: 'white',  
+                    inactiveColor: 'grey', 
+                    barStyle: { backgroundColor: '#2B2D2F' }, 
                
             }
         },
@@ -59,14 +57,14 @@ const TabForAdmin = createMaterialBottomTabNavigator(
         AdminProfile: {
              screen: AdminProfile,  
             navigationOptions:{  
-                tabBarLabel:'   ',  
+                tabBarLabel:'Profile',  
                 tabBarIcon: ({ tintColor }) => (  
                     <View>  
                         <Icons style={[{ color: tintColor }]} size={25} name={"user"}/> 
                     </View>),  
-                activeColor: 'rgb(245, 0, 0)',  
-                inactiveColor: 'rgb(240, 243, 244)',
-                barStyle: { backgroundColor: 'rgb(245, 203, 167)' },  
+                    activeColor: 'white',  
+                    inactiveColor: 'grey', 
+                    barStyle: { backgroundColor: '#2B2D2F' }, 
                 
             }  
         },  

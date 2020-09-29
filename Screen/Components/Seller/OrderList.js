@@ -2,6 +2,7 @@
 import 'react-native-gesture-handler';
 
 import * as React from 'react';
+import { StyleSheet, Text, View, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
@@ -20,13 +21,15 @@ function TabStack() {
             initialRouteName="PendingOrder"
             tabBarOptions={{
                 showIcon: true,
-                activeTintColor: 'black',
-                inactiveTintColor: 'black',
+                activeTintColor: 'white',
+                inactiveTintColor: 'grey',
 
-
+                tabBarOptions: {
+                    activeTintColor: 'red',
+                  },
 
                 style: {
-                    backgroundColor: 'rgb(86, 255, 214)',
+                    backgroundColor: '#2B2D2F',
                 },
                 labelStyle: {
                     textAlign: 'center',
@@ -44,7 +47,9 @@ function TabStack() {
                 options={{
                     tabBarLabel: 'Pending',
                     tabBarIcon: ({ tintColor }) => (
-                        <Icon name="download" size={25} />
+                        <View>
+                        <Icon style={[{ color: 'grey' }]} size={25} name={'download'} />
+                      </View>
                     )
                 }} />
 
@@ -54,7 +59,9 @@ function TabStack() {
                 options={{
                     tabBarLabel: 'Accepted',
                     tabBarIcon: ({ tintColor }) => (
-                        <Icon name="checkmark-circle" size={25} />
+                        <View>
+            <Icon style={[{ color: 'grey' }]} size={25} name={'checkmark-circle'} />
+          </View>
                     )
 
                 }} />
@@ -65,7 +72,9 @@ function TabStack() {
                 options={{
                     tabBarLabel: 'Delivered',
                     tabBarIcon: ({ tintColor }) => (
-                        <Icon name="timer" size={25} />
+                        <View>
+                        <Icon style={[{ color: 'grey' }]} size={25} name={'timer'} />
+                      </View>
                     )
 
                 }} />

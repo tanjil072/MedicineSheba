@@ -18,7 +18,7 @@ export default class EditMedi extends Component {
     }
 
 
-    Add = () => {
+    Update = () => {
 
 
         fetch("https://medicine-sheba-server.herokuapp.com/admin/update-medicine", {
@@ -49,6 +49,8 @@ export default class EditMedi extends Component {
                     console.log('Medicine Updated Successfully');
                     this.setState({ successText: "Medicine updated successfully" })
 
+                }else if(responseJson.status == 'error'){
+                    alert("Update Error")
                 }
             })
 
@@ -76,7 +78,7 @@ export default class EditMedi extends Component {
             <KeyboardAvoidingView enabled>
                 <View style={styles.container}>
                 <View>
-                <Text style={{fontSize:30,fontWeight:'bold',textDecorationLine: 'underline',marginBottom:25}}>Edit {name}</Text>
+                <Text style={{fontSize:30,marginTop:20,fontWeight:'bold',textDecorationLine: 'underline',marginBottom:25}}>Edit {name}</Text>
                 </View>
                     <TextInput style={styles.inputBox}
                         onChangeText={(medicineName) => this.setState({ medicineName: medicineName })}
@@ -132,7 +134,7 @@ export default class EditMedi extends Component {
                     />
 
                     <TouchableOpacity style={styles.button}>
-                        <Text style={styles.buttonText} onPress={() => this.Add()} >Update</Text>
+                        <Text style={styles.buttonText} onPress={() => this.Update()} >Update</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity style={styles.button}>
@@ -150,9 +152,9 @@ export default class EditMedi extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 30
+        backgroundColor:'#B2BEB5',
+        height:'100%'
     },
     successTextStyle: {
         color: 'red',
@@ -169,8 +171,8 @@ const styles = StyleSheet.create({
         marginVertical: 10
     },
     button: {
-        width: 300,
-        backgroundColor: '#4f83cc',
+        width: "40%",
+        backgroundColor: '#2B2D2F',
         borderRadius: 25,
         marginVertical: 10,
         paddingVertical: 12

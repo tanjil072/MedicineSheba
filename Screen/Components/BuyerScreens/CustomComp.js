@@ -22,11 +22,11 @@ export default class CustomComp extends React.Component {
 
         if (action == 'more') {
             this.setState({ qty: this.state.qty + 1 })
-            console.log("More:" + this.state.qty)
+            //console.log("More:" + this.state.qty)
         } else if (action == 'less') {
             if (this.state.qty > 1) {
                 this.setState({ qty: this.state.qty - 1 })
-                console.log("Less:" + this.state.qty)
+                //console.log("Less:" + this.state.qty)
             }
 
         }

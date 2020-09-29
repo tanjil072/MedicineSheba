@@ -7,6 +7,9 @@ global.var = '1'
 
 function Comp() {
 
+    //console.log(navigation.getParam('ind'))
+
+
     let [value, setValue] = useState('1');
 
     const quantityHandler = (action) => {
@@ -171,7 +174,6 @@ export default class Cart extends React.Component {
                 },
                 body: JSON.stringify({
                     orderDetails:this.temp,
-
                     subTotal: this.subtotalPrice().toFixed(2),
                     owner: global.owner
                 })
@@ -212,7 +214,7 @@ export default class Cart extends React.Component {
                 const itemData = item.medicineName ? item.medicineName.toUpperCase() : ''.toUpperCase();
                 const textData = text.toUpperCase();
 
-                return itemData.indexOf(textData) > -1;
+                return itemData.indexOf(textData)>-1;
 
             });
 
@@ -280,7 +282,7 @@ export default class Cart extends React.Component {
 
                                                 </TouchableOpacity>
 
-                                                <Comp />
+                                                <Comp ind={i} />
                                             </View>
 
                                         </View>
@@ -291,7 +293,7 @@ export default class Cart extends React.Component {
                         )}
 
 
-                    <View style={{ backgroundColor: '#616771' }}>
+                    <View style={{ backgroundColor: 'black' }}>
                         <View style={{ flexDirection: 'row' }}>
                             <View style={[styles.centerElement, { width: 60 }]}>
                                 <TouchableOpacity style={[styles.centerElement, { width: 32, height: 32 }]} onPress={() => this.selectHandlerAll(selectAll)}>

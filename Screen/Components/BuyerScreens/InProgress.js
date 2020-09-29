@@ -57,6 +57,7 @@ export default class Pending extends React.Component {
 			.then(responseJson => {
 				//console.log("Pending" + responseJson)
 				if(responseJson.status=='success'){
+					//console.log("Pending" + responseJson)
 				this.setState(
 					{
 						dataSource: responseJson.message
@@ -88,16 +89,14 @@ export default class Pending extends React.Component {
 		})
 			.then(response => response.json())
 			.then(responseJson => {
+				//console.log(responseJson)
 
-				// this.setState(
-				// 	{
-				// 		dataSource: responseJson.message
-				// 	},
-				// 	function () {
-				// 		this.state.cartItems = responseJson.message;
-				// 	  }
-
-				// );
+				if(responseJson.status=='success'){
+					//console.log("Pending" + responseJson)
+				alert("OrderNo."+responseJson.message.orderNo+"\n"+"Address:"+responseJson.message.address+"\n"+"Total: "+responseJson.message.subTotal+"tk"+"\n"+"Date:"+responseJson.message.dateTime)
+			}else if(responseJson.status=='error'){
+				console.log(responseJson.message)
+			}
 			})
 			.catch(error => {
 				console.error(error);
@@ -129,7 +128,7 @@ export default class Pending extends React.Component {
 								<View key={i} style={{ flexDirection: 'row', backgroundColor: '#fff', marginBottom: 2, height: 120 }}>
 									<View style={[styles.centerElement, { width: 60 }]}>
 										<TouchableOpacity style={[styles.centerElement, { width: 32, height: 32 }]} onPress={() => alert("")}>
-											<Text style={{ fontSize: 20 }}>{item.orderNo}</Text>
+											<Text style={{ fontSize: 20 }}>{item.orderNo}.</Text>
 										</TouchableOpacity>
 									</View>
 									<View style={{ flexDirection: 'row', flexGrow: 1, flexShrink: 1, alignSelf: 'center' }}>
@@ -139,10 +138,8 @@ export default class Pending extends React.Component {
 										<View style={{ flexGrow: 1, flexShrink: 1, alignSelf: 'center' }}>
 
 											<TouchableOpacity onPress={() => this.orderDetails(item.orderNo)}>
-												<Text numberOfLines={1} style={{ fontSize: 20 }}>{item.customerName}            <Text style={{ fontSize: 15 }}>{item.dateTime}</Text>  </Text>
-
-
-												<Text numberOfLines={1} style={{ color: '#8f8f8f' }}>Total: {item.subTotal} tk.</Text>
+												
+												<Text numberOfLines={1} style={{ color: '#8f8f8f',fontSize:20 }}>Total: {item.subTotal} tk.</Text>
 
 
 											</TouchableOpacity>
