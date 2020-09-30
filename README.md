@@ -1,5 +1,6 @@
 # MedicineSheba 
-This is a Medicine delivery application build with React Native
+This is a Medicine delivery app like the UBER,FOOD PANDA build with React Native in the frontend & Node js in the backend.
+
 <p float="left">
   <img src="https://user-images.githubusercontent.com/53004677/89702518-fabe8100-d963-11ea-9711-509a3df0da48.png" width="200" height="400" />
   <img src="https://user-images.githubusercontent.com/53004677/93731858-c8ee3a80-fbf0-11ea-9124-baebfc3115b6.png" width="200" height="400" />
@@ -10,7 +11,6 @@ This is a Medicine delivery application build with React Native
   <img src="https://user-images.githubusercontent.com/53004677/93731935-18346b00-fbf1-11ea-8222-8b5119703b3d.png" width="200" height="400" />
   <img src="https://user-images.githubusercontent.com/53004677/93731958-2edac200-fbf1-11ea-8b6e-a66b6f5e7b22.png" width="200" height="400" />
   <img src="https://user-images.githubusercontent.com/53004677/93731964-300bef00-fbf1-11ea-9c0b-80452224ceac.png" width="200" height="400" />
-
 
 </p>
 
