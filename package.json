@@ -18,7 +18,7 @@
     "@react-navigation/stack": "^5.8.0",
     "axios": "^0.20.0",
     "react": "16.13.1",
-    "react-native": "0.63.2",
+    "react-native": "0.64.1",
     "react-native-dialog": "^5.6.0",
     "react-native-dialog-input": "^1.0.8",
     "react-native-gesture-handler": "^1.7.0",
